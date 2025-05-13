@@ -1,0 +1,28 @@
+/* التنسيقات المتجاوبة */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .services-grid,
+    .team-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-wrapper {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-header h1 {
+        font-size: 1.8rem;
+    }
+}

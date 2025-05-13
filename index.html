@@ -1,0 +1,3481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNomads | الريادة التقنية اليمنية</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <!-- تحسين الأداء -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <!-- ...existing code... -->
+    <meta name="description" content="TechNomads - الريادة التقنية اليمنية. نقدم حلولاً رقمية متكاملة تشمل تطوير التطبيقات، تصميم المواقع، التسويق الرقمي، وتصميم UI/UX.">
+    <meta name="keywords" content="TechNomads, الريادة التقنية, تطوير التطبيقات, تصميم المواقع, التسويق الرقمي, تصميم UI/UX, اليمن">
+    <meta name="author" content="TechNomads">
+    <meta property="og:title" content="TechNomads | الريادة التقنية اليمنية">
+    <meta property="og:description" content="نقدم حلولاً رقمية متكاملة تلبي احتياجات العصر وتواكب تطورات المستقبل.">
+    <meta property="og:image" content="images/og-image.jpg">
+    <meta property="og:url" content="https://www.technomads.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TechNomads | الريادة التقنية اليمنية">
+    <meta name="twitter:description" content="نقدم حلولاً رقمية متكاملة تلبي احتياجات العصر وتواكب تطورات المستقبل.">
+    <meta name="twitter:image" content="images/og-image.jpg">
+    <!-- ...existing code... -->
+    
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A2D7C;    /* أزرق ملكي */
+            --secondary: #FF6B6B;  /* مرجاني */
+            --accent: #4ECDC4;     /* فيروزي */
+            --dark: #1A1A1A;
+            --light: #F8F9FA;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* الهيكل الأساسي */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* الهيدر الذكي */
+        .smart-header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        /* قائمة الجوال */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--light);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 2rem;
+            z-index: 2000;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        /* القسم البطولي */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient);
+            padding: 6rem 1rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* تصميم الهاتف المحاكي */
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            height: 560px;
+            background: #fff;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        /* أزرار التفاعل */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        /* قسم الخدمات */
+        .services-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* قائمة الهامبرجر */
+        .hamburger {
+            display: none;
+            padding: 0.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 3000;
+        }
+
+        .hamburger-box {
+            width: 24px;
+            height: 16px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .hamburger-inner {
+            width: 100%;
+            height: 2px;
+            background: var(--dark);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: var(--transition);
+        }
+
+        .hamburger-inner::before,
+        .hamburger-inner::after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: inherit;
+            position: absolute;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger-inner::before {
+            top: -6px;
+        }
+
+        .hamburger-inner::after {
+            top: 6px;
+        }
+
+        .hamburger.active .hamburger-inner {
+            background: transparent;
+        }
+
+        .hamburger.active .hamburger-inner::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .hamburger.active .hamburger-inner::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        /* القائمة الرئيسية */
+        .desktop-nav {
+            display: block;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .phone-mockup {
+                width: 240px;
+                height: 480px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+        .mobile-logo {
+            max-height: 50px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .close-nav {
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-list {
+            list-style: none;
+            padding: 1rem;
+        }
+        
+        .mobile-nav-link {
+            display: block;
+            padding: 1rem 0;
+            color: var(--dark);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+<!-- الهيدر الذكي -->
+<header class="smart-header" id="main-header">
+    <div class="nav-container">
+        <!-- الشعار التفاعلي مع تأثيرات -->
+        <a href="#home" class="logo" aria-label="TechNomads الرئيسية" data-aos="fade-right">
+            <div class="logo-wrapper">
+                <img src="images/logo.png" alt="شعار TechNomads" class="logo-img">
+                <img src="images/logo-dark.png" alt="شعار TechNomads" class="logo-img hover">
+            </div>
+            <span class="logo-text">TechNomads</span>
+        </a>
+
+        <!-- قائمة الهامبرجر المحسنة -->
+        <button class="hamburger" aria-label="قائمة التنقل" aria-expanded="false" id="hamburger-btn">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+
+        <!-- القائمة الرئيسية المعززة -->
+        <nav class="desktop-nav" aria-label="القائمة الرئيسية">
+            <ul class="nav-list">
+                <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
+                    <a href="#home" class="nav-link active">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span class="nav-text">الرئيسية</span>
+                        <span class="nav-underline"></span>
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-down" data-aos-delay="150">
+                    <a href="#services" class="nav-link">
+                        <i class="fas fa-cogs nav-icon"></i>
+                        <span class="nav-text">الخدمات</span>
+                        <span class="nav-underline"></span>
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-down" data-aos-delay="175">
+                    <a href="#about" class="nav-link">
+                        <i class="fas fa-info-circle nav-icon"></i>
+                        <span class="nav-text">نبذة عنا</span>
+                        <span class="nav-underline"></span>
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-down" data-aos-delay="200">
+                    <a href="#portfolio" class="nav-link">
+                        <i class="fas fa-briefcase nav-icon"></i>
+                        <span class="nav-text">الأعمال</span>
+                        <span class="nav-underline"></span>
+                    </a>
+                </li>
+                <li class="nav-item" data-aos="fade-down" data-aos-delay="250">
+                    <a href="#contact" class="nav-link cta">
+                        <i class="fas fa-paper-plane nav-icon"></i>
+                        <span class="nav-text">اتصل بنا</span>
+                        <span class="nav-underline"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- إضافة زر اللغة -->
+        <div class="language-switcher" data-aos="fade-left">
+            <button class="lang-btn active" data-lang="ar">العربية</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <!-- قائمة الجوال المتطورة -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="قائمة الجوال" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <div class="mobile-logo-wrapper">
+                <img src="images/logo.png" alt="شعار TechNomads" class="mobile-logo">
+            </div>
+            <button class="close-nav" id="close-nav-btn" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-item" data-aos="fade-left" data-aos-delay="100">
+                <a href="#home" class="mobile-nav-link active">
+                    <i class="fas fa-home mobile-nav-icon"></i>
+                    <span>الرئيسية</span>
+                    <div class="mobile-nav-indicator"></div>
+                </a>
+            </li>
+            <li class="mobile-nav-item" data-aos="fade-left" data-aos-delay="150">
+                <a href="#services" class="mobile-nav-link">
+                    <i class="fas fa-cogs mobile-nav-icon"></i>
+                    <span>الخدمات</span>
+                    <div class="mobile-nav-indicator"></div>
+                </a>
+            </li>
+            <li class="mobile-nav-item" data-aos="fade-left" data-aos-delay="175">
+                <a href="cv/inde.html" class="mobile-nav-link">
+                    <i class="fas fa-info-circle mobile-nav-icon"></i>
+                    <span>نبذة عنا</span>
+                    <div class="mobile-nav-indicator"></div>
+                </a>
+            </li>
+            <li class="mobile-nav-item" data-aos="fade-left" data-aos-delay="200">
+                <a href="#portfolio" class="mobile-nav-link">
+                    <i class="fas fa-briefcase mobile-nav-icon"></i>
+                    <span>الأعمال</span>
+                    <div class="mobile-nav-indicator"></div>
+                </a>
+            </li>
+            <li class="mobile-nav-item" data-aos="fade-left" data-aos-delay="250">
+                <a href="#contact" class="mobile-nav-link cta">
+                    <i class="fas fa-paper-plane mobile-nav-icon"></i>
+                    <span>اتصل بنا</span>
+                    <div class="mobile-nav-indicator"></div>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mobile-nav-footer">
+            <div class="mobile-language-switcher">
+                <button class="mobile-lang-btn active" data-lang="ar">العربية</button>
+                <button class="mobile-lang-btn" data-lang="en">English</button>
+            </div>
+            <div class="mobile-social-links">
+                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- تضمين مكتبات CSS -->
+<style>
+/* أنماط الهيدر المتطور */
+.smart-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+
+.smart-header.scrolled {
+    background-color: rgba(42, 45, 124, 0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.smart-header.scrolled .logo-text,
+.smart-header.scrolled .nav-link,
+.smart-header.scrolled .hamburger-inner,
+.smart-header.scrolled .hamburger-text {
+    color: #fff;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* تحسينات الشعار */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.logo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.logo-img.hover {
+    opacity: 0;
+}
+
+.logo:hover .logo-img {
+    opacity: 0;
+}
+
+.logo:hover .logo-img.hover {
+    opacity: 1;
+}
+
+.logo-text {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2A2D7C;
+    transition: color 0.3s ease;
+}
+
+/* تحسينات قائمة الهامبرجر */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1100;
+}
+
+.hamburger-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30px;
+    height: 24px;
+    position: relative;
+}
+
+.hamburger-inner {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #2A2D7C;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: inherit;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.hamburger-inner::before {
+    top: -8px;
+}
+
+.hamburger-inner::after {
+    top: 8px;
+}
+
+.hamburger.active .hamburger-inner {
+    background-color: transparent;
+}
+
+.hamburger.active .hamburger-inner::before {
+    top: 0;
+    transform: rotate(45deg);
+    background-color: #fff;
+}
+
+.hamburger.active .hamburger-inner::after {
+    top: 0;
+    transform: rotate(-45deg);
+    background-color: #fff;
+}
+
+.hamburger-text {
+    font-size: 0.8rem;
+    color: #2A2D7C;
+    margin-top: 22px;
+    transition: color 0.3s ease;
+}
+
+/* القائمة الرئيسية المحسنة */
+.desktop-nav {
+    display: block;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: #2A2D7C;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #FF6B6B;
+}
+
+.nav-link.cta {
+    background-color: #FF6B6B;
+    color: white;
+    border-radius: 30px;
+    padding: 0.8rem 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.nav-link.cta:hover {
+    background-color: #e05555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FF6B6B;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover .nav-underline,
+.nav-link.active .nav-underline {
+    width: 100%;
+}
+
+/* مبدل اللغة */
+.language-switcher {
+    display: flex;
+    margin-right: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.lang-btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+    background-color: #2A2D7C;
+    color: white;
+}
+
+/* قائمة الجوال المتطورة */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-logo-wrapper {
+    width: 120px;
+}
+
+.mobile-logo {
+    width: 100%;
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.close-nav {
+    background: none;
+    border: none;
+    color: #2A2D7C;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-nav:hover {
+    transform: rotate(90deg);
+}
+
+.mobile-nav-list {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.mobile-nav-item {
+    margin: 0.5rem 0;
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #2A2D7C;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+    background-color: #f8f8f8;
+    color: #FF6B6B;
+}
+
+.mobile-nav-link.cta {
+    background-color: #FF6B6B;
+    color: white;
+    margin: 1rem;
+    border-radius: 30px;
+    justify-content: center;
+}
+
+.mobile-nav-link.cta:hover {
+    background-color: #e05555;
+}
+
+.mobile-nav-icon {
+    margin-left: 1rem;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.mobile-nav-indicator {
+    position: absolute;
+    right: -100%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FF6B6B;
+    transition: right 0.3s ease;
+}
+
+.mobile-nav-link:hover .mobile-nav-indicator,
+.mobile-nav-link.active .mobile-nav-indicator {
+    right: 0;
+}
+
+.mobile-nav-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.mobile-language-switcher {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mobile-lang-btn {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.mobile-lang-btn.active {
+    background-color: #2A2D7C;
+    color: white;
+}
+
+.mobile-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.mobile-social-links a {
+    color: #2A2D7C;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.mobile-social-links a:hover {
+    color: #FF6B6B;
+    transform: translateY(-3px);
+}
+
+/* تأثيرات الحركة */
+[data-aos="fade-right"] {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s ease;
+}
+
+[data-aos="fade-right"].aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-aos="fade-left"] {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+}
+
+[data-aos="fade-left"].aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+[data-aos="fade-down"] {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.6s ease;
+}
+
+[data-aos="fade-down"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 992px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .desktop-nav,
+    .language-switcher {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-nav {
+        width: 90%;
+    }
+    
+    .mobile-nav-link {
+        padding: 1rem;
+    }
+    
+    .mobile-nav-link.cta {
+        margin: 1rem 0.5rem;
+    }
+}
+</style>
+
+<!-- تضمين مكتبات JavaScript -->
+<script>
+    // ننتظر تحميل DOM بالكامل
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded'); // للتأكد من تحميل الصفحة
+        
+        // تعريف العناصر بشكل صحيح
+        const hamburgerBtn = document.querySelector('.hamburger');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const closeBtn = document.querySelector('.close-nav');
+        
+        // التحقق من وجود العناصر
+        if (!hamburgerBtn || !mobileNav || !closeBtn) {
+            console.error('Error: Missing essential elements!');
+            console.log('Elements found:', {
+                hamburgerBtn,
+                mobileNav,
+                closeBtn
+            });
+            return;
+        }
+        
+        // دالة تبديل القائمة
+        function toggleMenu() {
+            console.log('Toggling menu...'); // تتبع التنفيذ
+            try {
+                mobileNav.classList.toggle('active');
+                hamburgerBtn.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+            } catch (error) {
+                console.error('Error in toggleMenu:', error);
+            }
+        }
+        
+        // إضافة Event Listeners
+        hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // منع الانتشار
+            toggleMenu();
+        });
+        
+        closeBtn.addEventListener('click', toggleMenu);
+        
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            if (!mobileNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                if (mobileNav.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+        });
+        
+        // تهيئة AOS (إذا كانت مستخدمة)
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        }
+        
+        console.log('Navigation script initialized successfully');
+    });
+</script>
+
+<!-- القسم الرئيسي -->
+<main>
+    <!-- القسم البطولي المطور -->
+<!-- القسم البطولي المطور مع تحسينات عرض الصور -->
+<section class="hero-section" id="home">
+    <div class="particles-js" id="particles-js"></div>
+    <div class="gradient-overlay"></div>
+    <div class="animated-shapes">
+        <div class="shape circle"></div>
+        <div class="shape triangle"></div>
+        <div class="shape square"></div>
+    </div>
+    
+    <div class="hero-content">
+        <div class="hero-text" data-aos="fade-up" data-aos-duration="800">
+            <div class="badge" data-aos="fade-up" data-aos-delay="100">
+                <span>الشركة الرائدة في اليمن</span>
+                <i class="fas fa-award"></i>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="typing-text" data-strings='["ابتكارات رقمية", "حلول تكنولوجية", "رؤية مستقبلية"]'></span>
+                <span class="highlight">تنطلق من اليمن</span>
+            </h1>
+            
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                نقدم حلولاً رقمية متكاملة تلبي احتياجات العصر وتواكب تطورات المستقبل
+            </p>
+            
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <span class="counter" data-target="150">0</span>+
+                    <p>مشروع ناجح</p>
+                </div>
+                <div class="stat-item">
+                    <span class="counter" data-target="50">0</span>+
+                    <p>عميل راضٍ</p>
+                </div>
+                <div class="stat-item">
+                    <span class="counter" data-target="30">0</span>+
+                    <p>خبير تقني</p>
+                </div>
+            </div>
+            
+            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="600">
+                <a href="#contact" class="cta-button primary pulse-animation">
+                    ابدأ مشروعك
+                    <i class="fas fa-rocket"></i>
+                </a>
+                <a href="#services" class="cta-button secondary">
+                    اكتشف خدماتنا
+                    <i class="fas fa-chevron-down bounce-animation"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="device-showcase" data-aos="fade-left" data-aos-delay="800">
+            <div class="phone-mockup-wrapper">
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen-container">
+                            <div class="phone-screen">
+                                <div class="app-slider">
+                                    <div class="slide active">
+                                        <img src="images/app-screenshot-1.jpg" alt="واجهة التطبيق" onerror="this.src='images/placeholder.jpg'">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="images/app-screenshot-2.jpg" alt="ميزات التطبيق" onerror="this.src='images/placeholder.jpg'">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="images/app-screenshot-3.jpg" alt="إحصائيات التطبيق" onerror="this.src='images/placeholder.jpg'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-notch"></div>
+                        </div>
+                    </div>
+                    <div class="phone-shadow"></div>
+                </div>
+            </div>
+            
+            <div class="tablet-mockup-wrapper">
+                <div class="tablet-mockup">
+                    <div class="tablet-frame">
+                        <div class="tablet-screen">
+                            <img src="images/tablet-screenshot.jpg" alt="واجهة التابلت" onerror="this.src='images/placeholder.jpg'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#services" class="scroll-down" data-aos="fade-up" data-aos-delay="1000">
+        <span>قم بالتمرير</span>
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+    </a>
+</section>
+
+<style>
+/* أنماط القسم البطولي المطور */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #2A2D7C 0%, #4ECDC4 100%);
+    overflow: hidden;
+    padding: 0;
+    color: white;
+}
+
+.particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.gradient-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(42,45,124,0.9), rgba(78,205,196,0.7));
+    z-index: 2;
+}
+
+.animated-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+.shape.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #FF6B6B;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 173.2px solid #4ECDC4;
+    top: 60%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.shape.square {
+    width: 150px;
+    height: 150px;
+    background: #2A2D7C;
+    bottom: 10%;
+    right: 20%;
+    animation-delay: 6s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-50px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+    padding-right: 2rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge i {
+    color: #FFD700;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.typing-text {
+    display: block;
+    min-height: 4rem;
+}
+
+.highlight {
+    color: #FF6B6B;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 107, 107, 0.3);
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2.5rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.counter {
+    font-size: 2.8rem;
+    font-weight: bold;
+    display: block;
+    color: #FF6B6B;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.primary {
+    background: #FF6B6B;
+    color: white;
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+.primary:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+
+.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.secondary:hover {
+    background: white;
+    color: #2A2D7C;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+.bounce-animation {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* أنماط عرض الأجهزة المعدلة */
+.device-showcase {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+    margin-left: 2rem;
+    height: 500px;
+}
+
+.phone-mockup-wrapper,
+.tablet-mockup-wrapper {
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+.phone-mockup {
+    position: relative;
+    width: 250px;
+    z-index: 2;
+    transform: rotate(-10deg);
+    transition: transform 0.5s ease;
+}
+
+.phone-mockup:hover {
+    transform: rotate(-5deg) translateY(-10px);
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 200%;
+    background: #f5f5f5;
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.phone-screen-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.phone-screen {
+    position: absolute;
+    width: 94%;
+    height: 96%;
+    top: 2%;
+    left: 3%;
+    border-radius: 35px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.app-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: #f0f0f0; /* لون خلفية مؤقت أثناء تحميل الصورة */
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 20px;
+    background: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 2;
+}
+
+.phone-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+.tablet-mockup {
+    position: relative;
+    width: 400px;
+    z-index: 1;
+    transform: rotate(5deg);
+    transition: transform 0.5s ease;
+}
+
+.tablet-mockup:hover {
+    transform: rotate(10deg) translateY(-10px);
+}
+
+.tablet-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 70%;
+    background: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.tablet-screen {
+    position: absolute;
+    width: 96%;
+    height: 95%;
+    top: 2.5%;
+    left: 2%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.tablet-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: #f0f0f0; /* لون خلفية مؤقت أثناء تحميل الصورة */
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.scroll-down span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.mouse {
+    width: 25px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.wheel {
+    width: 5px;
+    height: 8px;
+    background: white;
+    border-radius: 3px;
+    animation: scrollAnimation 2s infinite;
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .device-showcase {
+        max-width: 500px;
+    }
+    
+    .tablet-mockup {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .hero-text {
+        margin-bottom: 4rem;
+        max-width: 100%;
+        padding-right: 0;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+    
+    .device-showcase {
+        margin: 3rem auto 0;
+        height: auto;
+        position: relative;
+    }
+    
+    .phone-mockup-wrapper,
+    .tablet-mockup-wrapper {
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    .phone-mockup {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .counter {
+        font-size: 2.2rem;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+    
+    /* تحسينات لعرض الصور على الأجهزة المحمولة */
+    .phone-mockup {
+        width: 180px;
+    }
+    
+    .phone-screen {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    
+    .app-slider img {
+        object-fit: contain; /* بدلاً من cover للحفاظ على نسبة العرض إلى الارتفاع */
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .phone-mockup {
+        width: 200px;
+    }
+    
+    .tablet-mockup {
+        width: 250px;
+    }
+}
+</style>
+
+<script>
+// تأثير الكتابة التلقائي
+document.addEventListener('DOMContentLoaded', function() {
+    // تأثير الكتابة
+    const typingElement = document.querySelector('.typing-text');
+    if (typingElement) {
+        const strings = JSON.parse(typingElement.getAttribute('data-strings'));
+        let currentStringIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+        
+        function type() {
+            const currentString = strings[currentStringIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentString.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 100;
+            } else {
+                typingElement.textContent = currentString.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150;
+            }
+            
+            if (!isDeleting && charIndex === currentString.length) {
+                isDeleting = true;
+                typingSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentStringIndex = (currentStringIndex + 1) % strings.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, 1000);
+    }
+    
+    // عداد الإحصائيات
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    
+    function animateCounters() {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target + '+';
+            }
+        });
+    }
+    
+    // تشغيل العدادات عند التمرير إلى القسم
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.counter').forEach(counter => {
+        observer.observe(counter);
+    });
+    
+    // تحسين عرض شرائح الصور في الهاتف
+    const initAppSlider = () => {
+        const appSlider = document.querySelector('.app-slider');
+        if (appSlider) {
+            const slides = appSlider.querySelectorAll('.slide');
+            let currentIndex = 0;
+            
+            // التحقق من تحميل الصور أولاً
+            const checkImagesLoaded = () => {
+                let allLoaded = true;
+                slides.forEach(slide => {
+                    const img = slide.querySelector('img');
+                    if (img && !img.complete) {
+                        allLoaded = false;
+                    }
+                });
+                return allLoaded;
+            };
+            
+            const changeSlide = () => {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+                
+                // إذا كانت الصورة التالية لم تحمل بعد، انتظر قليلاً
+                const nextImg = slides[currentIndex].querySelector('img');
+                if (nextImg && !nextImg.complete) {
+                    nextImg.onload = () => {
+                        setTimeout(changeSlide, 3000);
+                    };
+                } else {
+                    setTimeout(changeSlide, 3000);
+                }
+            };
+            
+            // بدء العرض بعد التأكد من تحميل الصور
+            if (checkImagesLoaded()) {
+                setTimeout(changeSlide, 3000);
+            } else {
+                // إذا لم تحمل جميع الصور، انتظر حتى تحميلها
+                window.addEventListener('load', () => {
+                    setTimeout(changeSlide, 3000);
+                });
+            }
+        }
+    };
+    
+    initAppSlider();
+    
+    // تأثيرات الأجهزة عند التمرير
+    const deviceShowcase = document.querySelector('.device-showcase');
+    if (deviceShowcase) {
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const phone = document.querySelector('.phone-mockup');
+            const tablet = document.querySelector('.tablet-mockup');
+            
+            if (phone && tablet) {
+                phone.style.transform = `rotate(-10deg) translateY(${scrollPosition * 0.1}px)`;
+                tablet.style.transform = `rotate(5deg) translateY(${scrollPosition * 0.15}px)`;
+            }
+        });
+    }
+    
+    // رسائل تحذير إذا فشل تحميل الصور
+    document.querySelectorAll('.slide img, .tablet-screen img').forEach(img => {
+        img.onerror = function() {
+            console.warn('فشل تحميل الصورة: ', this.src);
+            this.src = 'images/placeholder.jpg';
+            this.alt = 'صورة بديلة';
+        };
+    });
+});
+
+// تهيئة particles.js
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+    }
+});
+</script>
+
+    <!-- قسم الخدمات المطور -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">حلولنا الرقمية المتكاملة</h2>
+                <p class="section-description">نقدم مجموعة واسعة من الخدمات التقنية المصممة خصيصاً لتحقيق أهداف عملك</p>
+                <div class="section-divider">
+                    <span></span>
+                    <i class="fas fa-circle"></i>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div class="icon-wave"></div>
+                    </div>
+                    <h3>تطبيقات الجوال</h3>
+                    <p>تصميم وتطوير تطبيقات مخصصة لأنظمة iOS و Android</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> واجهات مستخدم جذابة</li>
+                        <li><i class="fas fa-check"></i> أداء عالي وسريع</li>
+                        <li><i class="fas fa-check"></i> تكامل مع الأنظمة الأخرى</li>
+                    </ul>
+                    <a href="#" class="service-link">
+                        عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="service-hover-content">
+                        <h4>ماذا نقدم في هذه الخدمة؟</h4>
+                        <ul>
+                            <li>تطبيقات أصلية (Native)</li>
+                            <li>تطبيقات هجينة (Hybrid)</li>
+                            <li>تطبيقات PWA</li>
+                            <li>ربط مع أنظمة الدفع</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                        <div class="icon-wave"></div>
+                    </div>
+                    <h3>تطوير الويب</h3>
+                    <p>بناء مواقع وتطبيقات ويب متكاملة وسريعة الاستجابة</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> تصاميم حديثة وجذابة</li>
+                        <li><i class="fas fa-check"></i> تحسين محركات البحث</li>
+                        <li><i class="fas fa-check"></i> حلول متجر إلكتروني</li>
+                    </ul>
+                    <a href="#" class="service-link">
+                        عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="service-hover-content">
+                        <h4>ماذا نقدم في هذه الخدمة؟</h4>
+                        <ul>
+                            <li>مواقع شركات</li>
+                            <li>متاجر إلكترونية</li>
+                            <li>أنظمة إدارة المحتوى</li>
+                            <li>تطبيقات ويب متقدمة</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="icon-wave"></div>
+                    </div>
+                    <h3>تصميم UI/UX</h3>
+                    <p>تصميم تجارب مستخدم مميزة وواجهات تفاعلية</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> بحث وتخطيط تجربة المستخدم</li>
+                        <li><i class="fas fa-check"></i> تصميم واجهات تفاعلية</li>
+                        <li><i class="fas fa-check"></i> اختبارات قابلية الاستخدام</li>
+                    </ul>
+                    <a href="#" class="service-link">
+                        عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="service-hover-content">
+                        <h4>ماذا نقدم في هذه الخدمة؟</h4>
+                        <ul>
+                            <li>تصميم واي فريم</li>
+                            <li>تصميم تجربة المستخدم</li>
+                            <li>تصميم واجهات تفاعلية</li>
+                            <li>اختبارات قابلية الاستخدام</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="icon-wave"></div>
+                    </div>
+                    <h3>التسويق الرقمي</h3>
+                    <p>حلول تسويقية متكاملة لزيادة وجودك الرقمي</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> تحسين محركات البحث</li>
+                        <li><i class="fas fa-check"></i> إعلانات وسائل التواصل</li>
+                        <li><i class="fas fa-check"></i> تحليل البيانات</li>
+                    </ul>
+                    <a href="#" class="service-link">
+                        عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <div class="service-hover-content">
+                        <h4>ماذا نقدم في هذه الخدمة؟</h4>
+                        <ul>
+                            <li>إدارة الحملات الإعلانية</li>
+                            <li>تحسين محركات البحث</li>
+                            <li>التسويق عبر السوشيال ميديا</li>
+                            <li>تحليل البيانات وقياس الأداء</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer" data-aos="fade-up">
+                <div class="trusted-by">
+                    <span>يثق بنا:</span>
+                    <div class="logos">
+                        <img src="images/client-1.png" alt="عميل 1">
+                        <img src="images/client-2.png" alt="عميل 2">
+                        <img src="images/client-3.png" alt="عميل 3">
+                        <img src="images/client-4.png" alt="عميل 4">
+                    </div>
+                </div>
+                <p>هل لديك متطلبات خاصة أو تحتاج إلى حل مخصص؟</p>
+                <a href="#contact" class="cta-button outline">
+                    تواصل مع خبرائنا
+                    <i class="fas fa-paper-plane"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+/* أنماط القسم البطولي المطور */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #2A2D7C 0%, #4ECDC4 100%);
+    overflow: hidden;
+    padding: 0;
+    color: white;
+}
+
+.particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.gradient-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(42,45,124,0.9), rgba(78,205,196,0.7));
+    z-index: 2;
+}
+
+.animated-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 15s infinite linear;
+}
+
+.shape.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #FF6B6B;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 173.2px solid #4ECDC4;
+    top: 60%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+.shape.square {
+    width: 150px;
+    height: 150px;
+    background: #2A2D7C;
+    bottom: 10%;
+    right: 20%;
+    animation-delay: 6s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-50px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge i {
+    color: #FFD700;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+.typing-text {
+    display: block;
+    min-height: 4rem;
+}
+
+.highlight {
+    color: #FF6B6B;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 107, 107, 0.3);
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin: 2.5rem 0;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.counter {
+    font-size: 2.8rem;
+    font-weight: bold;
+    display: block;
+    color: #FF6B6B;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.primary {
+    background: #FF6B6B;
+    color: white;
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+.primary:hover {
+    background: #ff5252;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+
+.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    transition: all 0.3s ease;
+}
+
+.secondary:hover {
+    background: white;
+    color: #2A2D7C;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+.bounce-animation {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* أنماط عرض الأجهزة */
+.device-showcase {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+    margin-left: 2rem;
+}
+
+.phone-mockup {
+    position: relative;
+    width: 250px;
+    z-index: 2;
+    transform: rotate(-10deg);
+    transition: transform 0.5s ease;
+}
+
+.phone-mockup:hover {
+    transform: rotate(-5deg) translateY(-10px);
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 200%;
+    background: #f5f5f5;
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.phone-screen {
+    position: absolute;
+    width: 94%;
+    height: 96%;
+    top: 2%;
+    left: 3%;
+    border-radius: 35px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.app-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.app-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.app-slider img.active {
+    opacity: 1;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 20px;
+    background: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 1;
+}
+
+.phone-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    filter: blur(10px);
+}
+
+.tablet-mockup {
+    position: absolute;
+    width: 400px;
+    bottom: -50px;
+    right: 0;
+    z-index: 1;
+    transform: rotate(5deg);
+    transition: transform 0.5s ease;
+}
+
+.tablet-mockup:hover {
+    transform: rotate(10deg) translateY(-10px);
+}
+
+.tablet-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 70%;
+    background: #f0f0f0;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.tablet-screen {
+    position: absolute;
+    width: 96%;
+    height: 95%;
+    top: 2.5%;
+    left: 2%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.tablet-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.scroll-down span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.mouse {
+    width: 25px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+}
+
+.wheel {
+    width: 5px;
+    height: 8px;
+    background: white;
+    border-radius: 3px;
+    animation: scrollAnimation 2s infinite;
+}
+
+@keyframes scrollAnimation {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* أنماط قسم الخدمات المطور */
+.services-section {
+    padding: 6rem 0;
+    background: #f9f9f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/dots-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: #2A2D7C;
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, #4ECDC4, #FF6B6B);
+    border-radius: 3px;
+}
+
+.section-description {
+    color: #666;
+    max-width: 750px;
+    margin: 0 auto 1.5rem;
+    font-size: 1.2rem;
+    line-height: 1.7;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.section-divider span {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #4ECDC4, transparent);
+}
+
+.section-divider i {
+    margin: 0 1.5rem;
+    color: #4ECDC4;
+    font-size: 0.9rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.service-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(42,45,124,0.1) 0%, rgba(78,205,196,0.1) 100%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-icon {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background: rgba(78,205,196,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background: rgba(255,107,107,0.1);
+    transform: rotate(15deg);
+}
+
+.service-icon i {
+    font-size: 2rem;
+    color: #4ECDC4;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon i {
+    color: #FF6B6B;
+}
+
+.icon-wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(78,205,196,0.2);
+    animation: wave 3s infinite;
+}
+
+.service-card:hover .icon-wave {
+    background: rgba(255,107,107,0.2);
+}
+
+@keyframes wave {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.service-card h3 {
+    color: #2A2D7C;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover h3 {
+    color: #FF6B6B;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover p {
+    color: #555;
+}
+
+.service-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.service-features li {
+    position: relative;
+    padding-right: 1.8rem;
+    margin-bottom: 1rem;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-features li {
+    color: #444;
+}
+
+.service-features i {
+    position: absolute;
+    right: 0;
+    color: #4ECDC4;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-features i {
+    color: #FF6B6B;
+}
+
+.service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #2A2D7C;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+.service-link:hover {
+    color: #FF6B6B;
+    gap: 1rem;
+}
+
+.service-hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2A2D7C 0%, #4ECDC4 100%);
+    color: white;
+    padding: 2rem;
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.service-card:hover .service-hover-content {
+    opacity: 1;
+}
+
+.service-hover-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.service-hover-content h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FF6B6B;
+}
+
+.service-hover-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-hover-content li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+.service-hover-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #FF6B6B;
+    font-size: 1.5rem;
+    line-height: 0;
+}
+
+.section-footer {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.trusted-by {
+    margin-bottom: 2rem;
+}
+
+.trusted-by span {
+    display: block;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.logos img {
+    height: 40px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.logos img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.outline {
+    border: 2px solid #2A2D7C;
+    color: #2A2D7C;
+    background: transparent;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    padding: 1rem 2.5rem;
+}
+
+.outline:hover {
+    background: #2A2D7C;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(42,45,124,0.2);
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .device-showcase {
+        max-width: 500px;
+    }
+    
+    .tablet-mockup {
+        width: 350px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+    
+    .hero-text {
+        margin-bottom: 4rem;
+        max-width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        justify-content: center;
+    }
+    
+    .device-showcase {
+        margin: 3rem auto 0;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .counter {
+        font-size: 2.2rem;
+    }
+    
+    .cta-buttons {
+        justify-content: center;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .section-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .phone-mockup {
+        width: 200px;
+    }
+    
+    .tablet-mockup {
+        width: 250px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* أنماط محاكي الهاتف المعدلة */
+.phone-mockup {
+    position: relative;
+    width: 250px;
+    z-index: 2;
+    transform: rotate(-10deg);
+    transition: transform 0.5s ease;
+}
+
+.phone-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 200%;
+    background: #f5f5f5;
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.phone-screen {
+    position: absolute;
+    width: 94%;
+    height: 96%;
+    top: 2%;
+    left: 3%;
+    border-radius: 35px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.app-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 20px;
+    background: #333;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 1;
+}
+
+.phone-shadow {
+    position: absolute;
+    bottom: -20px;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    filter: blur(10px);
+}
+</style>
+
+<script>
+// تأثير الكتابة التلقائي
+document.addEventListener('DOMContentLoaded', function() {
+    // تأثير الكتابة
+    const typingElement = document.querySelector('.typing-text');
+    if (typingElement) {
+        const strings = JSON.parse(typingElement.getAttribute('data-strings'));
+        let currentStringIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+        
+        function type() {
+            const currentString = strings[currentStringIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentString.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 100;
+            } else {
+                typingElement.textContent = currentString.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150;
+            }
+            
+            if (!isDeleting && charIndex === currentString.length) {
+                isDeleting = true;
+                typingSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentStringIndex = (currentStringIndex + 1) % strings.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, 1000);
+    }
+    
+    // عداد الإحصائيات
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    
+    function animateCounters() {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target + '+';
+            }
+        });
+    }
+    
+    // تشغيل العدادات عند التمرير إلى القسم
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.counter').forEach(counter => {
+        observer.observe(counter);
+    });
+    
+    // تغيير صور شاشات التطبيق
+
+    // تأثيرات الأجهزة عند التمرير
+    const deviceShowcase = document.querySelector('.device-showcase');
+    if (deviceShowcase) {
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const phone = document.querySelector('.phone-mockup');
+            const tablet = document.querySelector('.tablet-mockup');
+            
+            if (phone && tablet) {
+                phone.style.transform = `rotate(-10deg) translateY(${scrollPosition * 0.1}px)`;
+                tablet.style.transform = `rotate(5deg) translateY(${scrollPosition * 0.15}px)`;
+            }
+        });
+    }
+    
+    // تأثيرات عند تحميل الصفحة
+    setTimeout(() => {
+        document.querySelector('.hero-section').classList.add('loaded');
+    }, 500);
+});
+
+// تهيئة particles.js
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+    }
+});
+</script>
+
+<!-- الفوتر -->
+<!-- الفوتر المتطور -->
+<footer class="smart-footer">
+    <!-- موجات تصميمية علوية -->
+    <div class="footer-waves">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="var(--primary)" fill-opacity="1" d="M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,218.7C672,213,768,171,864,165.3C960,160,1056,192,1152,192C1248,192,1344,160,1392,144L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        </svg>
+    </div>
+
+    <div class="footer-container">
+        <!-- قسم الروابط السريعة -->
+        <div class="footer-section" data-aos="fade-up">
+            <h3 class="footer-title">روابط سريعة</h3>
+            <ul class="footer-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#portfolio">معرض الأعمال</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+        </div>
+
+        <!-- قسم معلومات الاتصال -->
+        <div class="footer-section" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="footer-title">تواصل معنا</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>صنعاء، اليمن</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+967123456789">+967 123 456 789</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@technomads.com">info@technomads.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم النشرة البريدية -->
+        <div class="footer-section" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="footer-title">اشترك في نشرتنا</h3>
+            <form class="newsletter-form">
+                <input type="email" placeholder="بريدك الإلكتروني" required>
+                <button type="submit" class="subscribe-btn">
+                    اشترك <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="جيت هاب"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- حقوق النشر -->
+    <div class="copyright-section" data-aos="fade-up">
+        <p>© <span class="current-year">2023</span> TechNomads. جميع الحقوق محفوظة</p>
+        <div class="footer-links">
+            <a href="#">شروط الخدمة</a>
+            <a href="#">سياسة الخصوصية</a>
+        </div>
+    </div>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</footer>
+
+<style>
+/* أنماط الفوتر المتطور */
+.smart-footer {
+    position: relative;
+    background-color: var(--primary);
+    color: white;
+    padding-top: 5rem;
+    overflow: hidden;
+}
+
+.footer-waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    transform: rotate(180deg);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+.footer-section {
+    padding: 1rem;
+}
+
+.footer-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.footer-links a:hover {
+    color: white;
+    padding-right: 10px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.contact-item i {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.contact-item a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: white;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.newsletter-form input {
+    padding: 0.8rem 1rem;
+    border-radius: 30px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: inherit;
+}
+
+.newsletter-form input:focus {
+    outline: 2px solid var(--accent);
+}
+
+.subscribe-btn {
+    padding: 0.8rem;
+    border-radius: 30px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.subscribe-btn:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--accent);
+    transform: translateY(-5px);
+}
+
+.copyright-section {
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
+
+.copyright-section .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary);
+    transform: translateY(-5px);
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-title::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .footer-links a:hover {
+        padding-right: 0;
+    }
+    
+    .contact-item {
+        justify-content: center;
+    }
+    
+    .back-to-top {
+        left: 20px;
+        bottom: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+</style>
+
+<script>
+// جافاسكريبت للفوتر المتطور
+document.addEventListener('DOMContentLoaded', function() {
+    // تحديث سنة حقوق النشر تلقائياً
+    const yearElement = document.querySelector('.current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+    
+    // زر العودة للأعلى
+    const backToTopBtn = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // إرسال النشرة البريدية (مثال)
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            if (emailInput.value) {
+                // هنا يمكنك إضافة كود إرسال البيانات للخادم
+                alert('شكراً للاشتراك في نشرتنا البريدية!');
+                emailInput.value = '';
+            }
+        });
+    }
+    
+    // تأثيرات AOS للعناصر
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
+});
+</script>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</body>
+</html>
