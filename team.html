@@ -1,32 +1,993 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <!-- نفس الهيد من index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVision | فريقنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --white: #fff;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --section-padding: 100px 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* شريط التقدم */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--secondary-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* أنماط الهيدر */
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            transform: translateY(0);
+        }
+
+        .header.hide {
+            transform: translateY(-100%);
+        }
+
+        .header.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 25px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            right: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--secondary-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
+            z-index: 1002;
+        }
+
+        .hamburger:focus {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 3px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark-color);
+            transition: var(--transition);
+            transform-origin: right center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg);
+        }
+
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* قسم فريق العمل */
+        .team-section {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .team-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .main-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            border-radius: 2px;
+        }
+        
+        .team-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .team-member {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 20px;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .team-member.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            background: #f1f1f1;
+        }
+        
+        .member-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(44, 62, 80, 0.1), rgba(44, 62, 80, 0.3));
+            z-index: 1;
+        }
+        
+        .team-member img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(20%);
+        }
+        
+        .team-member:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .team-member:hover h3 {
+            color: var(--secondary-color);
+        }
+        
+        .team-member p {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .team-member:hover p {
+            color: var(--accent-color);
+        }
+        
+        .member-bio {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-social a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            z-index: 0;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .member-social a:hover::before {
+            opacity: 1;
+        }
+        
+        .member-social a i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .member-social a:hover {
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .member-social a:focus {
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+        
+        .team-leader {
+            border: 3px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .team-leader::before {
+            content: 'قائد الفريق';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* التذييل */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 70px 0 0;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-about {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #bdc3c7;
+        }
+
+        .footer-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--white);
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            bottom: 0;
+            right: 0;
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(-5px);
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .copyright {
+            color: #bdc3c7;
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* التجاوب مع أحجام الشاشات */
+        @media (max-width: 1200px) {
+            .team-section {
+                padding: 130px 0 70px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-section {
+                padding: 120px 0 60px;
+            }
+            
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 20px;
+                left: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .team-section {
+                padding: 100px 0 50px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .team-description {
+                font-size: 1rem;
+            }
+            
+            .member-image {
+                height: 250px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">...</header>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="شعار TechVision">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="team.html">من نحن</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="projects.html" class="active">مشاريعنا</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="قائمة التنقل">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
 
     <section class="team-section">
         <div class="container">
-            <h1 class="main-title">فريقنا المتميز</h1>
+            <h1 class="main-title">فريق TechVision المتميز</h1>
+            <p class="team-description">
+                نفتخر بفريقنا المحترف الذي يجمع بين الخبرة التقنية العميقة والإبداع في تقديم الحلول. فريق متكامل يعمل بروح الفريق الواحد لتحقيق أفضل النتائج لعملائنا.
+            </p>
             
             <div class="team-grid">
-                <div class="team-member">
-                    <img src="images/team/member1.jpg" alt="أسامة المريسي">
-                    <h3>أسامة المريسي</h3>
-                    <p>مطور Full-Stack</p>
-                    <div class="member-social">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                <!-- قائد الفريق -->
+                <div class="team-member team-leader">
+                    <div class="member-image">
+                        <img src="images/team/osama.jpg" alt="أسامة منصور المريسي" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>أسامة منصور المريسي</h3>
+                        <p>مدير الفريق - مطور Full Stack</p>
+                        <p class="member-bio">
+                            خبير تقني بأكثر من 10 سنوات خبرة في تطوير الويب وإدارة المشاريع. يتمتع بمهارات قيادية وقدرة على تحفيز الفريق لتحقيق الأهداف.
+                        </p>
+                        <div class="member-social">
+                            <a href="cv/inde.html" aria-label="cv"><i class="fas fa-file-alt"></i></a>
+                            <a href="cv/inde.html" aria-label="cv"><i class="fas fa-id-card"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
                     </div>
                 </div>
-                <!-- أضف باقي الأعضاء -->
+                
+                <!-- أعضاء الفريق -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team/zakaria.jpg" alt="زكريا ناجي المريسي" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>زكريا ناجي المريسي</h3>
+                        <p>مصمم UI/UX</p>
+                        <p class="member-bio">
+                            مصمم واجهات مستخدم مبدع، متخصص في تجربة المستخدم وتصميم الواجهات التفاعلية الجذابة والسهلة الاستخدام.
+                        </p>
+                        <div class="member-social">
+                            <a href="#" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team/abdo.jpg" alt="عبده ثابت المريسي" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>عبده ثابت المريسي</h3>
+                        <p>مطور Backend</p>
+                        <p class="member-bio">
+                            خبير في أنظمة قواعد البيانات وتطوير APIs، يتمتع بمهارات عالية في حل المشكلات المعقدة وبناء أنظمة آمنة وقابلة للتطوير.
+                        </p>
+                        <div class="member-social">
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="Stack Overflow"><i class="fab fa-stack-overflow"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team/abdurahman.jpg" alt="عبدالرحمن المريسي" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>عبدالرحمن المريسي</h3>
+                        <p>مطور Frontend</p>
+                        <p class="member-bio">
+                            متخصص في تقنيات الويب الحديثة مثل React و Vue.js، يهتم بأدق التفاصيل لضمان تجربة مستخدم مميزة وأداء عالي.
+                        </p>
+                        <div class="member-social">
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="#" aria-label="CodePen"><i class="fab fa-codepen"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team/ahmed1.jpg" alt="أحمد الجوفي" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>أحمد الجوفي</h3>
+                        <p>خبير أمن معلومات</p>
+                        <p class="member-bio">
+                            متخصص في أمن المعلومات واختبار الاختراق، يضمن حماية الأنظمة والبيانات من التهديدات الأمنية المحتملة.
+                        </p>
+                        <div class="member-social">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/team/ahmed2.jpg" alt="أحمد الوجيه" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h3>أحمد الوجيه</h3>
+                        <p>مسوق رقمي</p>
+                        <p class="member-bio">
+                            خبير في التسويق الرقمي وتحليل البيانات، يطور استراتيجيات تسويقية فعالة لزيادة الوصول والتفاعل مع الجمهور المستهدف.
+                        </p>
+                        <div class="member-social">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">...</footer>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="images/logo-white.png" alt="شعار TechVision" class="footer-logo" loading="lazy">
+                    <p class="footer-about">
+                        TechVision شركة رائدة في تقديم الحلول التقنية والرقمية. نقدم خدمات متكاملة من التصميم والتطوير إلى التسويق الرقمي.
+                    </p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-left"></i> فريقنا</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير المواقع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطبيقات الجوال</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تصميم UI/UX</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> التسويق الرقمي</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> اليمن، صنعاء</li>
+                        <li><i class="fas fa-phone-alt"></i> +967 770200970</li>
+                        <li><i class="fas fa-envelope"></i> 2025ooss@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; <span id="currentYear"></span> جميع الحقوق محفوظة لشركة TechVision</p>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/script.js"></script>
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة إلى الأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // تحديث سنة حقوق النشر
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // قائمة الهاتف المحمول
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // تأثير التمرير للرأس
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('scrolled');
+                header.classList.remove('hide');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !header.classList.contains('hide') && currentScroll > 200) {
+                header.classList.add('hide');
+            } else if (currentScroll < lastScroll && header.classList.contains('hide')) {
+                header.classList.remove('hide');
+            }
+            
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // شريط التقدم
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // زر العودة للأعلى
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // تأثيرات الحركة لأعضاء الفريق
+        const animateOnScroll = () => {
+            const teamMembers = document.querySelectorAll('.team-member');
+            const windowHeight = window.innerHeight;
+            
+            teamMembers.forEach((member, index) => {
+                const memberPosition = member.getBoundingClientRect().top;
+                const animationDelay = index * 0.1;
+                
+                if (memberPosition < windowHeight - 100) {
+                    member.style.animation = `fadeInUp 0.5s ease-out ${animationDelay}s forwards`;
+                    member.classList.add('animate');
+                }
+            });
+        };
+
+        // تحميل الصور بشكل متدرج
+        const lazyLoadImages = () => {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.dataset.src || image.src;
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                images.forEach(image => {
+                    imageObserver.observe(image);
+                });
+            }
+        };
+
+        // تهيئة الأحداث
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            lazyLoadImages();
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // تحسين إمكانية الوصول للوحة المفاتيح
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-user');
+            }
+        });
+        
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-user');
+        });
+    </script>
 </body>
 </html>

@@ -4,39 +4,841 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNomads | الخدمات</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --white: #fff;
+            --black: #000;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --warning-color: #f39c12;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* أنماط الهيدر */
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 25px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            right: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--secondary-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* قسم تفاصيل الخدمات */
+        .services-details {
+            padding: 120px 0 80px;
+        }
+        
+        .main-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+        }
+        
+        .main-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -15px;
+            right: 50%;
+            transform: translateX(50%);
+            border-radius: 2px;
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            margin-bottom: 40px;
+            transition: var(--transition);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            flex: 1;
+            min-height: 350px;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-item:hover .service-img img {
+            transform: scale(1.05);
+        }
+        
+        .service-content {
+            flex: 1;
+            padding: 40px;
+        }
+        
+        .service-content h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .service-content h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            right: 0;
+        }
+        
+        .service-content h2 i {
+            color: var(--secondary-color);
+            margin-left: 15px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .service-features li {
+            position: relative;
+            padding-right: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .service-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 2px;
+            color: var(--success-color);
+        }
+        
+        .service-description {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        
+        .service-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-color);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        .meta-item i {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .service-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .service-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+        }
+        
+        .service-btn i {
+            margin-right: 10px;
+        }
+        
+        /* التذييل */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 70px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col {
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #bdc3c7;
+        }
+
+        .footer-title {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            right: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(-10px);
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #bdc3c7;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* التجاوب مع أحجام الشاشات */
+        @media (max-width: 992px) {
+            .service-item {
+                flex-direction: column;
+            }
+            
+            .service-img {
+                width: 100%;
+                min-height: 250px;
+            }
+            
+            .service-content {
+                padding: 30px;
+            }
+            
+            .main-title {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .services-details {
+                padding: 100px 0 60px;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .service-content {
+                padding: 25px;
+            }
+            
+            .service-content h2 {
+                font-size: 1.7rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+
+
+            
+            .service-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .service-features li {
+                font-size: 1rem;
+            }
+            
+            .service-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+    .services-details {
+        padding: 100px 0 60px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .service-content {
+        padding: 25px;
+    }
+}
+        .service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-item:hover .service-img img {
+    transform: scale(1.05);
+}
+    </style>
 </head>
 <body>
-    <!-- نفس الهيدر من index.html -->
-    <header class="header">...</header>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="شعار TechNomads">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="team.html">من نحن</a></li>
+                    <li><a href="services.html" class="active">الخدمات</a></li>
+                    <li><a href="projects.html">معرض الأعمال</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     <section class="services-details">
         <div class="container">
-            <h1 class="main-title">خدماتنا المتكاملة</h1>
+            <h1 class="main-title">حلولنا التقنية الشاملة</h1>
             
             <div class="service-item">
                 <div class="service-img">
-                    <img src="images/services/web-dev.jpg" alt="تطوير الويب">
+                    <img src="images/services/web-dev.jpg" alt="تطوير المواقع الإلكترونية">
                 </div>
                 <div class="service-content">
                     <h2><i class="fas fa-code"></i> تطوير المواقع</h2>
+                    <p class="service-description">
+                        نقدم حلولاً متكاملة لتصميم وتطوير المواقع الإلكترونية بدءاً من المواقع الشخصية البسيطة وحتى أنظمة إدارة المحتوى المعقدة. نضمن لك موقعاً سريعاً، آمناً، متوافقاً مع محركات البحث وجميع أحجام الشاشات.
+                    </p>
                     <ul class="service-features">
-                        <li>مواقع تجارة إلكترونية</li>
-                        <li>أنظمة إدارة المحتوى</li>
+                        <li>مواقع تجارة إلكترونية متكاملة</li>
+                        <li>أنظمة إدارة محتوى مخصصة</li>
                         <li>مواقع شخصية وعرض أعمال</li>
+                        <li>بوابات الشركات والمؤسسات</li>
+                        <li>مواقع تعليمية وإخبارية</li>
                     </ul>
+                    <div class="service-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>إنجاز سريع خلال 2-4 أسابيع</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tags"></i>
+                            <span>بدءاً من 500$</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="service-btn">
+                        <i class="fas fa-paper-plane"></i> اطلب خدمتك الآن
+                    </a>
                 </div>
             </div>
 
-            <!-- أضف باقي الخدمات بنفس النمط -->
+            <div class="service-item">
+                <div class="service-img">
+                    <img src="images/services/mobile-app.jpg" alt="تطبيقات الجوال">
+                </div>
+                <div class="service-content">
+                    <h2><i class="fas fa-mobile-alt"></i> تطبيقات الجوال</h2>
+                    <p class="service-description">
+                        نطور تطبيقات جوال مبتكرة تعمل على نظامي iOS و Android باستخدام أحدث التقنيات. نضمن لك تطبيقاً سلساً وسريعاً مع واجهة مستخدم جذابة وسهلة الاستخدام تلبي احتياجات عملك وتطلعات عملائك.
+                    </p>
+                    <ul class="service-features">
+                        <li>تطبيقات الأعمال والخدمات</li>
+                        <li>تطبيقات التجارة الإلكترونية</li>
+                        <li>تطبيقات التواصل والاجتماعية</li>
+                        <li>تطبيقات التعليم الإلكتروني</li>
+                        <li>تطبيقات الحجز والمواعيد</li>
+                    </ul>
+                    <div class="service-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>إنجاز خلال 4-8 أسابيع</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tags"></i>
+                            <span>بدءاً من 1000$</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="service-btn">
+                        <i class="fas fa-paper-plane"></i> اطلب خدمتك الآن
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-img">
+                    <img src="images/services/ui-ux.jpg" alt="تصميم واجهات المستخدم">
+                </div>
+                <div class="service-content">
+                    <h2><i class="fas fa-paint-brush"></i> تصميم UI/UX</h2>
+                    <p class="service-description">
+                        نصنع تجارب مستخدم مميزة تترك انطباعاً إيجابياً لدى زوار موقعك أو مستخدمي تطبيقك. نبدأ بدراسة الجمهور المستهدف وننتهي بتصميم واجهات بديهية وجذابة تحقق أهدافك التجارية.
+                    </p>
+                    <ul class="service-features">
+                        <li>تصميم واجهات المواقع</li>
+                        <li>تصميم واجهات التطبيقات</li>
+                        <li>تصميم تجربة المستخدم (UX)</li>
+                        <li>إنشاء نماذج أولية تفاعلية</li>
+                        <li>اختبارات سهولة الاستخدام</li>
+                    </ul>
+                    <div class="service-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>إنجاز خلال 1-3 أسابيع</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tags"></i>
+                            <span>بدءاً من 300$</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="service-btn">
+                        <i class="fas fa-paper-plane"></i> اطلب خدمتك الآن
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-img">
+                    <img src="images/services/digital-marketing.jpg" alt="التسويق الرقمي">
+                </div>
+                <div class="service-content">
+                    <h2><i class="fas fa-bullseye"></i> التسويق الرقمي</h2>
+                    <p class="service-description">
+                        نضع استراتيجيات تسويقية ذكية لتعزيز وجودك الرقمي وجذب العملاء المحتملين. نستخدم أحدث أدوات التحليل لضمان تحقيق أفضل عائد على الاستثمار من حملاتك التسويقية.
+                    </p>
+                    <ul class="service-features">
+                        <li>إدارة وسائل التواصل الاجتماعي</li>
+                        <li>حملات إعلانية مدفوعة</li>
+                        <li>تحسين محركات البحث (SEO)</li>
+                        <li>التسويق بالمحتوى</li>
+                        <li>تحليل البيانات وقياس الأداء</li>
+                    </ul>
+                    <div class="service-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>حملات شهرية مستمرة</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-tags"></i>
+                            <span>بدءاً من 200$/شهر</span>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="service-btn">
+                        <i class="fas fa-paper-plane"></i> اطلب خدمتك الآن
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- نفس الفوتر من index.html -->
-    <footer class="footer">...</footer>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="images/logo-white.png" alt="شعار TechNomads" class="footer-logo">
+                    <p class="footer-about">
+                        TechNomads شركة رائدة في تقديم الحلول التقنية والرقمية. نقدم خدمات متكاملة من تطوير المواقع والتطبيقات إلى التسويق الرقمي والاستشارات التقنية.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-left"></i> معرض الأعمال</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير المواقع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطبيقات الجوال</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تصميم UI/UX</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> التسويق الرقمي</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> الاستشارات التقنية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone-alt"></i> +966 50 123 4567</li>
+                        <li><i class="fas fa-envelope"></i> info@technomads.com</li>
+                        <li><i class="far fa-clock"></i> الأحد - الخميس: 8 ص - 5 م</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; <span id="currentYear"></span> جميع الحقوق محفوظة لشركة TechNomads</p>
+                <div class="footer-links">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+        // تحديث سنة حقوق النشر
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // قائمة الهاتف المحمول
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        // تأثير التمرير للرأس
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // تحميل الصور بسلاسة
+// تأثيرات تحميل الصور بسلاسة
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.style.transition = 'opacity 0.5s';
+        img.style.opacity = '0';
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const image = entry.target;
+                    image.style.opacity = '1';
+                    observer.unobserve(image);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(img);
+    });
+    
+    // تأثيرات الحركة للخدمات
+    const serviceItems = document.querySelectorAll('.service-item');
+    serviceItems.forEach((item, index) => {
+        item.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+        item.style.transform = 'translateY(20px)';
+        item.style.opacity = '0';
+        
+        setTimeout(() => {
+            item.style.transform = 'translateY(0)';
+            item.style.opacity = '1';
+        }, 200 * index);
+    });
+});
+    </script>
 </body>
 </html>
