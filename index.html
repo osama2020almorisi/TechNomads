@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechNomads | الريادة التقنية اليمنية</title>
+    <link rel="icon" href="images/favicon.ico">
+    
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     
@@ -26,358 +28,624 @@
     <!-- ...existing code... -->
     
     <!-- الأنماط -->
+    <!-- المكتبات الخارجية -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- الأنماط -->
     <style>
-        :root {
-            --primary: #2A2D7C;    /* أزرق ملكي */
-            --secondary: #FF6B6B;  /* مرجاني */
-            --accent: #4ECDC4;     /* فيروزي */
-            --dark: #1A1A1A;
-            --light: #F8F9FA;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            --shadow: 0 8px 32px rgba(0,0,0,0.1);
-            --radius: 16px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* CSS Variables */
+:root {
+    --primary: #2A2D7C;    /* أزرق ملكي */
+    --secondary: #FF6B6B;  /* مرجاني */
+    --accent: #4ECDC4;     /* فيروزي */
+    --dark: #1A1A1A;
+    --light: #F8F9FA;
+    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    --shadow: 0 8px 32px rgba(0,0,0,0.1);
+    --radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        /* الهيكل الأساسي */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
+/* Global Styles */
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+}
 
-        /* الهيدر الذكي */
-        .smart-header {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            padding: 1rem 0;
-        }
+/* Smart Header */
+.smart-header {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+    transition: all 0.4s ease;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .logo img {
-            height: 40px;
-            transition: var(--transition);
-        }
+/* Logo Styles */
+.logo img {
+    height: 40px;
+    transition: var(--transition);
+}
 
-        /* قائمة الجوال */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--light);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            padding: 2rem;
-            z-index: 2000;
-        }
+.logo:hover {
+    transform: scale(1.05);
+}
 
-        .mobile-nav.active {
-            right: 0;
-        }
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--light);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    padding: 2rem;
+    z-index: 2000;
+}
 
-        /* القسم البطولي */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: var(--gradient);
-            padding: 6rem 1rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
+.mobile-nav.active {
+    right: 0;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            color: white;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 0 1rem;
-        }
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: var(--gradient);
+    padding: 6rem 1rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-title {
-            font-size: 2.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem;
+}
 
-        .highlight {
-            color: var(--secondary);
-            font-weight: bold;
-        }
+.hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
 
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+.highlight {
+    color: var(--secondary);
+    font-weight: bold;
+}
 
-        /* تصميم الهاتف المحاكي */
-        .phone-mockup {
-            position: relative;
-            width: 280px;
-            height: 560px;
-            background: #fff;
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            margin: 2rem auto;
-            padding: 1rem;
-        }
+/* Phone Mockup */
+.phone-mockup {
+    position: relative;
+    width: 280px;
+    height: 560px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: var(--shadow);
+    margin: 2rem auto;
+    padding: 1rem;
+}
 
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--light);
-        }
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--light);
+}
 
-        /* أزرار التفاعل */
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
+/* CTA Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
 
-        .cta-button {
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.cta-button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-        .primary {
-            background: var(--secondary);
-            color: white;
-        }
+.primary {
+    background: var(--secondary);
+    color: white;
+}
 
-        .secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
+.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
 
-        /* قسم الخدمات */
-        .services-section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* Services Section */
+.services-section {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
 
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+.service-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
 
-        .section-description {
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-        }
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 3000;
+}
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
+.hamburger-box {
+    width: 24px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+}
 
-        .service-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
+.hamburger-inner {
+    width: 100%;
+    height: 2px;
+    background: var(--dark);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: var(--transition);
+}
 
-        .service-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+/* Desktop Navigation */
+.desktop-nav {
+    display: block;
+}
 
-        /* قائمة الهامبرجر */
-        .hamburger {
-            display: none;
-            padding: 0.5rem;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 3000;
-        }
+.nav-list {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
 
-        .hamburger-box {
-            width: 24px;
-            height: 16px;
-            display: inline-block;
-            position: relative;
-        }
+.nav-link {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
 
-        .hamburger-inner {
-            width: 100%;
-            height: 2px;
-            background: var(--dark);
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: var(--transition);
-        }
+/* Media Queries */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .phone-mockup {
+        width: 240px;
+        height: 480px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+}
 
-        .hamburger-inner::before,
-        .hamburger-inner::after {
-            content: '';
-            width: 100%;
-            height: 2px;
-            background: inherit;
-            position: absolute;
-            left: 0;
-            transition: var(--transition);
-        }
+/* Particles JS Overlay */
+.particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
 
-        .hamburger-inner::before {
-            top: -6px;
-        }
+/* Animations */
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-50px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
 
-        .hamburger-inner::after {
-            top: 6px;
-        }
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
 
-        .hamburger.active .hamburger-inner {
-            background: transparent;
-        }
+/* Footer Styles */
+.smart-footer {
+    position: relative;
+    background-color: var(--primary);
+    color: white;
+    padding-top: 5rem;
+    overflow: hidden;
+}
 
-        .hamburger.active .hamburger-inner::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
 
-        .hamburger.active .hamburger-inner::after {
-            top: 0;
-            transform: rotate(-45deg);
-        }
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
 
-        /* القائمة الرئيسية */
-        .desktop-nav {
-            display: block;
-        }
+/* Additional Responsive Styles */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 8rem;
+    }
+}
 
-        .nav-list {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}
+  
+/* أنماط الهيدر الذكي بالكامل */
+.smart-header {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    transition: all 0.4s ease;
+}
 
-        .nav-link {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .nav-link:hover {
-            color: var(--primary);
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
 
-        /* التكيف مع الشاشات الصغيرة */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .desktop-nav {
-                display: none;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .phone-mockup {
-                width: 240px;
-                height: 480px;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-        }
-        .mobile-logo {
-            max-height: 50px;
-            width: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .close-nav {
-            background: none;
-            border: none;
-            color: var(--dark);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        .mobile-nav-list {
-            list-style: none;
-            padding: 1rem;
-        }
-        
-        .mobile-nav-link {
-            display: block;
-            padding: 1rem 0;
-            color: var(--dark);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-    </style>
+.logo img {
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.hamburger {
+    display: none;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 3000;
+}
+
+.hamburger-box {
+    width: 24px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger-inner {
+    width: 100%;
+    height: 2px;
+    background: #1A1A1A;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.hamburger-inner::before,
+.hamburger-inner::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: inherit;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-inner::before { top: -6px; }
+.hamburger-inner::after { top: 6px; }
+
+.hamburger.active .hamburger-inner {
+    background: transparent;
+}
+
+.hamburger.active .hamburger-inner::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.hamburger.active .hamburger-inner::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1050;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav.active {
+    right: 0;
+}
+
+.mobile-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-nav-list {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #2A2D7C;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    
+    .desktop-nav {
+        display: none;
+    }
+    
+    .nav-container {
+        padding: 1rem;
+    }
+    /* أضف هذا في قسم الأنماط */
+.service-card img {
+    width: 100%;
+    height: 200px; /* ارتفاع ثابت للصور */
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.03);
+}
+
+.services-grid {
+    gap: 2rem;
+    padding: 1rem;
+}
+    .trusted-by .logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.trusted-by img {
+    max-width: 120px;
+    height: auto;
+    filter: grayscale(1);
+    transition: var(--transition);
+}
+
+.trusted-by img:hover {
+    filter: grayscale(0);
+    transform: translateY(-5px);
+}
+    .phone-screen .app-slider {
+    height: 100%;
+    position: relative;
+}
+
+.phone-screen .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.phone-mockup {
+    margin: 2rem auto;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+    .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    aspect-ratio: 4/3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+    .device-showcase {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.phone-mockup-wrapper, 
+.tablet-mockup-wrapper {
+    flex: 1 1 300px;
+    max-width: 400px;
+    position: relative;
+}
+    @media (max-width: 768px) {
+    .service-card img {
+        height: 150px;
+    }
+    
+    .trusted-by img {
+        max-width: 80px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .device-showcase {
+        gap: 1rem;
+    }
+}
+    img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    background-size: cover;
+    background-position: center;
+}
+
+/* تجنب التحميل البطيء للصور */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+}
+</style>
 </head>
 <body>
-<!-- الهيدر الذكي -->
-<header class="smart-header" id="main-header">
+
+<!-- الهيدر -->
+    <header class="smart-header" id="main-header">
     <div class="nav-container">
         <!-- الشعار التفاعلي مع تأثيرات -->
         <a href="#home" class="logo" aria-label="TechNomads الرئيسية" data-aos="fade-right">
@@ -511,7 +779,6 @@
     </nav>
 </header>
 
-<!-- تضمين مكتبات CSS -->
 <style>
 /* أنماط الهيدر المتطور */
 .smart-header {
@@ -987,74 +1254,10 @@
     }
 }
 </style>
-
-<!-- تضمين مكتبات JavaScript -->
-<script>
-    // ننتظر تحميل DOM بالكامل
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded'); // للتأكد من تحميل الصفحة
-        
-        // تعريف العناصر بشكل صحيح
-        const hamburgerBtn = document.querySelector('.hamburger');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const closeBtn = document.querySelector('.close-nav');
-        
-        // التحقق من وجود العناصر
-        if (!hamburgerBtn || !mobileNav || !closeBtn) {
-            console.error('Error: Missing essential elements!');
-            console.log('Elements found:', {
-                hamburgerBtn,
-                mobileNav,
-                closeBtn
-            });
-            return;
-        }
-        
-        // دالة تبديل القائمة
-        function toggleMenu() {
-            console.log('Toggling menu...'); // تتبع التنفيذ
-            try {
-                mobileNav.classList.toggle('active');
-                hamburgerBtn.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
-            } catch (error) {
-                console.error('Error in toggleMenu:', error);
-            }
-        }
-        
-        // إضافة Event Listeners
-        hamburgerBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); // منع الانتشار
-            toggleMenu();
-        });
-        
-        closeBtn.addEventListener('click', toggleMenu);
-        
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', function(e) {
-            if (!mobileNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-                if (mobileNav.classList.contains('active')) {
-                    toggleMenu();
-                }
-            }
-        });
-        
-        // تهيئة AOS (إذا كانت مستخدمة)
-        if (typeof AOS !== 'undefined') {
-            AOS.init({
-                duration: 800,
-                once: true
-            });
-        }
-        
-        console.log('Navigation script initialized successfully');
-    });
-</script>
-
-<!-- القسم الرئيسي -->
+<!-- المحتوى الرئيسي -->
 <main>
-    <!-- القسم البطولي المطور -->
-<!-- القسم البطولي المطور مع تحسينات عرض الصور -->
+    <!-- القسم البطولي -->
+    
 <section class="hero-section" id="home">
     <div class="particles-js" id="particles-js"></div>
     <div class="gradient-overlay"></div>
@@ -1151,10 +1354,11 @@
         </div>
     </a>
 </section>
-
+    
+    
 <style>
 /* أنماط القسم البطولي المطور */
-.hero-section {
+/*.hero-section {
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -1163,7 +1367,7 @@
     overflow: hidden;
     padding: 0;
     color: white;
-}
+}*/
 
 .particles-js {
     position: absolute;
@@ -1174,13 +1378,14 @@
     z-index: 1;
 }
 
-.gradient-overlay {
+/*.gradient-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, rgba(42,45,124,0.9), rgba(78,205,196,0.7));
     z-index: 2;
 }
+*/
 
 .animated-shapes {
     position: absolute;
@@ -1403,8 +1608,8 @@
     60% { transform: translateY(-5px); }
 }
 
-/* أنماط عرض الأجهزة المعدلة */
-.device-showcase {
+
+    .device-showcase {
     position: relative;
     flex: 1;
     max-width: 600px;
@@ -1433,14 +1638,13 @@
 .phone-frame {
     position: relative;
     width: 100%;
-    padding-bottom: 200%;
+    padding-bottom: 260%;
     background: #f5f5f5;
-    border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    box-shadow: 0 40px 40px rgba(0,0,0,0.3);
     overflow: hidden;
     transform-style: preserve-3d;
 }
-
 .phone-screen-container {
     position: absolute;
     width: 100%;
@@ -1448,6 +1652,7 @@
     top: 0;
     left: 0;
 }
+*/
 
 .phone-screen {
     position: absolute;
@@ -1723,180 +1928,8 @@
     }
 }
 </style>
-
-<script>
-// تأثير الكتابة التلقائي
-document.addEventListener('DOMContentLoaded', function() {
-    // تأثير الكتابة
-    const typingElement = document.querySelector('.typing-text');
-    if (typingElement) {
-        const strings = JSON.parse(typingElement.getAttribute('data-strings'));
-        let currentStringIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 150;
-        
-        function type() {
-            const currentString = strings[currentStringIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentString.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 100;
-            } else {
-                typingElement.textContent = currentString.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 150;
-            }
-            
-            if (!isDeleting && charIndex === currentString.length) {
-                isDeleting = true;
-                typingSpeed = 2000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                currentStringIndex = (currentStringIndex + 1) % strings.length;
-                typingSpeed = 500;
-            }
-            
-            setTimeout(type, typingSpeed);
-        }
-        
-        setTimeout(type, 1000);
-    }
     
-    // عداد الإحصائيات
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200;
     
-    function animateCounters() {
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const increment = target / speed;
-            
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(animateCounters, 1);
-            } else {
-                counter.innerText = target + '+';
-            }
-        });
-    }
-    
-    // تشغيل العدادات عند التمرير إلى القسم
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    document.querySelectorAll('.counter').forEach(counter => {
-        observer.observe(counter);
-    });
-    
-    // تحسين عرض شرائح الصور في الهاتف
-    const initAppSlider = () => {
-        const appSlider = document.querySelector('.app-slider');
-        if (appSlider) {
-            const slides = appSlider.querySelectorAll('.slide');
-            let currentIndex = 0;
-            
-            // التحقق من تحميل الصور أولاً
-            const checkImagesLoaded = () => {
-                let allLoaded = true;
-                slides.forEach(slide => {
-                    const img = slide.querySelector('img');
-                    if (img && !img.complete) {
-                        allLoaded = false;
-                    }
-                });
-                return allLoaded;
-            };
-            
-            const changeSlide = () => {
-                slides[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % slides.length;
-                slides[currentIndex].classList.add('active');
-                
-                // إذا كانت الصورة التالية لم تحمل بعد، انتظر قليلاً
-                const nextImg = slides[currentIndex].querySelector('img');
-                if (nextImg && !nextImg.complete) {
-                    nextImg.onload = () => {
-                        setTimeout(changeSlide, 3000);
-                    };
-                } else {
-                    setTimeout(changeSlide, 3000);
-                }
-            };
-            
-            // بدء العرض بعد التأكد من تحميل الصور
-            if (checkImagesLoaded()) {
-                setTimeout(changeSlide, 3000);
-            } else {
-                // إذا لم تحمل جميع الصور، انتظر حتى تحميلها
-                window.addEventListener('load', () => {
-                    setTimeout(changeSlide, 3000);
-                });
-            }
-        }
-    };
-    
-    initAppSlider();
-    
-    // تأثيرات الأجهزة عند التمرير
-    const deviceShowcase = document.querySelector('.device-showcase');
-    if (deviceShowcase) {
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const phone = document.querySelector('.phone-mockup');
-            const tablet = document.querySelector('.tablet-mockup');
-            
-            if (phone && tablet) {
-                phone.style.transform = `rotate(-10deg) translateY(${scrollPosition * 0.1}px)`;
-                tablet.style.transform = `rotate(5deg) translateY(${scrollPosition * 0.15}px)`;
-            }
-        });
-    }
-    
-    // رسائل تحذير إذا فشل تحميل الصور
-    document.querySelectorAll('.slide img, .tablet-screen img').forEach(img => {
-        img.onerror = function() {
-            console.warn('فشل تحميل الصورة: ', this.src);
-            this.src = 'images/placeholder.jpg';
-            this.alt = 'صورة بديلة';
-        };
-    });
-});
-
-// تهيئة particles.js
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            }
-        });
-    }
-});
-</script>
-
-    <!-- قسم الخدمات المطور -->
     <section class="services-section" id="services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -2033,11 +2066,10 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </section>
-</main>
 
 <style>
 /* أنماط القسم البطولي المطور */
-.hero-section {
+/*.hero-section {
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -2047,6 +2079,7 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 0;
     color: white;
 }
+*/
 
 .particles-js {
     position: absolute;
@@ -2057,13 +2090,14 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 1;
 }
 
-.gradient-overlay {
+/*.gradient-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
     background: linear-gradient(to right, rgba(42,45,124,0.9), rgba(78,205,196,0.7));
     z-index: 2;
 }
+*/
 
 .animated-shapes {
     position: absolute;
@@ -2114,6 +2148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     50% { transform: translateY(-50px) rotate(180deg); }
     100% { transform: translateY(0) rotate(360deg); }
 }
+*/
 
 .hero-content {
     position: relative;
@@ -2160,6 +2195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     display: block;
     min-height: 4rem;
 }
+*/
 
 .highlight {
     color: #FF6B6B;
@@ -2186,6 +2222,7 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0.9;
     line-height: 1.6;
 }
+*/
 
 .hero-stats {
     display: flex;
@@ -2209,6 +2246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     height: 50%;
     background: rgba(255, 255, 255, 0.3);
 }
+*/
 
 .counter {
     font-size: 2.8rem;
@@ -2224,6 +2262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     margin-top: 2.5rem;
     flex-wrap: wrap;
 }
+*/
 
 .cta-button {
     padding: 1rem 2rem;
@@ -2250,6 +2289,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
 }
+*/
 
 .secondary {
     background: transparent;
@@ -2268,6 +2308,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .pulse-animation {
     animation: pulse 2s infinite;
 }
+*/
 
 @keyframes pulse {
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
@@ -2285,17 +2326,16 @@ document.addEventListener('DOMContentLoaded', function() {
     60% { transform: translateY(-5px); }
 }
 
-/* أنماط عرض الأجهزة */
 .device-showcase {
     position: relative;
     flex: 1;
-    max-width: 600px;
-    margin-left: 2rem;
+    max-width: 400px;
+    margin-left: 1rem;
 }
-
+    
 .phone-mockup {
     position: relative;
-    width: 250px;
+    width: 20px;
     z-index: 2;
     transform: rotate(-10deg);
     transition: transform 0.5s ease;
@@ -2308,10 +2348,10 @@ document.addEventListener('DOMContentLoaded', function() {
 .phone-frame {
     position: relative;
     width: 100%;
-    padding-bottom: 200%;
+    padding-bottom: 260%;
     background: #f5f5f5;
-    border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    border-radius: 3px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     overflow: hidden;
     transform-style: preserve-3d;
 }
@@ -2332,6 +2372,7 @@ document.addEventListener('DOMContentLoaded', function() {
     width: 100%;
     height: 100%;
 }
+*/
 
 .app-slider img {
     position: absolute;
@@ -2994,131 +3035,34 @@ document.addEventListener('DOMContentLoaded', function() {
     border-radius: 50%;
     filter: blur(10px);
 }
+    .device-showcase {
+    display: flex;
+    gap: 3rem; /* زيادة التباعد بين العناصر */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 4rem 0 2rem;
+    padding: 1rem;
+}
+
+.phone-mockup-wrapper {
+    margin-bottom: 2rem;
+    flex: 1 1 300px;
+    max-width: 350px;
+}
+
+.tablet-mockup-wrapper {
+    flex: 1 1 400px;
+    max-width: 450px;
+}
+    
 </style>
-
-<script>
-// تأثير الكتابة التلقائي
-document.addEventListener('DOMContentLoaded', function() {
-    // تأثير الكتابة
-    const typingElement = document.querySelector('.typing-text');
-    if (typingElement) {
-        const strings = JSON.parse(typingElement.getAttribute('data-strings'));
-        let currentStringIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 150;
-        
-        function type() {
-            const currentString = strings[currentStringIndex];
-            
-            if (isDeleting) {
-                typingElement.textContent = currentString.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 100;
-            } else {
-                typingElement.textContent = currentString.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 150;
-            }
-            
-            if (!isDeleting && charIndex === currentString.length) {
-                isDeleting = true;
-                typingSpeed = 2000;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                currentStringIndex = (currentStringIndex + 1) % strings.length;
-                typingSpeed = 500;
-            }
-            
-            setTimeout(type, typingSpeed);
-        }
-        
-        setTimeout(type, 1000);
-    }
+    <!-- قسم الخدمات -->
     
-    // عداد الإحصائيات
-    const counters = document.querySelectorAll('.counter');
-    const speed = 200;
     
-    function animateCounters() {
-        counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target');
-            const count = +counter.innerText;
-            const increment = target / speed;
-            
-            if (count < target) {
-                counter.innerText = Math.ceil(count + increment);
-                setTimeout(animateCounters, 1);
-            } else {
-                counter.innerText = target + '+';
-            }
-        });
-    }
-    
-    // تشغيل العدادات عند التمرير إلى القسم
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    document.querySelectorAll('.counter').forEach(counter => {
-        observer.observe(counter);
-    });
-    
-    // تغيير صور شاشات التطبيق
-
-    // تأثيرات الأجهزة عند التمرير
-    const deviceShowcase = document.querySelector('.device-showcase');
-    if (deviceShowcase) {
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const phone = document.querySelector('.phone-mockup');
-            const tablet = document.querySelector('.tablet-mockup');
-            
-            if (phone && tablet) {
-                phone.style.transform = `rotate(-10deg) translateY(${scrollPosition * 0.1}px)`;
-                tablet.style.transform = `rotate(5deg) translateY(${scrollPosition * 0.15}px)`;
-            }
-        });
-    }
-    
-    // تأثيرات عند تحميل الصفحة
-    setTimeout(() => {
-        document.querySelector('.hero-section').classList.add('loaded');
-    }, 500);
-});
-
-// تهيئة particles.js
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            }
-        });
-    }
-});
-</script>
+</main>
 
 <!-- الفوتر -->
-<!-- الفوتر المتطور -->
 <footer class="smart-footer">
     <!-- موجات تصميمية علوية -->
     <div class="footer-waves">
@@ -3199,8 +3143,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <i class="fas fa-arrow-up"></i>
     </button>
 </footer>
-
-<style>
+<!-- الجافاسكريبت -->
+        <style>
 /* أنماط الفوتر المتطور */
 .smart-footer {
     position: relative;
@@ -3435,9 +3379,194 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 
 <script>
-// جافاسكريبت للفوتر المتطور
+    // navigation.js
 document.addEventListener('DOMContentLoaded', function() {
-    // تحديث سنة حقوق النشر تلقائياً
+    // عناصر التنقل الرئيسية
+    const hamburgerBtn = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const closeBtn = document.querySelector('.close-nav');
+    
+    // دالة تبديل القائمة المتنقلة
+    function toggleMenu() {
+        mobileNav.classList.toggle('active');
+        hamburgerBtn.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+    }
+    
+    // أحداث النقر
+    hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    closeBtn.addEventListener('click', toggleMenu);
+    
+    // إغلاق القائمة عند النقر خارجها
+    document.addEventListener('click', function(e) {
+        if (!mobileNav.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+            if (mobileNav.classList.contains('active')) {
+                toggleMenu();
+            }
+        }
+    });
+    
+    // تهيئة AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    }
+});
+
+// typing-effect.js
+document.addEventListener('DOMContentLoaded', function() {
+    const typingElement = document.querySelector('.typing-text');
+    
+    if (typingElement) {
+        const strings = JSON.parse(typingElement.getAttribute('data-strings'));
+        let currentStringIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 150;
+        
+        function type() {
+            const currentString = strings[currentStringIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentString.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 100;
+            } else {
+                typingElement.textContent = currentString.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150;
+            }
+            
+            if (!isDeleting && charIndex === currentString.length) {
+                isDeleting = true;
+                typingSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentStringIndex = (currentStringIndex + 1) % strings.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, 1000);
+    }
+});
+
+// counters.js
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+    
+    function animateCounters() {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(animateCounters, 1);
+            } else {
+                counter.innerText = target + '+';
+            }
+        });
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.counter').forEach(counter => {
+        observer.observe(counter);
+    });
+});
+
+// slider.js
+document.addEventListener('DOMContentLoaded', function() {
+    const initAppSlider = () => {
+        const appSlider = document.querySelector('.app-slider');
+        if (appSlider) {
+            const slides = appSlider.querySelectorAll('.slide');
+            let currentIndex = 0;
+            
+            const checkImagesLoaded = () => {
+                let allLoaded = true;
+                slides.forEach(slide => {
+                    const img = slide.querySelector('img');
+                    if (img && !img.complete) {
+                        allLoaded = false;
+                    }
+                });
+                return allLoaded;
+            };
+            
+            const changeSlide = () => {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].classList.add('active');
+                
+                const nextImg = slides[currentIndex].querySelector('img');
+                if (nextImg && !nextImg.complete) {
+                    nextImg.onload = () => {
+                        setTimeout(changeSlide, 3000);
+                    };
+                } else {
+                    setTimeout(changeSlide, 3000);
+                }
+            };
+            
+            if (checkImagesLoaded()) {
+                setTimeout(changeSlide, 3000);
+            } else {
+                window.addEventListener('load', () => {
+                    setTimeout(changeSlide, 3000);
+                });
+            }
+        }
+    };
+    
+    initAppSlider();
+});
+
+// particles.js
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+    }
+});
+
+// footer.js
+document.addEventListener('DOMContentLoaded', function() {
+    // تحديث سنة حقوق النشر
     const yearElement = document.querySelector('.current-year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
@@ -3461,32 +3590,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // إرسال النشرة البريدية (مثال)
+    // معالجة النشرة البريدية
     const newsletterForm = document.querySelector('.newsletter-form');
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const emailInput = this.querySelector('input[type="email"]');
             if (emailInput.value) {
-                // هنا يمكنك إضافة كود إرسال البيانات للخادم
                 alert('شكراً للاشتراك في نشرتنا البريدية!');
                 emailInput.value = '';
             }
         });
     }
-    
-    // تأثيرات AOS للعناصر
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    }
 });
 </script>
-
-<!-- Scripts -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
+        
+        
+        
