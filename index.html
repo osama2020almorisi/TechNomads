@@ -1283,7 +1283,21 @@ img[loading="lazy"].loaded {
         margin: 1rem 0.5rem;
     }
 }
+        .nav-container {
+    display: flex;
+    height: 100%; /* استخدام الارتفاع الكامل للهيدر */
+}
+
+.language-switcher {
+    position: absolute;
+    right: 2rem; /* وضع مبدل اللغة على اليمين */
+}
+
+.desktop-nav {
+    margin: 0 auto; /* توسيط القائمة */
+}
 </style>
+        
         <script>
         // JavaScript
 let lastScroll = 0;
@@ -1312,6 +1326,7 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 }, { passive: true });
             </script>
+        
 <!-- المحتوى الرئيسي -->
 <main>
     <!-- القسم البطولي -->
