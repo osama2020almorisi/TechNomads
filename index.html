@@ -781,6 +781,36 @@ img[loading="lazy"].loaded {
 
 <style>
 /* أنماط الهيدر المتطور */
+        body {
+    scroll-behavior: smooth;
+}
+        /* CSS */
+.smart-header {
+    height: 80px; /* الحجم الأصلي */
+    transition: all 0.3s ease;
+}
+
+.smart-header.scrolled-down {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.smart-header.scrolled-up {
+    transform: translateY(0);
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 60px; /* الحجم المصغر عند التمرير */
+}
+
+.logo img {
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.smart-header.scrolled-up .logo img {
+    height: 35px; /* تصغير الشعار */
+}
 .smart-header {
     position: fixed;
     top: 0;
@@ -1254,6 +1284,34 @@ img[loading="lazy"].loaded {
     }
 }
 </style>
+        <script>
+        // JavaScript
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    const header = document.querySelector('.smart-header');
+    
+    if (!header) return;
+
+    if (currentScroll > 100) { // بعد التمرير 100px
+        if (currentScroll > lastScroll) {
+            // التمرير لأسفل
+            header.classList.add('scrolled-down');
+            header.classList.remove('scrolled-up');
+        } else {
+            // التمرير لأعلى
+            header.classList.add('scrolled-up');
+            header.classList.remove('scrolled-down');
+        }
+    } else {
+        // عند الوصول لأعلى الصفحة
+        header.classList.remove('scrolled-up', 'scrolled-down');
+    }
+    
+    lastScroll = currentScroll;
+}, { passive: true });
+            </script>
 <!-- المحتوى الرئيسي -->
 <main>
     <!-- القسم البطولي -->
