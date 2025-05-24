@@ -1767,6 +1767,46 @@ body.no-scroll {
   background: #95a5a6;
   color: white;
 }
+    .footer-social {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-social .social-link {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background-color: #f0f0f0; /* لون الخلفية الأساسي */
+}
+
+.footer-social .social-link:hover {
+    transform: translateY(-3px);
+    filter: brightness(0.9);
+}
+
+/* ألوان مخصصة لكل أيقونة */
+.footer-social .social-link .fa-facebook-f { color: #1877F2; }
+.footer-social .social-link .fa-twitter { color: #1DA1F2; }
+.footer-social .social-link .fa-instagram { color: #E4405F; }
+.footer-social .social-link .fa-linkedin-in { color: #0A66C2; }
+.footer-social .social-link .fa-youtube { color: #FF0000; }
+
+/* (اختياري) إضافة خلفية ملونة عند التحويم */
+.footer-social .social-link:hover .fa-facebook-f { color: #115aca; }
+.footer-social .social-link:hover .fa-twitter { color: #0d8ecf; }
+.footer-social .social-link:hover .fa-instagram { color: #c13584; }
+.footer-social .social-link:hover .fa-linkedin-in { color: #084a8e; }
+.footer-social .social-link:hover .fa-youtube { color: #cc0000; }
   </style>
 </head>
 <body>
