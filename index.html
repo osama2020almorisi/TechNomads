@@ -3129,6 +3129,7 @@ window.addEventListener('scroll', () => {
     max-width: 450px;
 }
     
+    
 </style>
     <!-- قسم الخدمات -->
     
@@ -3156,7 +3157,6 @@ window.addEventListener('scroll', () => {
                 <li><a href="team.html">من نحن</a></li>
                 <li><a href="contact.html">اتصل بنا</a></li>
 
-                
 
             </ul>
         </div>
@@ -3189,14 +3189,16 @@ window.addEventListener('scroll', () => {
                     اشترك <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
-            <div class="social-links">
-                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="جيت هاب"><i class="fab fa-github"></i></a>
-            </div>
+      
+            
         </div>
+              <div class="social-links">
+                <a href="https://www.facebook.com/share/1843Km6C4E/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/9o--sa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" aria-label="لينكد إن"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/9o__sa?igsh=MTJ2eDdxdHR1bGxidg==" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/osama2020almorisi/" aria-label="جيت هاب"><i class="fab fa-github"></i></a>
+            </div>
     </div>
 
     <!-- حقوق النشر -->
@@ -3446,7 +3448,54 @@ window.addEventListener('scroll', () => {
         font-size: 1rem;
     }
 }
-</style>
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ألوان خاصة بكل منصة */
+.social-links .fa-facebook-f { color: #1877f2; }
+.social-links .fa-twitter { color: #1da1f2; }
+.social-links .fa-linkedin-in { color: #0a66c2; }
+.social-links .fa-instagram { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.social-links .fa-github { color: #181717; }
+
+/* تأثيرات عند التحويم */
+.social-links a:hover .fa-facebook-f { color: #115aca; }
+.social-links a:hover .fa-twitter { color: #0d8ecf; }
+.social-links a:hover .fa-linkedin-in { color: #084a8e; }
+.social-links a:hover .fa-instagram { opacity: 0.9; }
+.social-links a:hover .fa-github { color: #000000; }
+        
+        </style>
 
 <script>
     // navigation.js
