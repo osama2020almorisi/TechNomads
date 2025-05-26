@@ -3148,18 +3148,24 @@ window.addEventListener('scroll', () => {
     <div class="footer-container">
         <!-- قسم الروابط السريعة -->
         <div class="footer-section" data-aos="fade-up">
-            <h3 class="footer-title">روابط سريعة</h3>
-            <ul class="footer-links">
-                <li><a href="#home">الرئيسية</a></li>
-
-                <li><a href="services.html">الخدمات</a></li>
-                <li><a href="projects.html">معرض الأعمال</a></li>
-                <li><a href="team.html">من نحن</a></li>
-                <li><a href="contact.html">اتصل بنا</a></li>
-
-
-            </ul>
-        </div>
+         <div class="footer-col">
+                    <img src="images/logo.png" alt="شعار TechNomads" class="footer-logo">
+                    <p class="footer-about">
+                        TechNomads شركة رائدة في تقديم الحلول التقنية والرقمية. نقدم خدمات متكاملة من تطوير المواقع والتطبيقات إلى التسويق الرقمي والاستشارات التقنية.
+                    </p>
+                               </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> الخدمات</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-left"></i> معرض الأعمال</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+                    </ul>
+                </div>
+        
 
         <!-- قسم معلومات الاتصال -->
         <div class="footer-section" data-aos="fade-up" data-aos-delay="100">
@@ -3495,6 +3501,102 @@ window.addEventListener('scroll', () => {
 .social-links a:hover .fa-instagram { opacity: 0.9; }
 .social-links a:hover .fa-github { color: #000000; }
         
+
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(-10px);
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-left: 10px;
+            margin-top: 5px;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #bdc3c7;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* التجاوب مع أحجام الشاشات */
+        @media (max-width: 992px) {
+            .service-item {
+                flex-direction: column;
+            }
+            
+            .service-img {
+                width: 100%;
+                min-height: 250px;
+            }
+            
+            .service-content {
+                padding: 30px;
+            }
+            
+            .main-title {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 15px;
+            }
+        }
         </style>
 
 <script>
