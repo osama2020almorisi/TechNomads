@@ -555,11 +555,23 @@ body {
     position: relative;
 }
 
-.phone-screen .slide img {
+.phone-screen {
+    overflow: hidden;
+    position: relative;
+    width: 94%;
+    height: 96%;
+    top: 2%;
+    left: 3%;
+    border-radius: 35px;
+    background: transparent;
+}
+
+.app-slider img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: top;
+    object-fit: contain; /* هذا يضمن أن الصورة لا تخرج خارج الإطار */
+    object-position: center;
+    display: block;
 }
 
 .phone-mockup {
