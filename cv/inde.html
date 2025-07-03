@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السيرة الذاتية - أسامة منصور المريسي</title>
+    <title>أسامة منصور المريسي | مهندس برمجيات ومطور ويب محترف</title>
+    <meta name="description" content="السيرة الذاتية لأسامة منصور المريسي - مهندس برمجيات ومطور نظم ومواقع ويب بخبرة في تطوير الحلول التقنية المتكاملة">
+    <meta name="keywords" content="سيرة ذاتية، مهندس برمجيات، مطور ويب، تقنية المعلومات، برمجة، أنظمة ذكية">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
-            --text-color: #2c3e50;
-            --bg-color: #f8f9fa;
-            --border-radius: 15px;
+            --light-accent: #f39c12;
+            --text-color: #333;
+            --light-text: #777;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             --transition: all 0.3s ease;
+            --section-spacing: 60px;
         }
 
         * {
@@ -24,281 +31,940 @@
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Tajawal', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8;
+            line-height: 1.7;
+            direction: rtl;
+            scroll-behavior: smooth;
         }
 
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            box-shadow: var(--box-shadow);
             border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
         }
 
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--secondary-color), var(--accent-color));
+            z-index: 10;
+        }
+
+        /* Header Styles */
         header {
             text-align: center;
-            padding: 2rem 0;
-            border-bottom: 3px solid var(--secondary-color);
-            margin-bottom: 2rem;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
         }
 
         .profile-badge {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 1.5rem;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border: 4px solid var(--secondary-color);
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin: 0 auto 20px;
+            background: url('profile.jpg') center/cover;
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
         .profile-badge:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.4);
         }
 
-        .profile-badge img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .profile-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
         h1 {
             font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #666;
-            margin-top: 0.5rem;
+            color: var(--light-text);
+            margin-top: 5px;
+            font-weight: 400;
         }
 
+        /* Contact Section */
         .contact-section {
             padding: 2rem 0;
             text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
         .icon-bar {
             display: flex;
             justify-content: center;
-            gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 20px;
         }
 
         .icon-btn {
             width: 50px;
             height: 50px;
             border: 2px solid var(--secondary-color);
-            border-radius: 12px;
             background: rgba(52, 152, 219, 0.1);
             color: var(--secondary-color);
+            border-radius: 50%;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .icon-btn:hover {
-            background: var(--secondary-color);
+            transform: translateY(-5px) scale(1.1);
             color: white;
-            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .icon-btn:hover::before {
+            opacity: 1;
+        }
+
+        .icon-btn.show-all {
+            border-color: var(--light-accent);
+            color: var(--light-accent);
+            background: rgba(243, 156, 18, 0.1);
+        }
+
+        .icon-btn.show-all::before {
+            background: linear-gradient(45deg, var(--light-accent), #f1c40f);
         }
 
         .info-display {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             max-width: 600px;
             margin-inline: auto;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            animation: fadeIn 0.4s ease-out;
         }
 
         .info-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem;
-            background: #f8f8f8;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            animation: fadeIn 0.3s ease-in-out;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            background-color: rgba(52, 152, 219, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-right: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            transform: translateX(-10px);
+            background-color: rgba(52, 152, 219, 0.1);
         }
 
         .info-item i {
             font-size: 1.2rem;
             color: var(--secondary-color);
+            min-width: 25px;
+            text-align: center;
         }
 
+        .info-item a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .info-item a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .info-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .info-item a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Sections */
         .section {
-            margin: 2.5rem 0;
-            padding: 1.5rem;
-            background: #fff;
+            margin: var(--section-spacing) 0;
+            padding: 30px;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:hover {
+            transform: translateY(-5px) scale(1.005);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
         }
 
         .section h2 {
             font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
             border-bottom: 3px solid var(--secondary-color);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 15px;
+            font-weight: 700;
         }
 
         .section h2 i {
             color: var(--accent-color);
-            width: 35px;
-            height: 35px;
+            font-size: 1.5rem;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+
+        /* Skills Tabs */
+        .skills-tabs {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            background: rgba(231, 76, 60, 0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .skill-category {
-            padding: 1.5rem;
+            position: relative;
+            padding: 30px;
             background: linear-gradient(to left, #ffffff 0%, #f8f9fa 100%);
             border-radius: var(--border-radius);
-            position: relative;
             transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary-color);
         }
 
         .skill-category:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .skill-category h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .skill-category h3::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
         }
 
         .skill-category ul {
-            list-style: none;
-            padding-right: 1rem;
+            list-style-type: none;
         }
 
         .skill-category li {
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            background: white;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: var(--transition);
+            position: relative;
+            padding-right: 40px;
+            border-right: 3px solid transparent;
         }
 
         .skill-category li:hover {
             transform: translateX(10px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-right-color: var(--secondary-color);
         }
 
-        .project-card {
-            display: grid;
-            grid-template-columns: 50px 1fr;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            background: #f8f9fa;
-            border-radius: var(--border-radius);
+        .skill-category li::before {
+            content: '→';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-color);
+            opacity: 0;
             transition: var(--transition);
         }
 
-        .project-card:hover {
-            transform: translateX(10px);
+        .skill-category li:hover::before {
+            opacity: 1;
+            right: 10px;
         }
 
-        .project-card i {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
         }
 
-        .project-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .project-card a {
-            display: inline-block;
-            margin-top: 0.8rem;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .project-card a:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
         }
 
         .timeline-item {
-            padding: 1.5rem;
-            margin: 1rem 0;
-            background: #f8f9fa;
+            position: relative;
+            margin: 40px 0;
+            padding: 25px;
+            background: var(--card-bg);
             border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-right: 4px solid var(--secondary-color);
         }
 
+        .timeline-item:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-item .date {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item p {
+            margin-bottom: 10px;
+        }
+
+        .timeline-item strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            background: linear-gradient(to left, #ffffff 0%, #f8f9fa 100%);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            border-top: 4px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            flex-shrink: 0;
+        }
+
+        .project-title h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .project-title .date {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .project-content p {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .project-content .tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-tag {
+            padding: 5px 12px;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .tech-tag:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .project-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .project-link i {
+            font-size: 0.9rem;
+        }
+
+        /* Custom List */
+        ul.custom-list {
+            list-style-type: none;
+        }
+
+        ul.custom-list li {
+            padding: 12px 0;
+            padding-right: 30px;
+            position: relative;
+            border-bottom: 1px dashed #eee;
+        }
+
+        ul.custom-list li::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 18px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* QR Code */
         .qr-code {
             position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            background: rgba(255,255,255,0.95);
-            padding: 1rem;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px;
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
             transition: var(--transition);
-            z-index: 1000;
         }
-.hidden {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-        .qr-code.active {
-            opacity: 1;
-            visibility: visible;
+
+        .qr-code:hover {
+            transform: scale(1.05);
         }
 
         .qr-code img {
-            width: 120px;
-            height: 120px;
-            border: 2px solid var(--secondary-color);
-            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .qr-code p {
+            font-size: 0.8rem;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .action-btn.print {
+            background: var(--light-accent);
+            box-shadow: 0 3px 10px rgba(243, 156, 18, 0.3);
+        }
+
+        .action-btn.print:hover {
+            background: #e67e22;
+        }
+
+        /* Print Styles */
+        .print-only {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: none;
+                font-size: 12pt;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                margin: 20px 0;
+                padding: 15px;
+            }
+            
+            .icon-bar, .qr-code:not(.print-only), .action-buttons {
+                display: none;
+            }
+            
+            .print-only {
+                display: block;
+            }
+            
+            a {
+                text-decoration: none;
+                color: var(--text-color);
+            }
+            
+            .project-link {
+                background: none;
+                color: var(--text-color);
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                margin: 1rem;
-                padding: 1.5rem;
+                padding: 20px;
+                margin: 10px;
             }
-
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                right: 30px;
+            }
+            
             .qr-code {
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 1rem;
+                position: static;
+                margin: 30px auto;
+                width: fit-content;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Tooltip styles */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -40px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        [data-tooltip]:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: -45px;
+        }
+
+        /* Special Website Button */
+        .icon-btn.website-btn {
+            border-color: #FFD700;
+            color: #FFD700;
+            background: rgba(255, 215, 0, 0.1);
+            position: relative;
+        }
+
+        .icon-btn.website-btn::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid #FFD700;
+            animation: glow 2s infinite alternate;
+            opacity: 0.7;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #FFD700;
+            }
+            to {
+                box-shadow: 0 0 20px #FFD700, 0 0 30px #FFA500;
+            }
+        }
+
+        .icon-btn.website-btn:hover {
+            animation: none;
+            transform: scale(1.15) rotate(10deg);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+            box-shadow: 0 0 25px #FFD700;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-top: 20px;
+        }
+
+        .progress-item {
+            margin-bottom: 15px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+        }
+            .profile-badge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* هذه تضمن أن الصورة ستغطي المساحة كاملة دون تشويه */
         }
     </style>
 </head>
@@ -306,208 +972,533 @@
     <div class="container">
         <header>
             <div class="profile-badge">
-                <img src="profile.jpg" alt="صورة أسامة المريسي">
+                <img src="profile.jpg" alt="الصورة الشخصية لأسامة المريسي">
             </div>
+            
             <h1>أسامة منصور المريسي</h1>
             <p class="subtitle">مهندس برمجيات | مطور نظم ومواقع</p>
         </header>
-        
-         <div class="qr-code print-only">
-            <img src="qrcode.png" alt="QR Code">
-            <p>م</p>
-        </div>
+
         <section class="contact-section">
             <div class="icon-bar">
-                <button class="icon-btn" onclick="showInfo('nationality')" aria-label="الجنسية">
+                <button class="icon-btn" onclick="showInfo('nationality')" aria-label="الجنسية" data-tooltip="الجنسية">
                     <i class="fas fa-passport"></i>
                 </button>
-                <button class="icon-btn" onclick="showInfo('birthdate')" aria-label="تاريخ الميلاد">
+                <button class="icon-btn" onclick="showInfo('birthdate')" aria-label="تاريخ الميلاد" data-tooltip="تاريخ الميلاد">
                     <i class="fas fa-birthday-cake"></i>
                 </button>
-                <button class="icon-btn" onclick="showInfo('phone')" aria-label="رقم الهاتف">
+                <button class="icon-btn" onclick="showInfo('phone')" aria-label="رقم الهاتف" data-tooltip="رقم الهاتف">
                     <i class="fas fa-phone-alt"></i>
                 </button>
-                <button class="icon-btn" onclick="showInfo('email')" aria-label="البريد الإلكتروني">
+                <button class="icon-btn" onclick="showInfo('email')" aria-label="البريد الإلكتروني" data-tooltip="البريد الإلكتروني">
                     <i class="fas fa-envelope"></i>
                 </button>
-                <button class="icon-btn" onclick="showInfo('linkedin')" aria-label="LinkedIn">
+                <button class="icon-btn" onclick="showInfo('linkedin')" aria-label="LinkedIn" data-tooltip="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </button>
-                <button class="icon-btn" onclick="showInfo('github')" aria-label="GitHub">
+                <button class="icon-btn" onclick="showInfo('github')" aria-label="GitHub" data-tooltip="GitHub">
                     <i class="fab fa-github"></i>
                 </button>
-                <button class="icon-btn" onclick="showAll()" aria-label="عرض الكل">
+                <button class="icon-btn website-btn" onclick="showInfo('website')" aria-label="الموقع الشخصي" data-tooltip="الموقع الشخصي">
+                    <i class="fas fa-globe"></i>
+                </button>
+                <button class="icon-btn show-all" onclick="showAll()" aria-label="عرض جميع المعلومات" data-tooltip="عرض الكل">
                     <i class="fas fa-layer-group"></i>
                 </button>
             </div>
-            <div id="infoDisplay" class="info-display"></div>
-        </section>
-        
-        <section class="section" role="region" aria-labelledby="about">
-            <h2 id="about"><i class="fas fa-user-tie"></i>نبذة عني</h2>
-            <p>مهندس برمجيات ومختص بتقنية المعلومات، خريج جامعة صنعاء 2024. أتميز بالشغف المستمر للتعلم والتطور، مع خبرة في تطوير الأنظمة الذكية والحلول الرقمية المبتكرة. مهتم بالتعلم المستمر وأهدافي المستقبلية هي تطوير حلول برمجية مبتكرة تسهم في تحسين حياة الناس.</p>
+
+            <div id="infoDisplay" class="info-display" aria-live="polite"></div>
         </section>
 
-        <section class="section" role="region" aria-labelledby="education">
-            <h2 id="education"><i class="fas fa-graduation-cap"></i>التعليم والتدريب</h2>
+        <section class="section" role="region" aria-labelledby="about-heading">
+            <h2 id="about-heading"><i class="fas fa-user-tie"></i> نبذة عني</h2>
+            <p>مهندس برمجيات ومختص بتقنية المعلومات، خريج جامعة صنعاء بتفوق عام 2024. أمتلك شغفًا كبيرًا في عالم التكنولوجيا والبرمجة، وأسعى دائمًا لاكتساب مهارات جديدة وتطوير حلول مبتكرة.</p>
+            <p>أتخصص في تطوير الأنظمة الذكية وتصميم حلول برمجية تلبي احتياجات المستخدمين بأعلى معايير الجودة. لدي خبرة في تطوير تطبيقات الويب والهواتف الذكية، مع التركيز على تجربة المستخدم والأداء الأمثل.</p>
+            <p>أؤمن بالتعلم المستمر وأحرص على مواكبة أحدث التقنيات في مجال البرمجة وهندسة البرمجيات. هدفي هو المساهمة في تطوير حلول تكنولوجية تسهم في تحسين حياة الأفراد والمجتمعات.</p>
+            
+            <div class="progress-container">
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span>تطوير الويب</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span>قواعد البيانات</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <span>تطوير التطبيقات</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" role="region" aria-labelledby="education-heading">
+            <h2 id="education-heading"><i class="fas fa-graduation-cap"></i> التعليم والشهادات</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <h3>بكالوريوس تقنية المعلومات</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 100%">
-                            <span class="skill-label">2020 - 2024</span>
+                    <h3>بكالوريوس علوم الحاسوب وتقنية المعلومات</h3>
+                    <span class="date">2020 - 2024</span>
+                    <p>جامعة صنعاء - كلية علوم الحاسوب وتقنية المعلومات</p>
+                    <p>معدل تراكمي: <strong>3.8/4.0</strong> (بتفوق)</p>
+                    <p>مشروع التخرج: <strong>نظام إدارة الطلاب الذكي</strong> - نظام متكامل لإدارة شؤون الطلاب باستخدام تقنيات الذكاء الاصطناعي</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>دبلوم تطوير تطبيقات الويب</h3>
+                    <span class="date">2023</span>
+                    <p>منصة Udemy - دورة متقدمة</p>
+                    <p>شهادة معتمدة في تطوير تطبيقات الويب باستخدام تقنيات حديثة مثل React وNode.js</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h3>شهادة إدارة قواعد البيانات Oracle</h3>
+                    <span class="date">2022</span>
+                    <p>Oracle Academy - برنامج متخصص</p>
+                    <p>تصميم وإدارة قواعد البيانات العلائقية باستخدام Oracle SQL وPL/SQL</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" role="region" aria-labelledby="skills-heading">
+            <h2 id="skills-heading"><i class="fas fa-tools"></i> المهارات التقنية</h2>
+            
+            <div class="skills-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'web-tab')">تطوير الويب</button>
+                <button class="tab-btn" onclick="openTab(event, 'db-tab')">قواعد البيانات</button>
+                <button class="tab-btn" onclick="openTab(event, 'devops-tab')">التطوير والعمليات</button>
+                <button class="tab-btn" onclick="openTab(event, 'mobile-tab')">تطبيقات الجوال</button>
+            </div>
+            
+            <div id="web-tab" class="tab-content active">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>الواجهة الأمامية</h3>
+                        <ul>
+                            <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                            <li>React.js, Vue.js, Angular</li>
+                            <li>Bootstrap, Tailwind CSS</li>
+                            <li>Responsive Design</li>
+                            <li>Web Accessibility</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>الواجهة الخلفية</h3>
+                        <ul>
+                            <li>Node.js, Express</li>
+                            <li>PHP, Laravel</li>
+                            <li>Python, Django</li>
+                            <li>RESTful APIs, GraphQL</li>
+                            <li>Authentication & Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="db-tab" class="tab-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>قواعد البيانات العلائقية</h3>
+                        <ul>
+                            <li>MySQL, PostgreSQL</li>
+                            <li>Oracle, SQL Server</li>
+                            <li>Database Design</li>
+                            <li>SQL Optimization</li>
+                            <li>Stored Procedures</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>قواعد البيانات NoSQL</h3>
+                        <ul>
+                            <li>MongoDB, Firebase</li>
+                            <li>Redis, Elasticsearch</li>
+                            <li>Data Modeling</li>
+                            <li>Scalability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="devops-tab" class="tab-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>إدارة المشاريع</h3>
+                        <ul>
+                            <li>Git, GitHub, GitLab</li>
+                            <li>Agile, Scrum, Kanban</li>
+                            <li>CI/CD pipelines</li>
+                            <li>اختبار البرمجيات</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>النشر والتشغيل</h3>
+                        <ul>
+                            <li>Docker, Kubernetes</li>
+                            <li>AWS, Azure</li>
+                            <li>Linux Server</li>
+                            <li>Monitoring & Logging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="mobile-tab" class="tab-content">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>تطبيقات الهاتف</h3>
+                        <ul>
+                            <li>Flutter, Dart</li>
+                            <li>React Native</li>
+                            <li>Android (Java/Kotlin)</li>
+                            <li>iOS (Swift)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>خدمات الجوال</h3>
+                        <ul>
+                            <li>Firebase</li>
+                            <li>Push Notifications</li>
+                            <li>Mobile Security</li>
+                            <li>App Store Deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" role="region" aria-labelledby="projects-heading">
+            <h2 id="projects-heading"><i class="fas fa-project-diagram"></i> المشاريع</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="project-title">
+                            <h3>نظام إدارة الطلاب الذكي</h3>
+                            <span class="date">2023 - 2024</span>
                         </div>
                     </div>
-                    <p>جامعة صنعاء - معدل تراكمي: 3.8/4.0</p>
-                    <p>مشروع التخرج: <strong>نظام إدارة الطلاب الذكي</strong></p>
+                    <div class="project-content">
+                        <p>نظام متكامل لإدارة شؤون الطلاب في الجامعات والمدارس، يتضمن إدارة الحضور والغياب، النتائج، الجداول الدراسية، والمدفوعات. يدعم النظام اتخاذ القرارات باستخدام تقنيات الذكاء الاصطناعي.</p>
+                        <div class="tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">TensorFlow.js</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="https://www.sm-fs.tech" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> عرض المشروع
+                        </a>
+                        <span class="project-status completed">مكتمل</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="project-title">
+                            <h3>منصة التجارة الإلكترونية</h3>
+                            <span class="date">2022 - 2023</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p>منصة متكاملة للتجارة الإلكترونية مع نظام إدارة محتوى متقدم، دفع إلكتروني، وتقارير تحليلية. تدعم المنصة متاجر متعددة مع إدارة مخزون ومبيعات متقدمة.</p>
+                        <div class="tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Payment Gateway</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> عرض المشروع
+                        </a>
+                        <span class="project-status live">نشط</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-title">
+                            <h3>تطبيق إدارة المهام</h3>
+                            <span class="date">2023</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p>تطبيق هاتف ذكي لإدارة المهام الشخصية والفريقية مع مزامنة سحابية وإشعارات ذكية. يدعم التطبيق إنشاء مشاريع فرق مع إدارة صلاحيات متقدمة.</p>
+                        <div class="tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Dart</span>
+                            <span class="tech-tag">Push Notifications</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> عرض المشروع
+                        </a>
+                        <span class="project-status in-progress">قيد التطوير</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" role="region" aria-labelledby="skills">
-            <h2 id="skills"><i class="fas fa-tools"></i>المهارات التقنية</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>تطوير الويب</h3>
-                    <ul>
-                        <li>HTML5/CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>PHP 7.x</li>
-                        <li>Bootstrap 5</li>
-                        <li>React</li>
+        <section class="section" role="region" aria-labelledby="experience-heading">
+            <h2 id="experience-heading"><i class="fas fa-briefcase"></i> الخبرات العملية</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>متدرب مطور نظم</h3>
+                    <span class="date">يونيو 2023 - سبتمبر 2023</span>
+                    <p>وزارة الاتصالات وتقنية المعلومات - صنعاء</p>
+                    <ul class="custom-list">
+                        <li>تطوير واجهات مستخدم لتطبيقات الوزارة الداخلية باستخدام React وTypeScript</li>
+                        <li>تحليل متطلبات الأنظمة وتصميم الحلول البرمجية</li>
+                        <li>المشاركة في تطوير نظام إدارة المشاريع الداخلية</li>
+                        <li>كتابة توثيق تقني للأنظمة المطورة</li>
+                        <li>تحسين أداء التطبيقات الحالية</li>
                     </ul>
                 </div>
-                <div class="skill-category">
-                    <h3>قواعد البيانات</h3>
-                    <ul>
-                        <li>MySQL</li>
-                        <li>Oracle</li>
-                        <li>SQL Server</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>التنمية المهنية</h3>
-                    <ul>
-                        <li>Git & GitHub</li>
-                        <li>Azure DevOps</li>
-                        <li>Agile Methodology</li>
+                
+                <div class="timeline-item">
+                    <h3>مطور ويب مستقل</h3>
+                    <span class="date">2021 - الحاضر</span>
+                    <p>العمل الحر عبر منصات مستقلة</p>
+                    <ul class="custom-list">
+                        <li>تصميم وتطوير مواقع الويب للعملاء باستخدام أحدث التقنيات</li>
+                        <li>تحسين أداء المواقع وتحسين محركات البحث (SEO)</li>
+                        <li>تطوير تطبيقات ويب مخصصة حسب احتياجات العملاء</li>
+                        <li>تقديم استشارات تقنية وحلول برمجية</li>
+                        <li>إدارة وتركيب أنظمة إدارة المحتوى (WordPress, Joomla)</li>
                     </ul>
                 </div>
             </div>
         </section>
         
-        <section class="section">
-            <h2><i class="fas fa-project-diagram"></i>المشاريع</h2>
-            <div class="project-card">
-                <i class="fas fa-laptop-code"></i>
-                <div>
-                    <h3>نظام إدارة الطلاب</h3>
-                    <p>نظام ويب متكامل لإدارة بيانات الطلاب والنتائج</p>
-                    <p><strong>التقنيات المستخدمة:</strong> React, Node.js, MySQL, PHP, Bootstrap</p>
-                    <a href="https://www.sm-fs.tech" target="_blank" rel="noopener">عرض المشروع →</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2><i class="fas fa-briefcase"></i>الخبرات العملية</h2>
-            <div class="timeline-item">
-                <h3>متدرب مطور نظم</h3>
-                <p>وزارة الاتصالات وتقنية المعلومات | 2023</p>
-                <p>المهام: تطوير واجهات مستخدم وتحليل متطلبات المشاريع</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2><i class="fas fa-certificate"></i>الشهادات</h2>
-            <ul class="certifications-list">
-                <li>شهادة تطوير الويب - Udemy - 2023</li>
-                <li>أساسيات قواعد البيانات - Oracle Academy - 2022</li>
-                <li>إدارة المشاريع باستخدام Agile - Coursera - 2023</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2><i class="fas fa-language"></i>اللغات</h2>
-            <ul>
-                <li>العربية: اللغة الأم</li>
-                <li>الإنجليزية: مستوى متقدم</li>
-            </ul>
-        </section>
-
-
-        
-        <section class="section">
-            <h2><i class="fas fa-star"></i>الهوايات</h2>
-            <ul>
-                <li>البرمجة وحل التحديات على منصات مثل HackerRank</li>
-                <li>قراءة كتب تطوير الذات والتقنية</li>
-                <li>المشاركة في المجتمعات التقنية</li>
+        <section class="section" role="region" aria-labelledby="achievements-heading">
+            <h2 id="achievements-heading"><i class="fas fa-trophy"></i> الإنجازات</h2>
+            <ul class="custom-list">
+                <li>الحصول على المركز الأول في مسابقة برمجة الجامعة عام 2023 لمشروع نظام إدارة الطلاب الذكي</li>
+                <li>تطوير نظام إدارة طلابي تم اعتماده من قبل جامعتين محليتين</li>
+                <li>الحصول على شهادة تقديرية من وزير الاتصالات عن مشروع التدريب</li>
+                <li>المشاركة في تأسيس نادي تقنية المعلومات بالجامعة</li>
+                <li>إلقاء محاضرات وورش عمل في مجال تطوير الويب</li>
+                <li>الحصول على عدة شهادات تقديرية في مسابقات الهاكاثون</li>
             </ul>
         </section>
         
-         <section class="section">
-            <h2><i class="fas fa-user-check"></i>المراجع</h2>
-            <p>متاحة عند الطلب.</p>
-        </section>
-         
-        <section class="section">
-            <h2><i class="fas fa-code"></i>المهارات التقنية</h2>
-            <ul>
-                <li>HTML5, CSS3, JavaScript (ES6+), PHP</li>
-                <li>Bootstrap, Git, GitHub</li>
-                <li>MySQL, SQL Server, Oracle</li>
-                <li>Agile, DevOps, Azure</li>
+        <section class="section" role="region" aria-labelledby="languages-heading">
+            <h2 id="languages-heading"><i class="fas fa-language"></i> اللغات</h2>
+            <ul class="custom-list">
+                <li>العربية: اللغة الأم (إجادة تامة)</li>
+                <li>الإنجليزية: مستوى متقدم (كتابة ومحادثة)</li>
+                <li>القدرة على قراءة الوثائق التقنية باللغة الإنجليزية</li>
+                <li>خبرة في ترجمة المحتوى التقني بين اللغتين</li>
             </ul>
         </section>
-       
+        
+        <section class="section" role="region" aria-labelledby="hobbies-heading">
+            <h2 id="hobbies-heading"><i class="fas fa-heart"></i> الاهتمامات والهوايات</h2>
+            <ul class="custom-list">
+                <li>حل المشكلات البرمجية على منصات مثل LeetCode وHackerRank</li>
+                <li>القراءة في مجالات الذكاء الاصطناعي وتعلم الآلة</li>
+                <li>المشاركة في المجتمعات التقنية والهاكاثونات</li>
+                <li>تعلم لغات برمجة جديدة وتقنيات حديثة</li>
+                <li>كتابة مقالات تقنية ومشاركة المعرفة</li>
+                <li>التصميم الجرافيكي والرسم الرقمي</li>
+            </ul>
+        </section>
+        
+        <section class="section" role="region" aria-labelledby="contact-heading">
+            <h2 id="contact-heading"><i class="fas fa-envelope"></i> تواصل معي</h2>
+            <div class="contact-form">
+                <form id="contactForm" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">الموضوع</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                </form>
+            </div>
+        </section>
+        
+        <section class="section" role="region" aria-labelledby="references-heading">
+            <h2 id="references-heading"><i class="fas fa-user-check"></i> المراجع</h2>
+            <p>متاحة عند الطلب. يرجى التواصل عبر البريد الإلكتروني أو الهاتف.</p>
+        </section>
+        
+        <div class="action-buttons">
+            <button class="action-btn print" onclick="window.print()">
+                <i class="fas fa-print"></i> طباعة السيرة الذاتية
+            </button>
+            <a href="#" class="action-btn" id="downloadBtn">
+                <i class="fas fa-download"></i> تحميل PDF
+            </a>
+        </div>
+
+        <div class="qr-code print-only">
+            <img src="qrcode.png" alt="رمز الاستجابة السريعة">
+            <p>مسح للوصول إلى النسخة الرقمية من السيرة الذاتية</p>
+        </div>
     </div>
-    </div>
 
-<script>
-    const contactData = {
-        nationality: { icon: 'fas fa-passport', text: 'الجنسية: يمني' },
-        birthdate: { icon: 'fas fa-birthday-cake', text: 'تاريخ الميلاد: 24/10/2001' },
-        phone: { icon: 'fas fa-phone-alt', text: 'رقم الهاتف: <a href="tel:+967770200970">(+967) 770 200 970</a>' },
-        email: { icon: 'fas fa-envelope', text: 'البريد الإلكتروني: <a href="mailto:osamaiii7702@gmail.com">osamaiii7702@gmail.com</a>' },
-        linkedin: { icon: 'fab fa-linkedin', text: 'LinkedIn: <a href="https://linkedin.com/in/9o--sa" target="_blank">الملف الشخصي</a>' },
-        github: { icon: 'fab fa-github', text: 'GitHub: <a href="https://github.com/osama2020almorisi" target="_blank">الحساب الشخصي</a>' }
-    };
+    <script>
+        const contactData = {
+            nationality: { 
+                icon: 'fas fa-passport', 
+                text: 'الجنسية: يمني',
+                tooltip: 'الجنسية'
+            },
+            birthdate: { 
+                icon: 'fas fa-birthday-cake', 
+                text: 'تاريخ الميلاد: 24 أكتوبر 2001',
+                tooltip: 'تاريخ الميلاد'
+            },
+            phone: {
+                icon: 'fas fa-phone-alt',
+                text: 'رقم الهاتف: <a href="tel:+967770200970">770 200 970 (967+)</a>',
+                tooltip: 'رقم الهاتف'
+            },
+            email: {
+                icon: 'fas fa-envelope',
+                text: 'البريد الإلكتروني: <a href="mailto:osamaiii7702@gmail.com">osamaiii7702@gmail.com</a>',
+                tooltip: 'البريد الإلكتروني'
+            },
+            linkedin: {
+                icon: 'fab fa-linkedin',
+                text: 'LinkedIn: <a href="https://linkedin.com/in/9o--sa" target="_blank">linkedin.com/in/9o--sa</a>',
+                tooltip: 'LinkedIn'
+            },
+            github: {
+                icon: 'fab fa-github',
+                text: 'GitHub: <a href="https://github.com/osama2020almorisi" target="_blank">github.com/osama2020almorisi</a>',
+                tooltip: 'GitHub'
+            },
+            website: {
+                icon: 'fas fa-globe',
+                text: 'الموقع الشخصي: <a href="https://osama2020almorisi.github.io/TechNomads/" target="_blank">osama2020almorisi.github.io/TechNomads/</a>',
+                tooltip: 'الموقع الشخصي'
+            }
+        };
 
-    function showInfo(key) {
-        const display = document.getElementById('infoDisplay');
-        display.innerHTML = `
-            <div class="info-item">
-                <i class="${contactData[key].icon}"></i>
-                <span>${contactData[key].text}</span>
-            </div>
-        `;
-    }
+        function showInfo(key) {
+            const display = document.getElementById('infoDisplay');
+            const { icon, text } = contactData[key];
+            display.innerHTML = `
+                <div class="info-item">
+                    <i class="${icon}"></i>
+                    <span>${text}</span>
+                </div>
+            `;
+        }
 
-    function showAll() {
-        const display = document.getElementById('infoDisplay');
-        display.innerHTML = Object.values(contactData).map(item => `
-            <div class="info-item">
-                <i class="${item.icon}"></i>
-                <span>${item.text}</span>
-            </div>
-        `).join('');
-    }
+        function showAll() {
+            const display = document.getElementById('infoDisplay');
+            display.innerHTML = Object.entries(contactData).map(([key, { icon, text }]) => `
+                <div class="info-item">
+                    <i class="${icon}"></i>
+                    <span>${text}</span>
+                </div>
+            `).join('');
+        }
 
-    // تحسين سلوك QR Code
-    const qrCode = document.querySelector('.qr-code');
-    let scrollTimer;
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
 
-    window.addEventListener('scroll', () => {
-        // إخفاء QR Code عند التمرير
-        qrCode.classList.add('hidden');
-        
-        // إعادة الظهور بعد ثانية من توقف التمرير
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-            qrCode.classList.remove('hidden');
-        }, 1000);
-    });
-</script>
+        function submitForm(e) {
+            e.preventDefault();
+            alert('شكرًا لتواصلك! سيتم الرد عليك في أقرب وقت.');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Generate PDF
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            alert('سيتم تحميل السيرة الذاتية بصيغة PDF');
+            // في الواقع، يمكنك استخدام مكتبة مثل jsPDF أو html2pdf لتحويل الصفحة إلى PDF
+        });
+
+        // Scroll animations
+        function checkScroll() {
+            const sections = document.querySelectorAll('.section');
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition + windowHeight > sectionTop + sectionHeight / 2) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        // Show email by default and set up scroll listener
+        window.onload = function() {
+            showInfo('email');
+            window.addEventListener('scroll', checkScroll);
+            checkScroll(); // Check on initial load
+        };
+
+        // Print functionality
+        function printCV() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
