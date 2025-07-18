@@ -574,6 +574,7 @@ body {
     display: block;
 }
 
+
 .phone-mockup {
     margin: 2rem auto;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
@@ -652,7 +653,7 @@ img[loading="lazy"].loaded {
     opacity: 1;
 }
 }
-        .phone-frame,
+    .phone-frame,
 .phone-screen {
     background: transparent !important;
 }
@@ -2024,7 +2025,861 @@ background: transparent !important;
 }
 </style>
     
+    <section class="entertainment-section" style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%); padding: 100px 0;">
+  <div class="container">
+    <div class="section-header" style="text-align: center; margin-bottom: 60px;">
+      <h2 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 15px; font-family: 'Tajawal', sans-serif;">
+        <i class="fas fa-gamepad" style="color: #e74c3c; margin-left: 10px;"></i> الترفيه التفاعلي
+      </h2>
+      <p style="font-size: 1.2rem; color: #7f8c8d; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+        استمتع بمجموعة من الأدوات الترفيهية المبتكرة المصممة خصيصاً لتقديم تجربة مستخدم فريدة وسلسة
+      </p>
+    </div>
+
+    <div class="main-container" style="display: flex; justify-content: center;">
+      <div class="cards-carousel" style="width: 100%; max-width: 1200px; position: relative; height: 350px; margin: 0 auto; overflow: hidden;">
+        <button class="nav-arrow left" onclick="slideCard('left')" aria-label="البطاقة السابقة">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-arrow right" onclick="slideCard('right')" aria-label="البطاقة التالية">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="cards-viewport">
+          <div class="cards-wrapper">
+            <!-- بطاقة 1 -->
+            <a href="entertainment/the-age.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1508962914676-134849a727f0');" data-title="حاسبة العمر">
+              <div class="card-header">
+                <div class="card-title">حاسبة العمر</div>
+                <div class="card-logo"><i class="fas fa-calculator"></i> أداة ذكية</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">احسب عمرك</div>
+                <div class="user-account">اكتشف عمرك بالسنوات والأيام والدقائق</div>
+              </div>
+              <div class="card-balance">3,421 مستخدم</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.9 (128 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+
+            <!-- بطاقة 2 -->
+            <a href="entertainment/memory-game.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e');" data-title="لعبة الذاكرة">
+              <div class="card-header">
+                <div class="card-title">لعبة الذاكرة</div>
+                <div class="card-logo"><i class="fas fa-brain"></i> تحدّي الذاكرة</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">ابدأ اللعبة</div>
+                <div class="user-account">اختبر ذاكرتك بمستويات متعددة وجوائز</div>
+              </div>
+              <div class="card-balance">1,245 لاعب</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.8 (96 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+
+            <!-- بطاقة 3 -->
+            <a href="entertainment/color-generator.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1511512578047-dfb367046420');" data-title="مولد الألوان">
+              <div class="card-header">
+                <div class="card-title">مولد الألوان</div>
+                <div class="card-logo"><i class="fas fa-palette"></i> ألوانك</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">استكشف الألوان</div>
+                <div class="user-account">أنشئ لوحات ألوان متناسقة لمشاريعك</div>
+              </div>
+              <div class="card-balance">892 مستخدم</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.6 (75 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+
+            <!-- بطاقة 4 -->
+            <a href="entertainment/quiz-game.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7');" data-title="مسابقة المعلومات">
+              <div class="card-header">
+                <div class="card-title">مسابقة المعلومات</div>
+                <div class="card-logo"><i class="fas fa-question-circle"></i> اختبر نفسك</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">ابدأ الآن</div>
+                <div class="user-account">اختبر معلوماتك العامة في مختلف المجالات</div>
+              </div>
+              <div class="card-balance">2,156 مشارك</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.9 (210 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+
+            <!-- بطاقة 5 -->
+            <a href="entertainment/image-editor.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba');" data-title="محرر الصور">
+              <div class="card-header">
+                <div class="card-title">محرر الصور</div>
+                <div class="card-logo"><i class="fas fa-camera-retro"></i> فوتو إديت</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">جرب الآن</div>
+                <div class="user-account">أدوات متقدمة لتحرير الصور أونلاين</div>
+              </div>
+              <div class="card-balance">1,734 مستخدم</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.7 (143 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+
+            <!-- بطاقة 6 - محرر الأكواد التفاعلي -->
+            <a href="entertainment/code-lab.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');" data-title="محرر الأكواد التفاعلي">
+              <div class="card-header">
+                <div class="card-title">محرر الأكواد</div>
+                <div class="card-logo"><i class="fas fa-code"></i> برمجة تفاعلية</div>
+              </div>
+              <div class="card-user">
+                <div class="user-name">جرب المحرر</div>
+                <div class="user-account">محرر أكواد متكامل مع تنفيذ مباشر للنتائج</div>
+              </div>
+              <div class="card-balance">2,843 مبرمج</div>
+              <div class="card-footer"><span><i class="fas fa-star"></i> 4.9 (312 تقييم)</span></div>
+              <div class="card-loading"></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card-indicators">
+          <div class="indicator active" data-index="0" onclick="goToCard(0)"></div>
+          <div class="indicator" data-index="1" onclick="goToCard(1)"></div>
+          <div class="indicator" data-index="2" onclick="goToCard(2)"></div>
+          <div class="indicator" data-index="3" onclick="goToCard(3)"></div>
+          <div class="indicator" data-index="4" onclick="goToCard(4)"></div>
+          <div class="indicator" data-index="5" onclick="goToCard(5)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- رسالة التأكيد -->
+  <div class="confirmation-modal">
+    <div class="confirmation-content">
+      <h3>جاري التحميل...</h3>
+      <p>سيتم نقلك إلى <span class="destination-name"></span></p>
+      <div class="loading-spinner"></div>
+      <div class="confirmation-buttons">
+        <button class="confirm-btn">متابعة</button>
+        <button class="cancel-btn">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  .entertainment-section {
+    font-family: 'Tajawal', sans-serif;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .entertainment-section::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    animation: float 15s infinite linear;
+    z-index: 0;
+  }
+  
+  @keyframes float {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(5%, 5%); }
+    50% { transform: translate(10%, 0); }
+    75% { transform: translate(5%, -5%); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  .entertainment-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card {
+    width: 65%;
+    min-width: 65%;
+    height: 240px;
+    border-radius: 15px;
+    padding: 15px;
+    color: white;
+    position: absolute;
+    transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+    cursor: pointer;
+    transform-origin: center;
+    will-change: transform, opacity;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
+
+  .card:hover {
+    transform: translateX(-50%) scale(1.02) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:active {
+    transform: translateX(-50%) scale(0.98) !important;
+  }
+
+  .card-header,
+  .card-user,
+  .card-footer {
+    z-index: 2;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-logo {
+    color: #f1c40f;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .card-user {
+    margin-top: 10px;
+  }
+
+  .user-name {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+  }
+
+  .user-account {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-balance {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: auto 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8rem;
+    opacity: 0.95;
+    margin-top: 10px;
+  }
+
+  .card-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-loading::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .cards-viewport {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+  }
+
+  .cards-wrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+    font-size: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .nav-arrow:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-arrow.left {
+    left: 20px;
+  }
+
+  .nav-arrow.right {
+    right: 20px;
+  }
+
+  .card-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 5;
+  }
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .indicator.active {
+    background: white;
+    transform: scale(1.2);
+  }
+
+  /* رسالة التأكيد */
+  .confirmation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .confirmation-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .confirmation-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .confirmation-modal.active .confirmation-content {
+    transform: translateY(0);
+  }
+
+  .confirmation-content h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  .confirmation-content p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  .destination-name {
+    color: #e74c3c;
+    font-weight: bold;
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(231, 76, 60, 0.2);
+    border-top-color: #e74c3c;
+    border-radius: 50%;
+    margin: 20px auto;
+    animation: spin 1s linear infinite;
+  }
+
+  .confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .confirm-btn, .cancel-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .confirm-btn {
+    background: #e74c3c;
+    color: white;
+  }
+
+  .confirm-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+  }
+
+  .cancel-btn {
+    background: #ecf0f1;
+    color: #7f8c8d;
+  }
+
+  .cancel-btn:hover {
+    background: #bdc3c7;
+    transform: translateY(-2px);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* تأثيرات جديدة للبطاقات */
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+
+  .card:hover::before {
+    background: linear-gradient(45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+  }
+
+  /* تأثيرات النقر */
+  @keyframes clickEffect {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(0.95); }
+    100% { transform: translateX(-50%) scale(1); }
+  }
+
+  .card.clicked {
+    animation: clickEffect 0.3s ease;
+  }
+
+  /* تحسينات للبطاقة الجديدة */
+  .card[data-title="محرر الأكواد التفاعلي"] {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
+  }
+
+  .card[data-title="محرر الأكواد التفاعلي"] .card-logo {
+    color: #1abc9c;
+  }
+
+  @media (max-width: 768px) {
+    .entertainment-section {
+      padding: 60px 0;
+    }
     
+    .section-header {
+      margin-bottom: 40px !important;
+    }
+    
+    .section-header h2 {
+      font-size: 2rem !important;
+    }
+    
+    .section-header p {
+      font-size: 1rem !important;
+      padding: 0 20px;
+    }
+    
+    .card {
+      width: 70%;
+      min-width: 70%;
+    }
+    
+    .card-title {
+      font-size: 1.3rem;
+    }
+    
+    .user-account {
+      font-size: 1rem;
+    }
+    
+    .confirmation-content {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .entertainment-section {
+      padding: 40px 0;
+    }
+    
+    .section-header h2 {
+      font-size: 1.8rem !important;
+    }
+    
+    .nav-arrow {
+      width: 20px;
+      height: 20px;
+      font-size: 0.8rem;
+    }
+    
+    .nav-arrow.left {
+      left: 10px;
+    }
+    
+    .nav-arrow.right {
+      right: 10px;
+    }
+    
+    .card {
+      width: 70%;
+      min-width: 70%;
+      height: 240px;
+      padding: 15px;
+    }
+    
+    .card-indicators {
+      bottom: 5px;
+    }
+    
+    .indicator {
+      width: 8px;
+      height: 8px;
+    }
+  }
+</style>
+
+<script>
+  // تهيئة العناصر
+  const cards = document.querySelectorAll(".card");
+  const indicators = document.querySelectorAll(".indicator");
+  const confirmationModal = document.querySelector('.confirmation-modal');
+  const confirmBtn = document.querySelector('.confirm-btn');
+  const cancelBtn = document.querySelector('.cancel-btn');
+  const destinationName = document.querySelector('.destination-name');
+  
+  let currentIndex = 0;
+  let autoSlideInterval;
+  const autoSlideDelay = 5000; // 5 ثواني
+  let currentHref = '';
+  let isAnimating = false;
+
+  // تحسينات الأداء - تخزين العناصر المكررة
+  const cardElements = {
+    cards: Array.from(cards),
+    indicators: Array.from(indicators),
+    cardLength: cards.length
+  };
+
+  // تهيئة الحركة التلقائية
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      slideCard('right');
+    }, autoSlideDelay);
+  }
+
+  // إيقاف الحركة التلقائية عند التفاعل
+  function pauseAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  // استئناف الحركة التلقائية
+  function resumeAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+  }
+
+  function updateIndicators() {
+    cardElements.indicators.forEach((el, i) => {
+      el.classList.toggle("active", i === currentIndex);
+    });
+  }
+
+  function animateCards() {
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    cardElements.cards.forEach((card, index) => {
+      const diff = (index - currentIndex + cardElements.cardLength) % cardElements.cardLength;
+      
+      if (diff === 0) {
+        // البطاقة المركزية
+        card.style.left = "50%";
+        card.style.transform = "translateX(-50%) scale(1)";
+        card.style.zIndex = "3";
+        card.style.opacity = "1";
+        card.style.filter = "none";
+      } 
+      else if (diff === 1) {
+        // البطاقة التالية
+        card.style.left = "85%";
+        card.style.transform = "translateX(-50%) scale(0.9)";
+        card.style.zIndex = "2";
+        card.style.opacity = "0.8";
+        card.style.filter = "brightness(0.8)";
+      } 
+      else if (diff === cardElements.cardLength - 1) {
+        // البطاقة السابقة
+        card.style.left = "15%";
+        card.style.transform = "translateX(-50%) scale(0.9)";
+        card.style.zIndex = "2";
+        card.style.opacity = "0.8";
+        card.style.filter = "brightness(0.8)";
+      } 
+      else {
+        // البطاقات البعيدة
+        card.style.left = "50%";
+        card.style.transform = "translateX(-50%) scale(0.7)";
+        card.style.zIndex = "1";
+        card.style.opacity = "0";
+        card.style.filter = "brightness(0.6)";
+      }
+    });
+    
+    updateIndicators();
+    
+    setTimeout(() => {
+      isAnimating = false;
+    }, 600);
+  }
+
+  function slideCard(direction) {
+    if (isAnimating) return;
+    pauseAutoSlide();
+    
+    currentIndex = direction === "left" 
+      ? (currentIndex - 1 + cardElements.cardLength) % cardElements.cardLength
+      : (currentIndex + 1) % cardElements.cardLength;
+    
+    animateCards();
+    setTimeout(resumeAutoSlide, autoSlideDelay);
+  }
+
+  function goToCard(index) {
+    if (isAnimating || currentIndex === index) return;
+    pauseAutoSlide();
+    
+    currentIndex = index;
+    animateCards();
+    setTimeout(resumeAutoSlide, autoSlideDelay);
+  }
+
+  function showConfirmation(title, href) {
+    destinationName.textContent = title;
+    currentHref = href;
+    confirmationModal.classList.add('active');
+  }
+
+  function hideConfirmation() {
+    confirmationModal.classList.remove('active');
+    
+    // إخفاء مؤشر التحميل على جميع البطاقات
+    document.querySelectorAll('.card-loading').forEach(loading => {
+      loading.style.opacity = '0';
+    });
+  }
+
+  // معالجة النقر على البطاقات
+  function handleCardClick(e) {
+    // منع الانتقال إذا كان النقر على عناصر التنقل
+    if (e.target.classList.contains('nav-arrow') || 
+        e.target.closest('.nav-arrow') || 
+        e.target.classList.contains('indicator') || 
+        e.target.closest('.indicator')) {
+      return;
+    }
+    
+    e.preventDefault();
+    
+    // تأثير النقر
+    this.classList.add('clicked');
+    setTimeout(() => {
+      this.classList.remove('clicked');
+    }, 300);
+    
+    // عرض مؤشر التحميل على البطاقة
+    const loading = this.querySelector('.card-loading');
+    loading.style.opacity = '1';
+    
+    // عرض رسالة التأكيد
+    const destination = this.getAttribute('data-title');
+    const href = this.getAttribute('href');
+    showConfirmation(destination, href);
+  }
+
+  // تهيئة الأحداث
+  function initEvents() {
+    cardElements.cards.forEach(card => {
+      card.addEventListener('click', handleCardClick);
+    });
+    
+    confirmBtn.addEventListener('click', function() {
+      window.location.href = currentHref;
+    });
+    
+    cancelBtn.addEventListener('click', hideConfirmation);
+    
+    // إضافة event listeners لأزرار لوحة المفاتيح
+    document.addEventListener('keydown', (e) => {
+      if (confirmationModal.classList.contains('active')) {
+        if (e.key === 'Escape') {
+          hideConfirmation();
+        } else if (e.key === 'Enter') {
+          window.location.href = currentHref;
+        }
+      } else {
+        if (e.key === 'ArrowLeft') {
+          slideCard('left');
+        } else if (e.key === 'ArrowRight') {
+          slideCard('right');
+        }
+      }
+    });
+    
+    // تحسينات اللمس للأجهزة المحمولة
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.querySelector('.cards-viewport').addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    
+    document.querySelector('.cards-viewport').addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+    
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        slideCard('right');
+      } else if (touchEndX > touchStartX + 50) {
+        slideCard('left');
+      }
+    }
+  }
+
+  // تحميل الصور مسبقاً لتحسين الأداء
+  function preloadImages() {
+    const imageUrls = [
+      'https://images.unsplash.com/photo-1508962914676-134849a727f0',
+      'https://images.unsplash.com/photo-1542751371-adc38448a05e',
+      'https://images.unsplash.com/photo-1511512578047-dfb367046420',
+      'https://images.unsplash.com/photo-1551269901-5c5e14c25df7',
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c'
+    ];
+    
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.src = url;
+    });
+  }
+
+  // تهيئة عند تحميل الصفحة
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('.entertainment-section');
+    
+    // عرض القسم فوراً مع تأثير
+    setTimeout(() => {
+      section.classList.add('visible');
+    }, 100);
+    
+    // تهيئة البطاقات
+    animateCards();
+    startAutoSlide();
+    initEvents();
+    preloadImages();
+    
+    // إضافة intersection observer للتحكم في الحركة التلقائية
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          resumeAutoSlide();
+        } else {
+          pauseAutoSlide();
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    observer.observe(section);
+    
+    // تحسينات للأجهزة البطيئة
+    if ('connection' in navigator && navigator.connection.saveData) {
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.willChange = 'auto';
+      });
+    }
+  });
+</script>
     <section class="services-section" id="services">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -3155,6 +4010,8 @@ background: transparent !important;
     
     
 </style>
+    <!-- قسم الترفيه -->
+    
     <!-- قسم الخدمات -->
     
     
@@ -3179,7 +4036,7 @@ background: transparent !important;
                     </p>
                                </div>
                 
-<div class="footer-col">
+           <div class="footer-col">
     <h3 class="footer-title">روابط سريعة</h3>
     <ul class="footer-links">
         <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
@@ -3249,7 +4106,7 @@ background: transparent !important;
 <!-- الجافاسكريبت -->
         <style>
 /* أنماط الفوتر المتطور */
-            .footer-links li i {
+    .footer-links li i {
     margin-left: 0.5rem;
     color: #4ECDC4; /* أو أي لون يناسب التصميم */
     font-size: 1rem;
