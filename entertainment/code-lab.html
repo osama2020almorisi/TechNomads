@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معمل البرمجة التفاعلي | شركتك</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #282a36;
+            --secondary-color: #44475a;
+            --accent-color: #6272a4;
+            --text-color: #f8f8f2;
+            --success-color: #50fa7b;
+            --warning-color: #ffb86c;
+            --error-color: #ff5555;
+            --pink-color: #ff79c6;
+            --output-bg: #f8f8f2;
+            --output-header: #e6e6e6;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Tajawal', 'Arial', sans-serif;
+            background: var(--primary-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            min-height: 100vh;
+        }
+        
+        .playground-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background: var(--secondary-color);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .editor-area {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .code-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .editor-header {
+            background: var(--secondary-color);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .editor-title {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .CodeMirror {
+            height: 100% !important;
+            font-size: 14px;
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+        
+        .output-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--output-bg);
+            color: var(--primary-color);
+        }
+        
+        .output-header {
+            background: var(--output-header);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .output-content {
+            flex: 1;
+            padding: 15px;
+            overflow: auto;
+            line-height: 1.6;
+        }
+        
+        .output-content div {
+            margin-bottom: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            background: var(--success-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-run {
+            background: var(--pink-color);
+            color: white;
+        }
+        
+        .btn-clear {
+            background: var(--error-color);
+            color: white;
+        }
+        
+        .btn-home {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .language-selector {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            min-width: 120px;
+        }
+        
+        .language-selector:focus {
+            outline: 2px solid var(--success-color);
+        }
+        
+        .status-bar {
+            background: var(--secondary-color);
+            padding: 5px 15px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            background: rgba(255, 85, 85, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            border-left: 3px solid var(--error-color);
+        }
+        
+        .success-message {
+            color: var(--success-color);
+            background: rgba(80, 250, 123, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            border-left: 3px solid var(--success-color);
+        }
+        
+        @media (max-width: 768px) {
+            .editor-area {
+                flex-direction: column;
+            }
+            
+            .code-editor {
+                border-right: none;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .buttons {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+        
+        /* Animation for run button */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .running {
+            animation: pulse 0.5s infinite;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="playground-container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-code"></i> 
+                <span>معمل البرمجة التفاعلي</span>
+            </h1>
+            <div class="header-actions">
+                <select class="language-selector" id="languageSelector">
+                    <option value="javascript">JavaScript</option>
+                    <option value="htmlmixed">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="python">Python</option>
+                    <option value="php">PHP</option>
+                </select>
+                <div class="buttons">
+          
+                    <button class="btn btn-run" id="runBtn">
+                        <i class="fas fa-play"></i> تشغيل
+                    </button>
+                    <button class="btn btn-clear" id="clearBtn">
+                        <i class="fas fa-trash"></i> مسح
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="editor-area">
+            <div class="code-editor">
+                <div class="editor-header">
+                    <div class="editor-title">
+                        <i class="fas fa-edit"></i> محرر الأكواد
+                    </div>
+                    <div class="tooltip" title="اختر لغة البرمجة">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="tooltiptext">اختر لغة البرمجة</span>
+                    </div>
+                </div>
+                <textarea id="codeEditor"></textarea>
+                <div class="status-bar">
+                    <div class="status-item">
+                        <i class="fas fa-code-branch"></i>
+                        <span id="currentMode">JavaScript</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="lastRunTime">لم يتم التشغيل بعد</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="output-area">
+                <div class="output-header">
+                    <div class="editor-title">
+                        <i class="fas fa-terminal"></i> النتائج
+                    </div>
+                    <div class="tooltip" title="مخرجات الكود البرمجي">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="tooltiptext">مخرجات الكود البرمجي</span>
+                    </div>
+                </div>
+                <div class="output-content" id="outputContent">
+                    <div class="welcome-message">
+                        <p>مرحباً بك في معمل البرمجة التفاعلي!</p>
+                        <p>اكتب الكود البرمجي في الجزء الأيسر واضغط على زر التشغيل أو Ctrl+Enter لتنفيذه.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/php/php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+    
+    <script>
+        // Initialize CodeMirror
+        const codeEditor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+            mode: 'javascript',
+            theme: 'dracula',
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true,
+            autoCloseBrackets: true,
+            lineWrapping: true,
+            extraKeys: {
+                'Ctrl-Enter': runCode,
+                'Cmd-Enter': runCode,
+                'Ctrl-S': function(cm) {
+                    saveCode();
+                    return false;
+                },
+                'Cmd-S': function(cm) {
+                    saveCode();
+                    return false;
+                }
+            }
+        });
+        
+        // Set initial code
+        const initialCode = `// مرحباً بك في معمل البرمجة التفاعلي
+// اضغط على زر التشغيل أو Ctrl+Enter لتشغيل الكود
+
+function greet(name) {
+    return 'مرحباً ' + name + '! 👋';
+}
+
+// مثال على استخدام الدالة
+console.log(greet('زائرنا الكريم'));
+
+// مثال على حلقة
+for (let i = 1; i <= 3; i++) {
+    console.log('هذه هي الدورة رقم ' + i);
+}
+
+// يمكنك تعديل الكود وتجربته مباشرة هنا
+// جرب كتابة أكواد JavaScript واضغط تشغيل
+`;
+        
+        codeEditor.setValue(initialCode);
+        
+        // Language selector
+        const languageSelector = document.getElementById('languageSelector');
+        const currentModeElement = document.getElementById('currentMode');
+        
+        languageSelector.addEventListener('change', () => {
+            const mode = languageSelector.value;
+            codeEditor.setOption('mode', mode);
+            
+            // Update status bar
+            const modeNames = {
+                'javascript': 'JavaScript',
+                'htmlmixed': 'HTML',
+                'css': 'CSS',
+                'python': 'Python',
+                'php': 'PHP'
+            };
+            currentModeElement.textContent = modeNames[mode] || mode;
+            
+            // Set sample code based on language
+            setSampleCode(mode);
+        });
+        
+        function setSampleCode(mode) {
+            let sampleCode = '';
+            
+            switch(mode) {
+                case 'javascript':
+                    sampleCode = initialCode;
+                    break;
+                case 'htmlmixed':
+                    sampleCode = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحتي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #50fa7b;
+        }
+    </style>
+</head>
+<body>
+    <h1>مرحباً بالعالم!</h1>
+    <p>هذه صفحة HTML تجريبية. يمكنك تعديلها كما تشاء.</p>
+</body>
+</html>`;
+                    break;
+                case 'css':
+                    sampleCode = `/* أنماط CSS تجريبية */
+body {
+    background-color: #282a36;
+    color: #f8f8f2;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    color: #ff79c6;
+    text-align: center;
+}
+
+.button {
+    background: #50fa7b;
+    color: #282a36;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}`;
+                    break;
+                case 'python':
+                    sampleCode = `# برنامج Python تجريبي
+
+def greet(name):
+    return f"مرحباً {name}!"
+
+# مثال على استخدام الدالة
+print(greet("زائرنا الكريم"))
+
+# مثال على حلقة
+for i in range(1, 4):
+    print(f"هذه هي الدورة رقم {i}")
+
+# يمكنك كتابة أكواد Python هنا`;
+                    break;
+                case 'php':
+                    sampleCode = `<?php
+// برنامج PHP تجريبي
+
+function greet(\$name) {
+    return "مرحباً " . \$name . "!";
+}
+
+// مثال على استخدام الدالة
+echo greet("زائرنا الكريم") . "\\n";
+
+// مثال على حلقة
+for (\$i = 1; \$i <= 3; \$i++) {
+    echo "هذه هي الدورة رقم " . \$i . "\\n";
+}
+
+// يمكنك كتابة أكواد PHP هنا
+?>`;
+                    break;
+                default:
+                    sampleCode = initialCode;
+            }
+            
+            codeEditor.setValue(sampleCode);
+        }
+        
+        // Run button
+        const runBtn = document.getElementById('runBtn');
+        runBtn.addEventListener('click', runCode);
+        
+        // Clear button
+        const clearBtn = document.getElementById('clearBtn');
+        clearBtn.addEventListener('click', () => {
+            document.getElementById('outputContent').innerHTML = `
+                <div class="welcome-message">
+                    <p>تم مسح المخرجات بنجاح</p>
+                    <p>اكتب الكود البرمجي واضغط على زر التشغيل لتنفيذه.</p>
+                </div>
+            `;
+            
+            // Show success message
+            showStatusMessage('تم مسح المخرجات بنجاح', 'success');
+        });
+        
+        // Home button
+        const homeBtn = document.getElementById('homeBtn');
+        homeBtn.addEventListener('click', () => {
+            // يمكنك تغيير الرابط إلى الصفحة الرئيسية الفعلية
+            alert('سيتم الانتقال إلى الصفحة الرئيسية');
+            // window.location.href = 'index.html';
+        });
+        
+        // Run code function
+        function runCode() {
+            const outputContent = document.getElementById('outputContent');
+            const lastRunTimeElement = document.getElementById('lastRunTime');
+            
+            // Clear previous output
+            outputContent.innerHTML = '';
+            
+            // Add loading state
+            runBtn.classList.add('running');
+            runBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التشغيل...';
+            
+            // Save original console.log
+            const originalConsoleLog = console.log;
+            
+            // Override console.log to capture output
+            console.log = function() {
+                originalConsoleLog.apply(console, arguments);
+                
+                const args = Array.from(arguments).map(arg => {
+                    if (typeof arg === 'object') {
+                        return JSON.stringify(arg, null, 2);
+                    }
+                    return arg;
+                });
+                
+                const message = args.join(' ');
+                outputContent.innerHTML += `<div>${message}</div>`;
+            };
+            
+            // Try to execute the code after a small delay to allow UI to update
+            setTimeout(() => {
+                try {
+                    const code = codeEditor.getValue();
+                    
+                    if (languageSelector.value === 'javascript') {
+                        eval(code);
+                    } else if (languageSelector.value === 'htmlmixed') {
+                        outputContent.innerHTML = code;
+                    } else {
+                        outputContent.innerHTML = `<pre>${code}</pre>`;
+                    }
+                    
+                    // Update last run time
+                    const now = new Date();
+                    lastRunTimeElement.textContent = now.toLocaleTimeString();
+                    
+                    showStatusMessage('تم تنفيذ الكود بنجاح', 'success');
+                } catch (error) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message';
+                    errorDiv.innerHTML = `<strong>خطأ:</strong> ${error.message}`;
+                    outputContent.appendChild(errorDiv);
+                    
+                    showStatusMessage('حدث خطأ أثناء التنفيذ', 'error');
+                }
+                
+                // Restore original console.log
+                console.log = originalConsoleLog;
+                
+                // Remove loading state
+                runBtn.classList.remove('running');
+                runBtn.innerHTML = '<i class="fas fa-play"></i> تشغيل';
+            }, 100);
+        }
+        
+        // Show status message
+        function showStatusMessage(message, type) {
+            const statusBar = document.querySelector('.status-bar');
+            
+            const messageElement = document.createElement('div');
+            messageElement.className = `status-item ${type}-message`;
+            messageElement.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            
+            // Remove any existing messages
+            const existingMessages = document.querySelectorAll('.status-item.message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            statusBar.appendChild(messageElement);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                messageElement.remove();
+            }, 3000);
+        }
+        
+        // Save code function
+        function saveCode() {
+            // هنا يمكنك إضافة منطق لحفظ الكود
+            // مثلاً باستخدام localStorage أو إرساله إلى الخادم
+            showStatusMessage('تم حفظ الكود بنجاح', 'success');
+        }
+        
+        // Enable Ctrl+Enter to run code
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                runCode();
+            }
+        });
+        
+        // Initialize last run time
+        document.getElementById('lastRunTime').textContent = 'لم يتم التشغيل بعد';
+    </script>
+</body>
+</html>

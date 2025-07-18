@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة الذاكرة | شركتك</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #f5f7fa;
+            --danger-color: #e74c3c;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 15px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: var(--dark-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        
+        .game-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+        
+        h1 {
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .info-box {
+            background: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .info-box i {
+            color: var(--primary-color);
+        }
+        
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .card.flipped {
+            background: white;
+            color: var(--dark-color);
+            transform: rotateY(180deg);
+        }
+        
+        .card.matched {
+            background: var(--success-color);
+            cursor: default;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-home {
+            background: linear-gradient(to right, var(--warning-color), var(--danger-color));
+        }
+        
+        .btn-restart {
+            background: linear-gradient(to right, var(--primary-color), #9b59b6);
+        }
+        
+        .level-up {
+            animation: levelUp 0.5s ease;
+        }
+        
+        @keyframes levelUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confettiFall 5s linear forwards;
+        }
+        
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .modal p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .memory-board {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            
+            .card {
+                height: 80px;
+                font-size: 24px;
+            }
+            
+            .game-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .memory-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .card {
+                height: 70px;
+                font-size: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game-container">
+            <h1><i class="fas fa-brain"></i> لعبة الذاكرة</h1>
+            
+            <div class="game-info">
+                <div class="info-box">
+                    <i class="fas fa-trophy"></i>
+                    <span>المستوى: <span id="level">1</span></span>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-redo"></i>
+                    <span>المحاولات: <span id="attempts">0</span></span>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-clock"></i>
+                    <span>الوقت: <span id="time">0</span> ثانية</span>
+                </div>
+            </div>
+            
+            <div class="memory-board" id="memoryBoard"></div>
+            
+            <div class="buttons-container">
+                <button class="btn btn-restart" id="restartBtn">
+                    <i class="fas fa-sync-alt"></i> إعادة البدء
+                </button>
+                <button class="btn btn-home" id="homeBtn">
+                    <i class="fas fa-home"></i> الصفحة الرئيسية
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="winModal">
+        <div class="modal-content">
+            <h2><i class="fas fa-trophy"></i> مبروك!</h2>
+            <p id="winMessage">لقد أكملت المستوى بنجاح!</p>
+            <button class="btn" id="nextLevelBtn">
+                <i class="fas fa-arrow-right"></i> المستوى التالي
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // إعدادات اللعبة
+        const emojis = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🦁', '🐮', '🐨', '🐯', '🦄', '🐸', '🐧'];
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let attempts = 0;
+        let timer = 0;
+        let timerInterval;
+        let currentLevel = 1;
+        let gameActive = true;
+        
+        // عناصر DOM
+        const memoryBoard = document.getElementById('memoryBoard');
+        const levelElement = document.getElementById('level');
+        const attemptsElement = document.getElementById('attempts');
+        const timeElement = document.getElementById('time');
+        const restartBtn = document.getElementById('restartBtn');
+        const homeBtn = document.getElementById('homeBtn');
+        const winModal = document.getElementById('winModal');
+        const winMessage = document.getElementById('winMessage');
+        const nextLevelBtn = document.getElementById('nextLevelBtn');
+        
+        // تهيئة اللعبة
+        function initGame() {
+            clearInterval(timerInterval);
+            timer = 0;
+            attempts = 0;
+            matchedPairs = 0;
+            flippedCards = [];
+            gameActive = true;
+            
+            attemptsElement.textContent = attempts;
+            timeElement.textContent = timer;
+            
+            // إنشاء أزواج بناءً على المستوى
+            const pairsCount = currentLevel + 3;
+            const gameEmojis = emojis.slice(0, Math.min(pairsCount, emojis.length));
+            cards = [...gameEmojis, ...gameEmojis];
+            
+            // خلط الأوراق
+            cards = shuffleArray(cards);
+            
+            renderBoard();
+            startTimer();
+        }
+        
+        // دالة خلط المصفوفة
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        
+        // عرض لوحة اللعب
+        function renderBoard() {
+            memoryBoard.innerHTML = '';
+            
+            // ضبط أعمدة الشبكة بناءً على المستوى
+            const columns = currentLevel < 3 ? 4 : currentLevel < 6 ? 5 : 6;
+            memoryBoard.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.index = index;
+                card.dataset.value = emoji;
+                card.addEventListener('click', flipCard);
+                memoryBoard.appendChild(card);
+            });
+        }
+        
+        // قلب الورقة
+        function flipCard() {
+            if (!gameActive || flippedCards.length === 2 || 
+                this.classList.contains('flipped') || 
+                this.classList.contains('matched')) {
+                return;
+            }
+            
+            this.classList.add('flipped');
+            this.textContent = this.dataset.value;
+            flippedCards.push(this);
+            
+            if (flippedCards.length === 2) {
+                attempts++;
+                attemptsElement.textContent = attempts;
+                checkForMatch();
+            }
+        }
+        
+        // التحقق من التطابق
+        function checkForMatch() {
+            const [card1, card2] = flippedCards;
+            
+            if (card1.dataset.value === card2.dataset.value) {
+                // تطابق ناجح
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                
+                if (matchedPairs === cards.length / 2) {
+                    gameComplete();
+                }
+                
+                flippedCards = [];
+            } else {
+                // لا يوجد تطابق
+                gameActive = false;
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '';
+                    card2.textContent = '';
+                    flippedCards = [];
+                    gameActive = true;
+                }, 1000);
+            }
+        }
+        
+        // اكتمال المستوى
+        function gameComplete() {
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            // عرض رسالة الفوز
+            winMessage.textContent = `أكملت المستوى ${currentLevel} في ${attempts} محاولة و ${timer} ثانية!`;
+            showWinModal();
+            
+            // تأثيرات الكونفيتي
+            createConfetti();
+        }
+        
+        // عرض نافذة الفوز
+        function showWinModal() {
+            winModal.style.display = 'flex';
+        }
+        
+        // إخفاء نافذة الفوز
+        function hideWinModal() {
+            winModal.style.display = 'none';
+        }
+        
+        // إنشاء تأثير الكونفيتي
+        function createConfetti() {
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            const container = document.querySelector('.game-container');
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                container.appendChild(confetti);
+                
+                // إزالة الكونفيتي بعد الانتهاء
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // بدء المؤقت
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timer++;
+                timeElement.textContent = timer;
+            }, 1000);
+        }
+        
+        // الانتقال للمستوى التالي
+        function nextLevel() {
+            currentLevel++;
+            levelElement.textContent = currentLevel;
+            levelElement.classList.add('level-up');
+            
+            // إزالة تأثير المستوى بعد الانتهاء
+            setTimeout(() => {
+                levelElement.classList.remove('level-up');
+            }, 500);
+            
+            initGame();
+            hideWinModal();
+        }
+        
+        // إعادة تعيين اللعبة
+        function resetGame() {
+            currentLevel = 1;
+            levelElement.textContent = currentLevel;
+            initGame();
+            hideWinModal();
+        }
+        
+        // العودة للصفحة الرئيسية
+        function goToHomePage() {
+            // هنا يمكنك تغيير الرابط إلى صفحتك الرئيسية
+            window.location.href = '../index.html';
+        }
+        
+        // إضافة مستمعي الأحداث
+        restartBtn.addEventListener('click', resetGame);
+        homeBtn.addEventListener('click', goToHomePage);
+        nextLevelBtn.addEventListener('click', nextLevel);
+        
+        // تهيئة اللعبة عند التحميل
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
