@@ -2029,7 +2029,7 @@ background: transparent !important;
   <div class="container">
     <div class="section-header" style="text-align: center; margin-bottom: 60px;">
       <h2 style="font-size: 2.5rem; color: #2c3e50; margin-bottom: 15px; font-family: 'Tajawal', sans-serif;">
-        <i class="fas fa-gamepad" style="color: #e74c3c; margin-left: 10px;"></i> الترفيه التفاعلي
+        <i class="fas fa-gamepad" style="color: #e74c3c; margin-left: 10px;"></i>منطقة الترفيه
       </h2>
       <p style="font-size: 1.2rem; color: #7f8c8d; max-width: 700px; margin: 0 auto; line-height: 1.6;">
         استمتع بمجموعة من الأدوات الترفيهية المبتكرة المصممة خصيصاً لتقديم تجربة مستخدم فريدة وسلسة
@@ -2093,9 +2093,9 @@ background: transparent !important;
             </a>
 
             <!-- بطاقة 4 -->
-            <a href="entertainment/quiz-game.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7');" data-title="مسابقة المعلومات">
+            <a href="entertainment/quiz-game.html" class="card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551269901-5c5e14c25df7');" data-title="مسابق">
               <div class="card-header">
-                <div class="card-title">مسابقة المعلومات</div>
+                <div class="card-title">مسابقة</div>
                 <div class="card-logo"><i class="fas fa-question-circle"></i> اختبر نفسك</div>
               </div>
               <div class="card-user">
@@ -2616,6 +2616,61 @@ background: transparent !important;
       height: 8px;
     }
   }
+/* إزالة الهوامش من جميع الجوانب */
+.entertainment-section {
+  padding: 0 !important; /* إزالة الهوامش العلوية والسفلية */
+}
+
+.container {
+  max-width: 100% !important;
+  padding: 0 !important; /* إزالة هوامش الحاوية */
+}
+
+.main-container {
+  padding: 0 !important;
+}
+
+.cards-carousel {
+  max-width: 100% !important;
+  padding: 0 !important; /* إزالة هوامش الكاروسيل */
+  height: 400px !important; /* زيادة ارتفاع مساحة العرض */
+}
+
+/* تعديل مواضع البطاقات */
+
+/* تعديل أزرار التنقل */
+.nav-arrow.left {
+  left: 15px !important;
+}
+
+.nav-arrow.right {
+  right: 15px !important;
+}
+
+/* تعديل المؤشرات السفلية */
+.card-indicators {
+  bottom: 15px !important;
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .cards-carousel {
+    height: 350px !important;
+  }
+  
+  .nav-arrow.left {
+    left: 8px !important;
+  }
+  
+  .nav-arrow.right {
+    right: 8px !important;
+  }
+  
+  .card-indicators {
+    bottom: 10px !important;
+  }
+}
+
 </style>
 
 <script>
