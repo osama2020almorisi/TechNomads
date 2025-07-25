@@ -1,3 +1,4 @@
+ 
 
 
 <!DOCTYPE html>
@@ -74,7 +75,7 @@ body.no-scroll {
 /* الترويسة */
 .header {
   background-color: var(--white);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
   position: fixed;
   width: 100%;
   top: 0;
@@ -92,12 +93,12 @@ body.no-scroll {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 5px 0;
   transition: var(--transition);
 }
 
 .logo img {
-  height: 50px;
+  height: 40px;
   transition: var(--transition);
 }
 
@@ -119,7 +120,7 @@ body.no-scroll {
   transition: var(--transition);
   padding: 8px 12px;
   display: block;
-  font-size: 1.05rem;
+  font-size: 0.05rem;
 }
 
 .nav-links a:hover,
@@ -1767,7 +1768,8 @@ body.no-scroll {
   background: #95a5a6;
   color: white;
 }
-    .footer-social {
+  
+  .footer-social {
     display: flex;
     gap: 15px;
     align-items: center;
@@ -1807,12 +1809,105 @@ body.no-scroll {
 .footer-social .social-link:hover .fa-instagram { color: #c13584; }
 .footer-social .social-link:hover .fa-linkedin-in { color: #084a8e; }
 .footer-social .social-link:hover .fa-youtube { color: #cc0000; }
+  
+  /* متغيرات الألوان للوضع الفاتح */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --text-light: #7f8c8d;
+  --card-bg: #fff;
+  --header-bg: #fff;
+  --footer-bg: #2c3e50;
+  --input-bg: #f9f9f9;
+  --border-color: #e0e0e0;
+  --faq-bg: #f5f9ff;
+  --primary-light: #e1f0fa;
+}
+
+/* متغيرات الألوان للوضع الداكن */
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --text-light: #b0b0b0;
+  --card-bg: #2d2d2d;
+  --header-bg: #2d2d2d;
+  --footer-bg: #1a1a1a;
+  --input-bg: #333;
+  --border-color: #444;
+  --faq-bg: #252525;
+  --primary-light: #1a2a3a;
+}
+
+/* أنماط زر التبديل */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon::before {
+  content: "\f185"; /* أيقونة الشمس */
+}
+
+/* تطبيق المتغيرات على العناصر */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header {
+  background-color: var(--header-bg);
+}
+
+.contact-form, 
+.details-card, 
+.faq-item, 
+.upload-area {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.contact-hero {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg-color) 100%);
+}
+
+.faq-section, 
+.contact-details {
+  background-color: var(--faq-bg);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+.upload-area {
+  background-color: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
   </style>
 </head>
 <body>
     <header class="header" id="header">
+      
         <div class="container">
+          
             <nav class="navbar">
+              
                 <a href="index.html" class="logo">
                     <img src="images/logo.png" alt="شعار الموقع" loading="lazy">
                 </a>
@@ -1822,7 +1917,15 @@ body.no-scroll {
                     <li><a href="services.html">خدماتنا</a></li>
                     <li><a href="blog.html">المدونة</a></li>
                     <li><a href="contact.html" class="active">تواصل معنا</a></li>
+                
                 </ul>
+              <!-- في الهيدر (للأجهزة الكبيرة) -->
+<button id="themeToggleHeader" class="theme-toggle" aria-label="تبديل الوضع الداكن">
+  <i class="fas fa-moon"></i>
+</button>
+
+<!-- في قائمة الهاتف المحمول -->
+
                 <div class="nav-actions">
                     <a href="tel:+967770200970" class="call-btn">
                         <i class="fas fa-phone-alt"></i>
@@ -2594,6 +2697,36 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', () => {
         document.body.classList.add('loaded');
     });
+});
+  // تهيئة تبديل الثيم
+function setupThemeToggle(buttonId) {
+  const themeToggle = document.getElementById(buttonId);
+  if (!themeToggle) return;
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}
+
+// تطبيق عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+  // تهيئة أزرار تبديل الثيم
+  setupThemeToggle('themeToggleHeader');
+  setupThemeToggle('themeToggleMobile');
+
+  // تطبيق الثيم المحفوظ
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
 });
 </script>
   <!-- نافذة إرسال البيانات -->
