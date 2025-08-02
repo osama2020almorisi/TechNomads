@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- الصفحات الرئيسية -->
   <url>
     <loc>https://osama2020almorisi.github.io/TechNomads/index.html</loc>
     <lastmod>2024-05-20</lastmod>
@@ -29,5 +30,39 @@
     <lastmod>2024-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <!-- صفحات مجلد CV -->
+  <url>
+    <loc>https://osama2020almorisi.github.io/TechNomads/cv/cv1.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://osama2020almorisi.github.io/TechNomads/cv/cv2.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://osama2020almorisi.github.io/TechNomads/cv/cv3.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- صفحات مجلد Entertainment -->
+  <url>
+    <loc>https://osama2020almorisi.github.io/TechNomads/entertainment/games.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://osama2020almorisi.github.io/TechNomads/entertainment/movies.html</loc>
+    <lastmod>2024-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
