@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نظام إدارة التطبيقات لمتجر التطبيقات المتطور">
+    <meta name="keywords" content="تطبيقات, إدارة, نظام إدارة, متجر تطبيقات">
+    <meta name="author" content="Osama Almorisi">
+    <title>نظام إدارة التطبيقات | متجر التطبيقات المتطور</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --primary-light: #3d566e;
+            --secondary-color: #1abc9c;
+            --secondary-dark: #16a085;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --info-color: #3498db;
+            --light-color: #f8f9fa;
+            --dark-color: #2c3e50;
+            --gray-color: #7f8c8d;
+            --border-color: #e1e4e8;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-bg: #d4edda;
+            --success-text: #155724;
+            --error-bg: #f8d7da;
+            --error-text: #721c24;
+            --info-bg: #d1ecf1;
+            --info-text: #0c5460;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --folder-color: #ffc107;
+            --transition-speed: 0.3s;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark-color);
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* الهيدر والقوائم */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .logo-container:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(45deg, var(--secondary-color), #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-text span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            transition: all var(--transition-speed) ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .nav-link:hover::before {
+            transform: translateX(0);
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-dark));
+            box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 30%;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-right: 1rem;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--secondary-color), var(--info-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.6rem;
+            border-radius: 6px;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(-10deg);
+        }
+
+        /* قائمة هامبرجر */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .hamburger-menu:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hamburger-icon {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            width: 280px;
+            background: var(--primary-light);
+            box-shadow: -5px 5px 25px rgba(0, 0, 0, 0.25);
+            border-radius: 0 0 0 15px;
+            z-index: 99;
+            overflow: hidden;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 1.2rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--secondary-color);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-link:hover::before {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-link:hover {
+            background-color: rgba(26, 188, 156, 0.2);
+            padding-right: 1.8rem;
+        }
+
+        .mobile-nav-link i {
+            margin-left: 0.8rem;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* المحتوى الرئيسي */
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: var(--hover-shadow);
+        }
+
+        .page-title {
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--info-color));
+            border-radius: 3px;
+        }
+
+        .page-title i {
+            margin-left: 0.8rem;
+            color: var(--secondary-color);
+            background: rgba(26, 188, 156, 0.1);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f1f8ff 0%, #e3f2fd 100%);
+            border-right: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.2rem;
+            border-radius: 12px;
+            align-items: flex-start;
+            animation: fadeIn 0.6s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-card i {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-top: 0.2rem;
+            background: rgba(26, 188, 156, 0.1);
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .info-card p {
+            margin: 0;
+            flex: 1;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* منطقة رفع الملفات */
+        .upload-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .upload-area {
+            border: 2.5px dashed var(--secondary-color);
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .upload-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26, 188, 156, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .upload-area:hover::before {
+            opacity: 1;
+        }
+
+        .upload-area:hover {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f3ff 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary-dark);
+        }
+
+        .upload-area.highlight {
+            border-color: var(--secondary-dark);
+            background: linear-gradient(135deg, #e6f7ed 0%, #d4f2e6 100%);
+            animation: pulse 1.5s infinite;
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            transition: all var(--transition-speed);
+            filter: drop-shadow(0 5px 10px rgba(26, 188, 156, 0.2));
+        }
+
+        .upload-area:hover .upload-icon {
+            transform: scale(1.15) translateY(-5px);
+        }
+
+        .upload-subtext {
+            color: var(--gray-color);
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .file-types {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+            background-color: rgba(0, 0, 0, 0.04);
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            display: inline-block;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-select-btn {
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-dark));
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 35px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all var(--transition-speed);
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-select-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .file-select-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .file-select-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5);
+        }
+
+        .file-select-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(26, 188, 156, 0.4);
+        }
+
+        /* خيارات الرفع */
+        .upload-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--dark-color);
+            font-size: 1.05rem;
+        }
+
+        .option-group label i {
+            color: var(--secondary-color);
+            background: rgba(26, 188, 156, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+            width: 35px;
+            text-align: center;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            right: 1rem;
+            color: var(--gray-color);
+            z-index: 1;
+        }
+
+        .input-with-icon input, 
+        .input-with-icon select, 
+        .input-with-icon textarea {
+            padding: 1rem 3rem 1rem 1.2rem;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            width: 100%;
+            transition: all var(--transition-speed);
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+            font-size: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .input-with-icon input:focus, 
+        .input-with-icon select:focus, 
+        .input-with-icon textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(26, 188, 156, 0.2);
+            background-color: white;
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .privacy-options {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.8rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            transition: all var(--transition-speed);
+        }
+
+        .radio-option:hover .radio-custom {
+            border-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom {
+            border-color: var(--secondary-color);
+            background-color: rgba(26, 188, 156, 0.1);
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--secondary-color);
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            border-radius: 50%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* أزرار التحكم */
+        .action-buttons {
+            display: flex;
+            gap: 1.2rem;
+            margin: 2.5rem 0;
+        }
+
+        .btn {
+            padding: 1.1rem 2.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all var(--transition-speed);
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.05rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--secondary-color), var(--secondary-dark));
+            color: white;
+            flex: 1;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(26, 188, 156, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5);
+        }
+
+        .btn-primary:disabled {
+            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-primary:disabled:hover::before {
+            transform: translateX(-100%);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--danger-color);
+            border: 2px solid var(--danger-color);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f8d7da;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(231, 76, 60, 0.25);
+        }
+
+        /* شريط التقدم */
+        .progress-container {
+            margin: 2.5rem 0;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.8rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            animation: fadeIn 0.6s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+
+        progress {
+            width: 100%;
+            height: 14px;
+            border-radius: 7px;
+            margin-bottom: 1.2rem;
+            border: none;
+            overflow: hidden;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 7px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(45deg, var(--secondary-color), var(--info-color));
+            border-radius: 7px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(26, 188, 156, 0.4);
+        }
+
+        .progress-details {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* رسائل الحالة */
+        .status-message {
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            animation: fadeIn 0.4s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .success {
+            background: linear-gradient(135deg, var(--success-bg), #c3e6cb);
+            color: var(--success-text);
+            border-right: 4px solid var(--success-text);
+        }
+
+        .error {
+            background: linear-gradient(135deg, var(--error-bg), #f5c6cb);
+            color: var(--error-text);
+            border-right: 4px solid var(--error-text);
+        }
+
+        .info {
+            background: linear-gradient(135deg, var(--info-bg), #bee5eb);
+            color: var(--info-text);
+            border-right: 4px solid var(--info-text);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, var(--warning-bg), #ffeaa7);
+            color: var(--warning-text);
+            border-right: 4px solid var(--warning-text);
+        }
+
+        /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hamburger-menu {
+                display: block;
+            }
+            
+            .mobile-nav {
+                display: block;
+            }
+            
+            .upload-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-header {
+                padding: 1rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.7rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                margin: 1.2rem;
+                padding: 1.8rem;
+            }
+            
+            .upload-area {
+                padding: 2rem 1.2rem;
+            }
+            
+            .upload-icon {
+                font-size: 3rem;
+            }
+            
+            .file-select-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .page-title {
+                font-size: 1.6rem;
+            }
+            
+            .upload-area {
+                padding: 1.5rem 1rem;
+            }
+            
+            .upload-icon {
+                font-size: 2.5rem;
+            }
+            
+            .input-with-icon input, 
+            .input-with-icon select, 
+            .input-with-icon textarea {
+                padding: 0.8rem 2.5rem 0.8rem 0.8rem;
+            }
+        }
+
+        /* تأثيرات إضافية */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(26, 188, 156, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 188, 156, 0); }
+        }
+
+        .shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        /* تأثيرات الرفع */
+        .uploading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .uploading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* تأثيرات النص */
+        .text-gradient {
+            background: linear-gradient(45deg, var(--secondary-color), var(--info-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* تأثيرات الأزرار */
+        .btn-pulse:hover {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* تأثيرات الأيقونات */
+        .icon-spin {
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* تأثيرات الظهور */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* تأثيرات الإخفاء */
+        .fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+
+        .slide-out {
+            animation: slideOut 0.5s ease forwards;
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-container">
+            <i class="fas fa-mobile-alt logo-icon"></i>
+            <div class="logo-text">
+                <h1>نظام إدارة التطبيقات</h1>
+                <span>متجر التطبيقات المتطور</span>
+            </div>
+        </div>
+        
+        <!-- قائمة هامبرجر للشاشات الصغيرة -->
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <i class="fas fa-bars hamburger-icon"></i>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="#" class="nav-link active"><i class="fas fa-plus-circle"></i> إضافة تطبيق</a>
+            <a href="#" class="nav-link"><i class="fas fa-th-large"></i> التطبيقات</a>
+            <a href="#" class="nav-link"><i class="fas fa-list"></i> الفئات</a>
+            <div class="user-profile" id="userProfile">
+                <div class="user-avatar" id="userAvatar">م</div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+            <button class="nav-link" id="loginBtn"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
+        </nav>
+        
+        <!-- القائمة المتنقلة -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#" class="mobile-nav-link active"><i class="fas fa-plus-circle"></i> إضافة تطبيق</a>
+            <a href="#" class="mobile-nav-link"><i class="fas fa-th-large"></i> التطبيقات</a>
+            <a href="#" class="mobile-nav-link"><i class="fas fa-list"></i> الفئات</a>
+            <a href="#" class="mobile-nav-link" id="mobileLoginBtn"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a>
+            <a href="#" class="mobile-nav-link" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title"><i class="fas fa-plus-circle"></i> إضافة تطبيق جديد</h2>
+        
+        <div class="info-card">
+            <i class="fas fa-info-circle"></i>
+            <p>يمكنك إضافة تطبيقات جديدة إلى المتجر الخاص بك. تأكد من إدخال جميع البيانات المطلوبة ورفع صورة واضحة للتطبيق وملف التطبيق المضغوط.</p>
+        </div>
+
+        <div class="upload-section">
+            <!-- منطقة رفع صورة التطبيق -->
+            <div class="upload-area" id="imageUploadArea">
+                <div class="upload-icon">
+                    <i class="fas fa-image"></i>
+                </div>
+                <h3>اسحب وأسقط صورة التطبيق هنا</h3>
+                <p class="upload-subtext">أو</p>
+                <input type="file" id="imageFileInput" accept="image/*">
+                <label for="imageFileInput" class="file-select-btn">
+                    <i class="fas fa-image"></i> اختر صورة
+                </label>
+                <p class="file-types">يدعم: JPG, PNG, GIF (الحد الأقصى 5MB)</p>
+            </div>
+            
+            <!-- منطقة رفع ملف التطبيق المضغوط -->
+            <div class="upload-area" id="appUploadArea" style="margin-top: 2rem;">
+                <div class="upload-icon">
+                    <i class="fas fa-file-archive"></i>
+                </div>
+                <h3>اسحب وأسقط ملف التطبيق المضغوط هنا</h3>
+                <p class="upload-subtext">أو</p>
+                <input type="file" id="appFileInput" accept=".zip,.rar,.7zip">
+                <label for="appFileInput" class="file-select-btn">
+                    <i class="fas fa-file-archive"></i> اختر ملف مضغوط
+                </label>
+                <p class="file-types">يدعم: ZIP, RAR, 7Z (الحد الأقصى 100MB)</p>
+            </div>
+            
+            <div class="upload-options">
+                <div class="option-group">
+                    <label for="appName"><i class="fas fa-tag"></i> اسم التطبيق:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-heading"></i>
+                        <input type="text" id="appName" placeholder="اسم التطبيق بالكامل" required>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appDescription"><i class="fas fa-align-left"></i> الوصف:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-file-alt"></i>
+                        <textarea id="appDescription" rows="3" placeholder="وصف مختصر للتطبيق ووظائفه"></textarea>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appCategory"><i class="fas fa-list"></i> الفئة:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-folder"></i>
+                        <select id="appCategory" required>
+                            <option value="">اختر الفئة...</option>
+                            <option value="social">التواصل الاجتماعي</option>
+                            <option value="entertainment">ترفيه</option>
+                            <option value="education">تعليم</option>
+                            <option value="productivity">إنتاجية</option>
+                            <option value="tools">أدوات</option>
+                            <option value="health">صحة ولياقة</option>
+                            <option value="shopping">تسوق</option>
+                            <option value="travel">سفر</option>
+                            <option value="finance">مال وأعمال</option>
+                            <option value="music">موسيقى</option>
+                            <option value="photo">تصوير</option>
+                            <option value="sports">رياضة</option>
+                            <option value="news">أخبار</option>
+                            <option value="weather">طقس</option>
+                            <option value="food">طعام</option>
+                            <option value="lifestyle">أسلوب حياة</option>
+                            <option value="books">كتب</option>
+                            <option value="business">أعمال</option>
+                            <option value="navigation">ملاحة</option>
+                            <option value="medical">طبي</option>
+                            <option value="other">أخرى</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appVersion"><i class="fas fa-code-branch"></i> الإصدار:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-tag"></i>
+                        <input type="text" id="appVersion" placeholder="1.0.0" required>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appSize"><i class="fas fa-weight"></i> الحجم:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                        <input type="text" id="appSize" placeholder="75 ميجابايت" required>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appRating"><i class="fas fa-star"></i> التقييم:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-star-half-alt"></i>
+                        <select id="appRating" required>
+                            <option value="">اختر التقييم...</option>
+                            <option value="1">1 نجمة</option>
+                            <option value="2">2 نجمات</option>
+                            <option value="3">3 نجمات</option>
+                            <option value="4">4 نجمات</option>
+                            <option value="5">5 نجمات</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="appDownloads"><i class="fas fa-download"></i> عدد التحميلات:</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-download"></i>
+                        <input type="text" id="appDownloads" placeholder="1K+" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button id="clearBtn" class="btn-secondary">
+                <i class="fas fa-trash-alt"></i> مسح الكل
+            </button>
+            <button id="saveBtn" class="btn-primary" disabled>
+                <i class="fas fa-save"></i> حفظ التطبيق
+            </button>
+        </div>
+        
+        <div id="progressContainer" class="progress-container" style="display: none;">
+            <div class="progress-header">
+                <span>جاري حفظ التطبيق...</span>
+                <span id="progressText">0%</span>
+            </div>
+            <progress id="uploadProgress" value="0" max="100"></progress>
+            <div class="progress-details">
+                <span id="uploadedSize">0 MB</span>
+                <span id="transferSpeed">0 MB/s</span>
+                <span id="timeRemaining">--</span>
+            </div>
+        </div>
+        
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // عناصر DOM
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const appUploadArea = document.getElementById('appUploadArea');
+            const imageFileInput = document.getElementById('imageFileInput');
+            const appFileInput = document.getElementById('appFileInput');
+            const appName = document.getElementById('appName');
+            const appDescription = document.getElementById('appDescription');
+            const appCategory = document.getElementById('appCategory');
+            const appVersion = document.getElementById('appVersion');
+            const appSize = document.getElementById('appSize');
+            const appRating = document.getElementById('appRating');
+            const appDownloads = document.getElementById('appDownloads');
+            const saveBtn = document.getElementById('saveBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const progressText = document.getElementById('progressText');
+            const uploadedSize = document.getElementById('uploadedSize');
+            const transferSpeed = document.getElementById('transferSpeed');
+            const timeRemaining = document.getElementById('timeRemaining');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            // متغيرات التطبيق
+            let appImageFile = null;
+            let appZipFile = null;
+            
+            // أحداث سحب وإسقاط الملفات للصورة
+            imageUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.add('highlight');
+            });
+
+            ['dragleave', 'dragend'].forEach(type => {
+                imageUploadArea.addEventListener(type, () => {
+                    imageUploadArea.classList.remove('highlight');
+                });
+            });
+
+            imageUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                imageUploadArea.classList.remove('highlight');
+                handleImageFile(e.dataTransfer.files);
+            });
+
+            // أحداث سحب وإسقاط الملفات للتطبيق
+            appUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                appUploadArea.classList.add('highlight');
+            });
+
+            ['dragleave', 'dragend'].forEach(type => {
+                appUploadArea.addEventListener(type, () => {
+                    appUploadArea.classList.remove('highlight');
+                });
+            });
+
+            appUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                appUploadArea.classList.remove('highlight');
+                handleAppFile(e.dataTransfer.files);
+            });
+
+            // حدث اختيار ملف الصورة
+            imageFileInput.addEventListener('change', () => {
+                handleImageFile(imageFileInput.files);
+            });
+
+            // حدث اختيار ملف التطبيق
+            appFileInput.addEventListener('change', () => {
+                handleAppFile(appFileInput.files);
+            });
+
+            // معالجة ملف الصورة
+            function handleImageFile(files) {
+                if (files.length === 0) return;
+                
+                const file = files[0];
+                
+                // التحقق من أن الملف صورة
+                if (!file.type.startsWith('image/')) {
+                    showStatus('الرجاء اختيار ملف صورة فقط (JPG, PNG, GIF)', 'error');
+                    return;
+                }
+                
+                // التحقق من حجم الصورة (5MB كحد أقصى)
+                if (file.size > 5 * 1024 * 1024) {
+                    showStatus('حجم الصورة يتجاوز الحد الأقصى المسموح به (5MB)', 'error');
+                    return;
+                }
+                
+                appImageFile = file;
+                
+                // عرض معاينة للصورة
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageUploadArea.innerHTML = `
+                        <div style="text-align: center;">
+                            <img src="${e.target.result}" alt="معاينة الصورة" style="max-width: 100%; max-height: 200px; border-radius: 8px; margin-bottom: 1rem;">
+                            <p>${file.name}</p>
+                            <button class="btn-secondary" id="changeImageBtn" style="margin-top: 1rem;">
+                                <i class="fas fa-exchange-alt"></i> تغيير الصورة
+                            </button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('changeImageBtn').addEventListener('click', () => {
+                        resetImageUpload();
+                    });
+                };
+                reader.readAsDataURL(file);
+                
+                updateSaveButton();
+                showStatus('تم تحميل صورة التطبيق بنجاح', 'success');
+            }
+
+            // معالجة ملف التطبيق
+            function handleAppFile(files) {
+                if (files.length === 0) return;
+                
+                const file = files[0];
+                
+                // التحقق من أن الملف مضغوط
+                const allowedTypes = ['application/zip', 'application/x-rar-compressed', 'application/x-7z-compressed'];
+                const allowedExtensions = ['.zip', '.rar', '.7z'];
+                const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+                
+                if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+                    showStatus('الرجاء اختيار ملف مضغوط فقط (ZIP, RAR, 7Z)', 'error');
+                    return;
+                }
+                
+                // التحقق من حجم الملف (100MB كحد أقصى)
+                if (file.size > 100 * 1024 * 1024) {
+                    showStatus('حجم الملف يتجاوز الحد الأقصى المسموح به (100MB)', 'error');
+                    return;
+                }
+                
+                appZipFile = file;
+                
+                // عرض معلومات الملف
+                appUploadArea.innerHTML = `
+                    <div style="text-align: center;">
+                        <i class="fas fa-file-archive" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                        <p>${file.name}</p>
+                        <p>${formatFileSize(file.size)}</p>
+                        <button class="btn-secondary" id="changeAppBtn" style="margin-top: 1rem;">
+                            <i class="fas fa-exchange-alt"></i> تغيير الملف
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('changeAppBtn').addEventListener('click', () => {
+                    resetAppUpload();
+                });
+                
+                updateSaveButton();
+                showStatus('تم تحميل ملف التطبيق بنجاح', 'success');
+            }
+
+            // إعادة تعيين رفع الصورة
+            function resetImageUpload() {
+                appImageFile = null;
+                imageUploadArea.innerHTML = `
+                    <div class="upload-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>اسحب وأسقط صورة التطبيق هنا</h3>
+                    <p class="upload-subtext">أو</p>
+                    <input type="file" id="imageFileInput" accept="image/*">
+                    <label for="imageFileInput" class="file-select-btn">
+                        <i class="fas fa-image"></i> اختر صورة
+                    </label>
+                    <p class="file-types">يدعم: JPG, PNG, GIF (الحد الأقصى 5MB)</p>
+                `;
+                
+                document.getElementById('imageFileInput').addEventListener('change', () => {
+                    handleImageFile(imageFileInput.files);
+                });
+                
+                updateSaveButton();
+            }
+
+            // إعادة تعيين رفع التطبيق
+            function resetAppUpload() {
+                appZipFile = null;
+                appUploadArea.innerHTML = `
+                    <div class="upload-icon">
+                        <i class="fas fa-file-archive"></i>
+                    </div>
+                    <h3>اسحب وأسقط ملف التطبيق المضغوط هنا</h3>
+                    <p class="upload-subtext">أو</p>
+                    <input type="file" id="appFileInput" accept=".zip,.rar,.7zip">
+                    <label for="appFileInput" class="file-select-btn">
+                        <i class="fas fa-file-archive"></i> اختر ملف مضغوط
+                    </label>
+                    <p class="file-types">يدعم: ZIP, RAR, 7Z (الحد الأقصى 100MB)</p>
+                `;
+                
+                document.getElementById('appFileInput').addEventListener('change', () => {
+                    handleAppFile(appFileInput.files);
+                });
+                
+                updateSaveButton();
+            }
+
+            // تحديث حالة زر الحفظ
+            function updateSaveButton() {
+                const hasRequiredData = appName.value.trim() && 
+                                      appCategory.value && 
+                                      appVersion.value.trim() && 
+                                      appSize.value.trim() && 
+                                      appRating.value && 
+                                      appDownloads.value.trim() && 
+                                      appImageFile && 
+                                      appZipFile;
+                
+                saveBtn.disabled = !hasRequiredData;
+            }
+
+            // تنسيق حجم الملف
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 بايت';
+                const k = 1024;
+                const sizes = ['بايت', 'كيلوبايت', 'ميجابايت', 'جيجابايت'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // عرض رسالة الحالة
+            function showStatus(message, type) {
+                statusMessage.textContent = message;
+                statusMessage.className = `status-message ${type}`;
+                
+                const icons = {
+                    'success': 'check-circle',
+                    'error': 'times-circle',
+                    'info': 'info-circle',
+                    'warning': 'exclamation-circle'
+                };
+                
+                statusMessage.innerHTML = `<i class="fas fa-${icons[type]}"></i> ${message}`;
+                
+                // إخفاء الرسالة بعد 5 ثواني (ما عدا الأخطاء)
+                if (type !== 'error') {
+                    setTimeout(() => {
+                        statusMessage.textContent = '';
+                        statusMessage.className = 'status-message';
+                    }, 5000);
+                }
+            }
+
+            // مسح جميع الحقول
+            clearBtn.addEventListener('click', () => {
+                appName.value = '';
+                appDescription.value = '';
+                appCategory.value = '';
+                appVersion.value = '';
+                appSize.value = '';
+                appRating.value = '';
+                appDownloads.value = '';
+                
+                resetImageUpload();
+                resetAppUpload();
+                
+                showStatus('تم مسح جميع الحقول', 'info');
+            });
+
+            // حدث حفظ التطبيق
+            saveBtn.addEventListener('click', async () => {
+                // جمع بيانات التطبيق
+                const appData = {
+                    name: appName.value.trim(),
+                    description: appDescription.value.trim(),
+                    category: appCategory.value,
+                    version: appVersion.value.trim(),
+                    size: appSize.value.trim(),
+                    rating: parseInt(appRating.value),
+                    downloads: appDownloads.value.trim(),
+                    image: appImageFile.name,
+                    file: appZipFile.name,
+                    created: new Date().toISOString()
+                };
+                
+                // إعداد واجهة الحفظ
+                saveBtn.disabled = true;
+                clearBtn.disabled = true;
+                progressContainer.style.display = 'block';
+                showStatus('جاري حفظ التطبيق...', 'info');
+                
+                try {
+                    // محاكاة عملية الحفظ (في الواقع الفعلي، سيتم رفع الملفات إلى الخادم)
+                    let progress = 0;
+                    const interval = setInterval(() => {
+                        progress += 5;
+                        uploadProgress.value = progress;
+                        progressText.textContent = `${progress}%`;
+                        
+                        if (progress >= 100) {
+                            clearInterval(interval);
+                            
+                            // حفظ البيانات في localStorage (بديل عن قاعدة البيانات)
+                            const apps = JSON.parse(localStorage.getItem('apps')) || [];
+                            apps.push(appData);
+                            localStorage.setItem('apps', JSON.stringify(apps));
+                            
+                            showStatus('تم حفظ التطبيق بنجاح!', 'success');
+                            
+                            // إعادة تعيين الواجهة بعد 3 ثواني
+                            setTimeout(() => {
+                                clearBtn.click();
+                                progressContainer.style.display = 'none';
+                                uploadProgress.value = 0;
+                                progressText.textContent = '0%';
+                                clearBtn.disabled = false;
+                            }, 3000);
+                        }
+                    }, 200);
+                } catch (error) {
+                    console.error('Error:', error);
+                    showStatus(`حدث خطأ: ${error.message}`, 'error');
+                    saveBtn.disabled = false;
+                    clearBtn.disabled = false;
+                }
+            });
+
+            // تحديث زر الحفظ عند تغيير المدخلات
+            [appName, appCategory, appVersion, appSize, appRating, appDownloads].forEach(input => {
+                input.addEventListener('input', updateSaveButton);
+            });
+        });
+    </script>
+</body>
+</html>
