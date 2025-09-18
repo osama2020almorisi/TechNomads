@@ -1408,7 +1408,33 @@ img[loading="lazy"].loaded {
 .desktop-nav {
     margin: 0 auto; /* توسيط القائمة */
 }
-        
+        /* تغيير لون الزر فقط */
+a.cta-button.primary.pulse-animation {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%) !important;
+    border-color: #2575fc !important;
+}
+
+a.cta-button.primary.pulse-animation:hover {
+    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%) !important;
+    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4) !important;
+}
+
+/* تأثير النبض المعدل للون الجديد */
+a.cta-button.primary.pulse-animation {
+    animation: pulse-apps 2s infinite !important;
+}
+
+@keyframes pulse-apps {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 117, 252, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 117, 252, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 117, 252, 0);
+    }
+}
 </style>
         
         <script>
@@ -1493,6 +1519,10 @@ window.addEventListener('scroll', () => {
                     اكتشف خدماتنا
                     <i class="fas fa-chevron-down bounce-animation"></i>
                 </a>
+     <a href="play.html" class="cta-button primary pulse-animation">
+        تطبيقات
+        <i class="fas fa-th"></i>
+    </a>
             </div>
         </div>
         
