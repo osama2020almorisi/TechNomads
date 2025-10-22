@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض أعمالنا | شركة مثال</title>
+    <title>معرض أعمالنا | TechNomads</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -497,6 +497,19 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .btn-disabled {
+            background-color: #95a5a6;
+            color: var(--white);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-disabled:hover {
+            background-color: #95a5a6;
+            transform: none;
+            box-shadow: none;
+        }
+
         /* التذييل */
         .footer {
             background-color: var(--secondary-color);
@@ -644,6 +657,18 @@
 
         .animate-delay-5 {
             animation-delay: 0.5s;
+        }
+
+        .animate-delay-6 {
+            animation-delay: 0.6s;
+        }
+
+        .animate-delay-7 {
+            animation-delay: 0.7s;
+        }
+
+        .animate-delay-8 {
+            animation-delay: 0.8s;
         }
 
         /* التجاوب مع أحجام الشاشات */
@@ -813,7 +838,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="شعار الشركة">
+                    <img src="images/logo.png" alt="شعار TechNomads">
                 </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">الرئيسية</a></li>
@@ -839,11 +864,14 @@
                 <button class="filter-btn active" data-filter="all">الكل</button>
                 <button class="filter-btn" data-filter="web">مواقع ويب</button>
                 <button class="filter-btn" data-filter="app">تطبيقات</button>
+                <button class="filter-btn" data-filter="tools">أدوات تفاعلية</button>
+                <button class="filter-btn" data-filter="entertainment">ترفيه</button>
                 <button class="filter-btn" data-filter="design">تصاميم</button>
                 <button class="filter-btn" data-filter="marketing">تسويق</button>
             </div>
 
             <div class="projects-grid">
+                <!-- المشاريع السابقة -->
                 <div class="project-card animate__animated animate__fadeInUp" data-category="web">
                     <img src="images/projects/web1.jpg" alt="موقع تجاري إلكتروني">
                     <div class="project-info">
@@ -904,7 +932,7 @@
                     </div>
                 </div>
 
-                <div class="project-card animate__animated animate__fadeInUp" data-category="web">
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-6" data-category="web">
                     <img src="images/projects/web3.jpg" alt="موقع حجز مواعيد">
                     <div class="project-info">
                         <h3>موقع حجز مواعيد</h3>
@@ -914,11 +942,145 @@
                     </div>
                 </div>
 
-                <div class="project-card animate__animated animate__fadeInUp animate-delay-1" data-category="design">
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-7" data-category="design">
                     <img src="images/projects/design2.jpg" alt="تصميم شعار">
                     <div class="project-info">
                         <h3>تصميم شعار</h3>
                         <a href="#" class="view-btn" data-project="8">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- المشاريع الـ12 الجديدة -->
+                
+                <!-- بطاقة 9 - حاسبة العمر -->
+                <div class="project-card animate__animated animate__fadeInUp" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1508962914676-134849a727f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="حاسبة العمر">
+                    <div class="project-info">
+                        <h3>حاسبة العمر</h3>
+                        <a href="#" class="view-btn" data-project="9">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- بطاقة 10 - لعبة الذاكرة -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-1" data-category="entertainment">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="لعبة الذاكرة">
+                    <div class="project-info">
+                        <h3>لعبة الذاكرة</h3>
+                        <a href="#" class="view-btn" data-project="10">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- بطاقة 11 - مولد الألوان -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-2" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="مولد الألوان">
+                    <div class="project-info">
+                        <h3>مولد الألوان</h3>
+                        <a href="#" class="view-btn" data-project="11">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- بطاقة 12 - مسابقة -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-3" data-category="entertainment">
+                    <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="مسابقة">
+                    <div class="project-info">
+                        <h3>مسابقة</h3>
+                        <a href="#" class="view-btn" data-project="12">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- بطاقة 13 - محرر الصور -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-4" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="محرر الصور">
+                    <div class="project-info">
+                        <h3>محرر الصور</h3>
+                        <a href="#" class="view-btn" data-project="13">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- بطاقة 14 - محرر الأكواد التفاعلي -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-5" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="محرر الأكواد التفاعلي">
+                    <div class="project-info">
+                        <h3>محرر الأكواد التفاعلي</h3>
+                        <a href="#" class="view-btn" data-project="14">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 15 - استخراج كلمة مرور الوايفاي -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-6" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="استخراج كلمة مرور الوايفاي">
+                    <div class="project-info">
+                        <h3>استخراج كلمة مرور الوايفاي</h3>
+                        <a href="#" class="view-btn" data-project="15">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 16 - المحاسب المالي -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-7" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="المحاسب المالي">
+                    <div class="project-info">
+                        <h3>المحاسب المالي</h3>
+                        <a href="#" class="view-btn" data-project="16">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 17 - الارتباط التلقائي بالوايفاي -->
+                <div class="project-card animate__animated animate__fadeInUp" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1605651201462-6f49bc0db4cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="الارتباط التلقائي بالوايفاي">
+                    <div class="project-info">
+                        <h3>الارتباط التلقائي بالوايفاي</h3>
+                        <a href="#" class="view-btn" data-project="17">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 18 - استخراج هيكلية المشروع -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-1" data-category="tools">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="استخراج هيكلية المشروع">
+                    <div class="project-info">
+                        <h3>استخراج هيكلية المشروع</h3>
+                        <a href="#" class="view-btn" data-project="18">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 19 - النظام الصحي الذكي -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-2" data-category="app">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="النظام الصحي الذكي">
+                    <div class="project-info">
+                        <h3>النظام الصحي الذكي</h3>
+                        <a href="#" class="view-btn" data-project="19">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة 20 - متجر التطبيقات -->
+                <div class="project-card animate__animated animate__fadeInUp animate-delay-3" data-category="web">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="متجر التطبيقات">
+                    <div class="project-info">
+                        <h3>متجر التطبيقات</h3>
+                        <a href="#" class="view-btn" data-project="20">
                             <i class="fas fa-eye"></i> عرض التفاصيل
                         </a>
                     </div>
@@ -968,9 +1130,9 @@
                 <button class="modal-btn btn-outline" id="prevProject">
                     <i class="fas fa-chevron-right"></i> السابق
                 </button>
-                <button class="modal-btn btn-primary" id="visitProject">
+                <a href="#" class="modal-btn btn-primary" id="visitProject" target="_blank">
                     <i class="fas fa-external-link-alt"></i> زيارة المشروع
-                </button>
+                </a>
                 <button class="modal-btn btn-outline" id="nextProject">
                     <i class="fas fa-chevron-left"></i> التالي
                 </button>
@@ -982,8 +1144,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <img src="images/logo-white.png" alt="شعار الشركة" class="footer-logo">
-                    <p class="footer-about">نحن شركة رائدة في تقديم الحلول التقنية والاستشارات المهنية لعملائنا في اليمن والمنطقة العربية. نقدم خدمات عالية الجودة بمعايير عالمية.</p>
+                    <img src="images/logo-white.png" alt="شعار TechNomads" class="footer-logo">
+                    <p class="footer-about">نحن شركة TechNomads الرائدة في تقديم الحلول التقنية والتطبيقات الذكية. نقدم خدمات عالية الجودة بمعايير عالمية مع التركيز على الابتكار وتجربة المستخدم.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
@@ -996,7 +1158,7 @@
                     <h3 class="footer-title">روابط سريعة</h3>
                     <ul class="footer-links">
                         <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="team.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
                         <li><a href="services.html"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
                         <li><a href="projects.html"><i class="fas fa-chevron-left"></i> معرض الأعمال</a></li>
                         <li><a href="contact.html"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
@@ -1008,8 +1170,8 @@
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-left"></i> تطوير المواقع</a></li>
                         <li><a href="#"><i class="fas fa-chevron-left"></i> تطبيقات الجوال</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> التصميم الجرافيكي</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-left"></i> التسويق الإلكتروني</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> أدوات تفاعلية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left"></i> تطبيقات الترفيه</a></li>
                         <li><a href="#"><i class="fas fa-chevron-left"></i> الاستشارات التقنية</a></li>
                     </ul>
                 </div>
@@ -1019,14 +1181,14 @@
                     <ul class="footer-contact">
                         <li><i class="fas fa-map-marker-alt"></i> صنعاء، اليمن - شارع الزبيري</li>
                         <li><i class="fas fa-phone-alt"></i> +967 770200970</li>
-                        <li><i class="fas fa-envelope"></i> info@example.com</li>
+                        <li><i class="fas fa-envelope"></i> info@technomads.com</li>
                         <li><i class="far fa-clock"></i> الأحد - الخميس: 8 ص - 4 م</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p class="copyright">&copy; <span id="currentYear"></span> جميع الحقوق محفوظة لشركة مثال</p>
+                <p class="copyright">&copy; <span id="currentYear"></span> جميع الحقوق محفوظة لشركة TechNomads</p>
                 <div class="footer-links">
                     <a href="#">سياسة الخصوصية</a>
                     <a href="#">شروط الاستخدام</a>
@@ -1036,8 +1198,9 @@
     </footer>
 
     <script>
-        // بيانات المشاريع
+        // بيانات المشاريع (السابقة + الجديدة)
         const projectsData = [
+            // المشاريع السابقة
             {
                 id: 1,
                 title: "موقع تجاري إلكتروني",
@@ -1149,6 +1312,176 @@
                     "images/projects/design2-2.jpg",
                     "images/projects/design2-3.jpg"
                 ]
+            },
+
+            // المشاريع الـ12 الجديدة
+            {
+                id: 9,
+                title: "حاسبة العمر",
+                category: "tools",
+                description: "أداة ذكية متطورة لحساب العمر بدقة عالية، تمكن المستخدمين من معرفة عمرهم بالسنوات والأشهر والأيام وحتى الدقائق والثواني. تتميز بواجهة مستخدم بديهية وسهلة الاستخدام مع إمكانية مشاركة النتائج. الأداة تدعم جميع التقويمات وتقدم نتائج فورية مع تصاميم مرئية جذابة.",
+                date: "يناير 2024",
+                client: "مستخدمين عامين",
+                link: "entertainment/the-age.html",
+                images: [
+                    "https://images.unsplash.com/photo-1508962914676-134849a727f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 10,
+                title: "لعبة الذاكرة",
+                category: "entertainment",
+                description: "لعبة ذاكرة تفاعلية ممتعة مع مستويات متعددة من الصعوبة، مصممة لتنشيط الذاكرة البصرية وتحسين التركيز. تحتوي على تصاميم جذابة ومجموعات متنوعة من البطاقات مع نظام مكافآت وجوائز. اللعبة مناسبة لجميع الأعمال وتسجل أعلى النتائج للمنافسة بين الأصدقاء والعائلة.",
+                date: "فبراير 2024",
+                client: "محبي الألعاب الذهنية",
+                link: "entertainment/memory-game.html",
+                images: [
+                    "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 11,
+                title: "مولد الألوان",
+                category: "tools",
+                description: "أداة احترافية لاستكشاف وتوليد أنظمة الألوان المتناسقة، تساعد المصممين والمطورين في إنشاء لوحات ألوان متناغمة لمشاريعهم. تحتوي على ميزات متقدمة مثل توليد الألوان العشوائية، حفظ المفضلة، وتصدير الألوان بصيغ متعددة. تدعم نظامي RGB و HEX مع معاينة مباشرة للتأثيرات.",
+                date: "مارس 2024",
+                client: "المصممين والمطورين",
+                link: "entertainment/color-generator.html",
+                images: [
+                    "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 12,
+                title: "مسابقة",
+                category: "entertainment",
+                description: "منصة مسابقات تفاعلية تحتوي على آلاف الأسئلة في مختلف المجالات الثقافية والعلمية والترفيهية. تتميز بتصميم responsive يعمل على جميع الأجهزة، ونظام نقاط متقدم، ومستويات متعددة من الصعوبة. المناسبة مثالية للتعلم والترفيه مع إمكانية إنشاء مسابقات مخصصة.",
+                date: "أبريل 2024",
+                client: "محبي المعرفة والمنافسة",
+                link: "entertainment/quiz-game.html",
+                images: [
+                    "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 13,
+                title: "محرر الصور",
+                category: "tools",
+                description: "محرر صور متكامل يعمل مباشرة في المتصفح بدون الحاجة لتنزيل برامج، يحتوي على جميع الأدوات الأساسية والمتقدمة لتحرير الصور. يدعم القص، التدوير، الضبط، الفلاتر، الإضافة النصية، والعديد من الميزات الاحترافية. يتم حفظ العمل مباشرة على الجهاز مع الحفاظ على الخصوصية.",
+                date: "مايو 2024",
+                client: "المستخدمين العامين والمصممين",
+                link: "entertainment/image-editor.html",
+                images: [
+                    "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1605651201462-6f49bc0db4cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 14,
+                title: "محرر الأكواد التفاعلي",
+                category: "tools",
+                description: "بيئة تطوير متكاملة تعمل في المتصفح لمختلف لغات البرمجة مثل HTML, CSS, JavaScript. تتميز بميزات متقدمة مثل التلوين النحوي، الإكمال التلقائي، والمعاينة المباشرة للنتائج. الأداة مثالية للمبتدئين لتعلم البرمجة وللمحترفين لاختبار الأكواد بسرعة وسهولة.",
+                date: "يونيو 2024",
+                client: "المطورين والمبرمجين",
+                link: "entertainment/code-lab.html",
+                images: [
+                    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 15,
+                title: "استخراج كلمة مرور الوايفاي",
+                category: "tools",
+                description: "أداة متقدمة لاستخراج كلمات مرور شبكات الوايفاي من رموز QR، مصممة لتسهيل عملية مشاركة اتصال الإنترنت مع الأجهزة الأخرى. تعمل الأداة بسلاسة على جميع المتصفحات الحديثة مع واجهة مستخدم بسيطة وفعالة. تساعد في حل مشاكل الاتصال وتوفير الوقت والجهد.",
+                date: "يوليو 2024",
+                client: "مستخدمين المنازل والمقاهي",
+                link: "entertainment/wifi-qr-extractor.html",
+                images: [
+                    "https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 16,
+                title: "المحاسب المالي",
+                category: "app",
+                description: "تطبيق محاسبي متكامل لإدارة الحسابات المالية الشخصية والتجارية، يحتوي على ميزات متقدمة مثل تتبع المصروفات، إدارة الفواتير، تقارير الأداء، والموازنة الشهرية. التطبيق يوفر أمانًا عاليًا للبيانات مع إمكانية المزامنة بين الأجهزة. واجهة مستخدم بديهية تناسب جميع المستخدمين.",
+                date: "أغسطس 2024",
+                client: "الأفراد والشركات الصغيرة",
+                link: "https://osama2020almorisi.github.io/financial-accountant-app/index.html",
+                images: [
+                    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 17,
+                title: "الارتباط التلقائي بالوايفاي",
+                category: "tools",
+                description: "أداة ذكية تمكن المستخدمين من الاتصال تلقائيًا بشبكات الوايفاي عبر مسح رموز QR، مما يلغي الحاجة لتذكر كلمات المرور المعقدة. الأداة تدعم معظم أنواع شبكات الوايفاي وتوفر تجربة اتصال سلسة وسريعة. مثالية للمؤسسات والمقاهي والفنادق لتسهيل الاتصال للعملاء.",
+                date: "سبتمبر 2024",
+                client: "الأفراد والشركات",
+                link: "entertainment/wifi-auto-connect.html",
+                images: [
+                    "https://images.unsplash.com/photo-1605651201462-6f49bc0db4cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 18,
+                title: "استخراج هيكلية المشروع",
+                category: "tools",
+                description: "أداة متطورة للمطورين لاستخراج ونسخ الهيكل الكامل للمشاريع البرمجية بضغطة زر واحدة. تدعم مختلف لغات البرمجة وتوفر تصدير الهيكل بعدة صيغ. الأداة توفر الوقت والجهد في توثيق المشاريع وتنظيمها، مع إمكانية تخصيص الإخراج حسب احتياجات المستخدم.",
+                date: "أكتوبر 2024",
+                client: "المطورين وفرق البرمجة",
+                link: "entertainment/hikl.html",
+                images: [
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 19,
+                title: "النظام الصحي الذكي",
+                category: "app",
+                description: "تطبيق صحي متكامل لتحليل المؤشرات الصحية والطبية، يوفر تتبعًا دقيقًا للحالة الصحية مع تقارير مفصلة وتوصيات ذكية. يدعم ربط البيانات من الأجهزة القابلة للارتداء ويوفر تنبيهات للمواعيد والأدوية. التطبيق مصمم لتعزيز الوعي الصحي وتحسين جودة الحياة.",
+                date: "نوفمبر 2024",
+                client: "المستخدمين المهتمين بالصحة",
+                link: "https://osama2020almorisi.github.io/MedicalAnalysisApp/",
+                images: [
+                    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
+            },
+            {
+                id: 20,
+                title: "متجر التطبيقات",
+                category: "web",
+                description: "منصة متكاملة لعرض وتحميل التطبيقات المتنوعة، توفر تجربة مستخدم فريدة مع نظام تصنيف متقدم وتقييمات حقيقية. المتجر يحتوي على آلاف التطبيقات في مختلف المجالات مع تحديثات مستمرة وأمان عالي. واجهة responsive تعمل بسلاسة على جميع الأجهزة.",
+                date: "ديسمبر 2024",
+                client: "مستخدمين التطبيقات العامة",
+                link: "https://osama2020almorisi.github.io/TechNomads/play.html",
+                images: [
+                    "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                    "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                ]
             }
         ];
 
@@ -1186,9 +1519,23 @@
             projectCategory.textContent = getCategoryName(project.category);
             projectDate.textContent = project.date;
             projectClient.textContent = project.client;
-            projectLink.href = project.link;
-            projectLink.textContent = project.link === '#' ? 'غير متاح' : new URL(project.link).hostname;
-            visitProject.href = project.link;
+            
+            // تحديث رابط المشروع
+            if (project.link && project.link !== '#') {
+                projectLink.href = project.link;
+                projectLink.textContent = 'رابط المشروع';
+                projectLink.style.display = 'inline';
+                visitProject.href = project.link;
+                visitProject.classList.remove('btn-disabled');
+                visitProject.classList.add('btn-primary');
+                visitProject.style.pointerEvents = 'auto';
+            } else {
+                projectLink.style.display = 'none';
+                visitProject.href = '#';
+                visitProject.classList.remove('btn-primary');
+                visitProject.classList.add('btn-disabled');
+                visitProject.style.pointerEvents = 'none';
+            }
             
             // تحديث الصور
             projectImages.innerHTML = '';
@@ -1259,6 +1606,8 @@
             const categories = {
                 'web': 'مواقع ويب',
                 'app': 'تطبيقات',
+                'tools': 'أدوات تفاعلية',
+                'entertainment': 'ترفيه',
                 'design': 'تصاميم',
                 'marketing': 'تسويق'
             };
