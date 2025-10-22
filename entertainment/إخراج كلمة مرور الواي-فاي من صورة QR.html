@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>استخراج كلمة مرور الواي-فاي من QR</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(135deg,#071024 0%, #07192a 100%); color:#e6eef8; margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); width:720px; max-width:100%; padding:22px; border-radius:12px; box-shadow:0 6px 30px rgba(2,6,23,0.6)}
+    h1{margin:0 0 10px 0; font-size:20px}
+    p.lead{margin:0 0 18px 0; color:var(--muted)}
+    .uploader{border:2px dashed rgba(255,255,255,0.04); padding:20px; border-radius:10px; display:flex; gap:16px; align-items:center}
+    .uploader input[type=file]{display:none}
+    .upload-btn{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:10px 14px; border-radius:8px; cursor:pointer}
+    .preview{flex:1; display:flex; align-items:center; gap:12px}
+    .preview img{max-height:120px; border-radius:8px; border:1px solid rgba(255,255,255,0.03)}
+    .info{font-size:14px; color:var(--muted)}
+    .result{margin-top:18px; display:flex; gap:8px; align-items:center}
+    .passwd{background:#00121a; padding:12px 14px; border-radius:10px; min-width:0; word-break:break-all; font-family:monospace}
+    .actions{margin-left:auto; display:flex; gap:8px}
+    button{background:var(--accent); color:#022; border:none; padding:8px 12px; border-radius:8px; cursor:pointer}
+    button.secondary{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted)}
+    .note{margin-top:12px; color:var(--muted); font-size:13px}
+    .hidden{display:none}
+    .small{font-size:13px}
+    footer{margin-top:14px; text-align:left; color:var(--muted); font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>إخراج كلمة مرور الواي-فاي من صورة QR</h1>
+    <p class="lead">ارفع صورة الـQR (أو اسحبها). الصفحة ستقرأ الـQR وتعرض <strong>كلمة المرور فقط</strong> إن كانت موجودة داخل رمز الواي-فاي.</p>
+
+    <div class="uploader" id="drop-area">
+      <label class="upload-btn" for="file-input">اختر صورة</label>
+      <input id="file-input" type="file" accept="image/*" />
+
+      <div class="preview" id="preview">
+        <div class="info">لم تقم بتحميل صورة بعد</div>
+      </div>
+    </div>
+
+    <div class="result hidden" id="result-row">
+      <div>
+        <div class="small">كلمة المرور:</div>
+        <div class="passwd" id="password">—</div>
+      </div>
+      <div class="actions">
+        <button id="copy-btn">نسخ</button>
+        <button class="secondary" id="show-full">عرض النص الكامل</button>
+      </div>
+    </div>
+
+    <div class="note" id="note">إذا كانت الصورة لا تحتوي نص واي-فاي (مثل: <code>WIFI:T:WPA;S:اسم;P:كلمة;H:false;;</code>) ستعرض الصفحة النص الكامل إن رغبت.</div>
+
+    <canvas id="canvas" class="hidden"></canvas>
+    <pre id="fulltext" class="hidden" style="margin-top:12px; background:#041022; padding:10px; border-radius:8px; font-family:monospace; color:#bfeaf9;"></pre>
+
+    <footer>ملاحظة أمان: احتفظ بكلمة المرور خاصة ولا ترفع رموز تحتوي على بيانات حساسة لمواقع غير موثوقة.</footer>
+  </div>
+
+  <!-- مكتبة jsQR -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+  <script>
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    const canvas = document.getElementById('canvas');
+    const passwordEl = document.getElementById('password');
+    const resultRow = document.getElementById('result-row');
+    const copyBtn = document.getElementById('copy-btn');
+    const showFull = document.getElementById('show-full');
+    const fulltext = document.getElementById('fulltext');
+    const dropArea = document.getElementById('drop-area');
+
+    function resetUI(){
+      preview.innerHTML = '<div class="info">لم تقم بتحميل صورة بعد</div>';
+      resultRow.classList.add('hidden');
+      fulltext.classList.add('hidden');
+      fulltext.textContent = '';
+    }
+
+    function handleFile(file){
+      if(!file || !file.type.startsWith('image/')) return alert('المرجو اختيار صورة صحيحة.');
+      const img = new Image();
+      img.onload = ()=>{
+        preview.innerHTML = '';
+        img.style.maxHeight = '120px';
+        preview.appendChild(img);
+
+        // draw to canvas
+        const ctx = canvas.getContext('2d');
+        // resize canvas to image size but limit max dimension for performance
+        const maxDim = 1000;
+        let w = img.naturalWidth, h = img.naturalHeight;
+        const scale = Math.min(1, maxDim / Math.max(w,h));
+        canvas.width = Math.floor(w * scale);
+        canvas.height = Math.floor(h * scale);
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+        const imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+        const code = jsQR(imgData.data, imgData.width, imgData.height);
+        if(code && code.data){
+          const text = code.data.trim();
+          // حاول استخراج كلمة المرور من صيغة WIFI
+          const pass = extractWifiPassword(text);
+          if(pass !== null){
+            passwordEl.textContent = pass || '<فارغة>';
+            resultRow.classList.remove('hidden');
+            fulltext.textContent = text;
+            fulltext.classList.add('hidden');
+          } else {
+            // إذا لم توجد كلمة مرور، اعرض النص الكامل كخيار
+            passwordEl.textContent = 'لم يتم العثور على كلمة مرور ضمن رمز الواي-فاي.';
+            resultRow.classList.remove('hidden');
+            fulltext.textContent = text;
+            fulltext.classList.add('hidden');
+          }
+        } else {
+          alert('لم أستطع قراءة أي كود QR من الصورة. جرّب صورة أو صورة أوضح.');
+          resetUI();
+        }
+      };
+      img.onerror = ()=>{ alert('خطأ عند قراءة الصورة. تأكد من ملف صالح.'); };
+      img.src = URL.createObjectURL(file);
+    }
+
+    function extractWifiPassword(text){
+      // تنسيقات شائعة: WIFI:T:WPA;S:MySSID;P:MyPassword;H:false;;
+      // نبحث عن P:... حتى الفاصلة المنقوطة
+      try{
+        // بعض الرموز قد تكون مشفّرة بمفتاح escape لذا نعاملها كسلسلة عادية
+        const wifiPrefix = text.match(/^WIFI:/i);
+        if(wifiPrefix){
+          const m = text.match(/P:([^;]*)/i);
+          if(m) return m[1];
+          return null;
+        }
+        // إن لم يكن من نوع WIFI، ممكن أن يكون النص هو كلمة المرور مباشرة
+        // إذا النص صغير نسبياً (مثلاً أقل من 80 محرف) ونحتمل أنه كلمة مرور
+        if(text.length > 0 && text.length <= 80 && !text.includes(':') && !text.includes(';')){
+          return text;
+        }
+        return null;
+      }catch(e){ return null; }
+    }
+
+    // نسخ إلى الحافظة
+    copyBtn.addEventListener('click', async ()=>{
+      const txt = passwordEl.textContent;
+      try{
+        await navigator.clipboard.writeText(txt);
+        copyBtn.textContent = 'تم النسخ';
+        setTimeout(()=> copyBtn.textContent = 'نسخ', 1500);
+      }catch(e){
+        alert('فشل النسخ — الرجاء نسخه يدوياً.');
+      }
+    });
+
+    showFull.addEventListener('click', ()=>{
+      if(fulltext.classList.contains('hidden')){
+        fulltext.classList.remove('hidden');
+        showFull.textContent = 'إخفاء النص الكامل';
+      } else {
+        fulltext.classList.add('hidden');
+        showFull.textContent = 'عرض النص الكامل';
+      }
+    });
+
+    fileInput.addEventListener('change', (e)=>{
+      resetUI();
+      const f = e.target.files[0];
+      handleFile(f);
+    });
+
+    // دعم السحب والإسقاط
+    ['dragenter','dragover'].forEach(ev=>{
+      dropArea.addEventListener(ev, (e)=>{ e.preventDefault(); e.stopPropagation(); dropArea.style.borderColor = '#155e75'; });
+    });
+    ['dragleave','drop'].forEach(ev=>{
+      dropArea.addEventListener(ev, (e)=>{ e.preventDefault(); e.stopPropagation(); dropArea.style.borderColor = ''; });
+    });
+    dropArea.addEventListener('drop', (e)=>{
+      const dt = e.dataTransfer;
+      if(dt && dt.files && dt.files.length) {
+        resetUI();
+        handleFile(dt.files[0]);
+      }
+    });
+
+    // تهيئة
+    resetUI();
+  </script>
+</body>
+</html>
