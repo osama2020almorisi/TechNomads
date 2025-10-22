@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسح QR لشبكات الواي فاي</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .description {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        
+        .upload-area {
+            border: 3px dashed #4cc9f0;
+            border-radius: 15px;
+            padding: 40px 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .upload-area:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #72efdd;
+        }
+        
+        .upload-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+        }
+        
+        .upload-text {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .preview-area {
+            margin: 20px 0;
+            display: none;
+        }
+        
+        #imagePreview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scan-btn {
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scan-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scan-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+        
+        .wifi-details {
+            text-align: right;
+            margin: 15px 0;
+        }
+        
+        .wifi-details p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .connect-btn, .copy-btn {
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .connect-btn {
+            background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .copy-btn {
+            background: linear-gradient(to right, #ff9a9e 0%, #fecfef 100%);
+        }
+        
+        .connect-btn:hover, .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .success {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+        
+        .error {
+            background-color: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid #dc3545;
+        }
+        
+        .warning {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 1px solid #ffc107;
+        }
+        
+        .instructions {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: right;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 15px;
+            color: #4cc9f0;
+        }
+        
+        .instructions ol {
+            padding-right: 20px;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .limitations {
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #ff4444;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>مسح QR لشبكات الواي فاي</h1>
+        
+        <p class="description">
+            قم بتحميل صورة رمز الاستجابة السريعة (QR) لشبكة الواي فاي وسنقوم بمسحها وعرض تفاصيل الشبكة
+        </p>
+        
+        <div class="limitations">
+            <strong>ملاحظة هامة:</strong> لأسباب أمنية، لا يمكن للمتصفح الاتصال تلقائيًا بشبكات الواي فاي. 
+            سنعرض لك تفاصيل الشبكة لتقوم بالاتصال يدويًا.
+        </div>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📷</div>
+            <p class="upload-text">انقر لاختيار صورة رمز QR</p>
+            <p>أو اسحب الصورة وأفلتها هنا</p>
+            <input type="file" id="fileInput" class="file-input" accept="image/*">
+        </div>
+        
+        <div class="preview-area" id="previewArea">
+            <img id="imagePreview" src="" alt="معاينة الصورة">
+        </div>
+        
+        <button class="scan-btn" id="scanBtn" disabled>مسح الرمز</button>
+        
+        <div class="result" id="result">
+            <h2>تفاصيل شبكة الواي فاي</h2>
+            <div class="wifi-details" id="wifiDetails">
+                <!-- سيتم ملء هذه المنطقة بتفاصيل الشبكة -->
+            </div>
+            <div class="action-buttons">
+                <button class="connect-btn" id="connectBtn">عرض إرشادات الاتصال</button>
+                <button class="copy-btn" id="copyBtn">نسخ التفاصيل</button>
+            </div>
+            <div class="status" id="status"></div>
+        </div>
+        
+        <div class="instructions">
+            <h3>كيفية الاستخدام:</h3>
+            <ol>
+                <li>انقر على منطقة التحميل واختر صورة رمز QR لشبكة الواي فاي</li>
+                <li>انقر على زر "مسح الرمز" لتحليل الصورة</li>
+                <li>ستظهر تفاصيل الشبكة، انقر على "عرض إرشادات الاتصال" للحصول على التعليمات</li>
+                <li>استخدم زر "نسخ التفاصيل" لنسخ معلومات الشبكة</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const previewArea = document.getElementById('previewArea');
+            const imagePreview = document.getElementById('imagePreview');
+            const scanBtn = document.getElementById('scanBtn');
+            const result = document.getElementById('result');
+            const wifiDetails = document.getElementById('wifiDetails');
+            const connectBtn = document.getElementById('connectBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const status = document.getElementById('status');
+            
+            let wifiData = null;
+            
+            // التعامل مع تحميل الصور
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#72efdd';
+                uploadArea.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = '#4cc9f0';
+                uploadArea.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#4cc9f0';
+                uploadArea.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                
+                if (e.dataTransfer.files.length) {
+                    handleImageFile(e.dataTransfer.files[0]);
+                }
+            });
+            
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    handleImageFile(e.target.files[0]);
+                }
+            });
+            
+            function handleImageFile(file) {
+                if (!file.type.match('image.*')) {
+                    showStatus('الرجاء تحميل ملف صورة فقط', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewArea.style.display = 'block';
+                    scanBtn.disabled = false;
+                    result.style.display = 'none';
+                    status.textContent = '';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // مسح رمز QR
+            scanBtn.addEventListener('click', scanQRCode);
+            
+            function scanQRCode() {
+                showStatus('جاري مسح الرمز...', 'warning');
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+                
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0, img.width, img.height);
+                    
+                    const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                    const code = jsQR(imageData.data, imageData.width, imageData.height);
+                    
+                    if (code) {
+                        parseWifiQR(code.data);
+                    } else {
+                        showStatus('لم يتم العثور على رمز QR في الصورة', 'error');
+                    }
+                };
+                
+                img.onerror = function() {
+                    showStatus('خطأ في تحميل الصورة', 'error');
+                };
+                
+                img.src = imagePreview.src;
+            }
+            
+            function parseWifiQR(data) {
+                // تنسيق رمز QR للواي فاي: WIFI:S:SSID;T:WPA;P:Password;;
+                if (!data.startsWith('WIFI:')) {
+                    showStatus('هذا ليس رمز QR لشبكة واي فاي', 'error');
+                    return;
+                }
+                
+                try {
+                    const parts = data.substring(5).split(';');
+                    wifiData = {};
+                    
+                    parts.forEach(part => {
+                        if (part) {
+                            const [key, value] = part.split(':');
+                            if (key && value) {
+                                wifiData[key] = value;
+                            }
+                        }
+                    });
+                    
+                    displayWifiDetails();
+                } catch (error) {
+                    showStatus('خطأ في تحليل رمز QR', 'error');
+                    console.error(error);
+                }
+            }
+            
+            function displayWifiDetails() {
+                if (!wifiData) return;
+                
+                let html = '';
+                
+                if (wifiData.S) {
+                    html += `<p><strong>اسم الشبكة (SSID):</strong> ${wifiData.S}</p>`;
+                }
+                
+                if (wifiData.T) {
+                    let authType = wifiData.T;
+                    if (authType === 'WPA' || authType === 'WPA2') {
+                        authType = 'WPA/WPA2';
+                    } else if (authType === 'WEP') {
+                        authType = 'WEP';
+                    } else if (authType === 'nopass') {
+                        authType = 'بدون كلمة مرور';
+                    }
+                    html += `<p><strong>نوع الأمان:</strong> ${authType}</p>`;
+                }
+                
+                if (wifiData.P) {
+                    html += `<p><strong>كلمة المرور:</strong> ${wifiData.P}</p>`;
+                } else if (wifiData.T === 'nopass') {
+                    html += `<p><strong>كلمة المرور:</strong> غير مطلوبة</p>`;
+                }
+                
+                if (wifiData.H) {
+                    html += `<p><strong>مخفي:</strong> ${wifiData.H === 'true' ? 'نعم' : 'لا'}</p>`;
+                }
+                
+                wifiDetails.innerHTML = html;
+                result.style.display = 'block';
+                showStatus('تم مسح رمز QR بنجاح! استخدم الأزرار أدناه للاتصال', 'success');
+            }
+            
+            // عرض إرشادات الاتصال
+            connectBtn.addEventListener('click', showConnectionInstructions);
+            
+            function showConnectionInstructions() {
+                if (!wifiData) {
+                    showStatus('لا توجد بيانات شبكة', 'error');
+                    return;
+                }
+                
+                const instructions = `
+                    <h3>إرشادات الاتصال اليدوي:</h3>
+                    <ol>
+                        <li>اذهب إلى إعدادات الواي فاي في جهازك</li>
+                        <li>ابحث عن الشبكة: <strong>${wifiData.S || 'غير معروف'}</strong></li>
+                        <li>${wifiData.P ? `أدخل كلمة المرور: <strong>${wifiData.P}</strong>` : 'هذه الشبكة لا تحتاج كلمة مرور'}</li>
+                        <li>${wifiData.T === 'WEP' ? 'نوع الأمان: WEP' : wifiData.T === 'nopass' ? 'لا يوجد أمان' : 'نوع الأمان: WPA/WPA2'}</li>
+                        <li>اتصل بالشبكة</li>
+                    </ol>
+                `;
+                
+                showStatus(instructions, 'success');
+            }
+            
+            // نسخ التفاصيل
+            copyBtn.addEventListener('click', copyWifiDetails);
+            
+            function copyWifiDetails() {
+                if (!wifiData) {
+                    showStatus('لا توجد بيانات للنسخ', 'error');
+                    return;
+                }
+                
+                let textToCopy = `تفاصيل شبكة الواي فاي:\n`;
+                textToCopy += `اسم الشبكة: ${wifiData.S || 'غير معروف'}\n`;
+                
+                if (wifiData.T) {
+                    let authType = wifiData.T;
+                    if (authType === 'WPA' || authType === 'WPA2') authType = 'WPA/WPA2';
+                    textToCopy += `نوع الأمان: ${authType}\n`;
+                }
+                
+                if (wifiData.P) {
+                    textToCopy += `كلمة المرور: ${wifiData.P}\n`;
+                }
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showStatus('تم نسخ تفاصيل الشبكة إلى الحافظة!', 'success');
+                }).catch(() => {
+                    showStatus('فشل نسخ التفاصيل', 'error');
+                });
+            }
+            
+            function showStatus(message, type) {
+                status.innerHTML = message;
+                status.className = 'status';
+                
+                if (type === 'success') {
+                    status.classList.add('success');
+                } else if (type === 'error') {
+                    status.classList.add('error');
+                } else if (type === 'warning') {
+                    status.classList.add('warning');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
